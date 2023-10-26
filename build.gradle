@@ -31,6 +31,14 @@ dependencies {
     testImplementation 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    // oracle 데이터베이스 설치
+    //runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+
+//    implementation 'com.oracle.database.security:oraclepki'
+//    implementation 'com.oracle.database.security:osdt_core'
+//    implementation 'com.oracle.database.security:osdt_cert'
+
+
 }
 
 test {
