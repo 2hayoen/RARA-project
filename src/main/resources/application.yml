@@ -1,0 +1,18 @@
+#http port
+server:
+  port:8080
+
+spring:
+  profiles:
+    include: db
+  
+  #thymeleaf auto refresh
+  thymeleaf:
+    cache: false
+  
+# mybatis mapping
+# mapper.xml
+mybatis:
+  type-aliases-package : com.example.spring.myapp.model
+# mapper.xml location
+  mapper-locations : /mybatis/mapper/**/*.xml
