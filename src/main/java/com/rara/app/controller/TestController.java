@@ -25,4 +25,8 @@ public class TestController {
 		return "child";
 	}
 
+	@GetMapping("/home")
+	public String testHome(Model model) {
+		return "home";
+	}
 }
