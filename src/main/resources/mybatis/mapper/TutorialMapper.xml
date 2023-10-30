@@ -1,0 +1,40 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rara.app.model.mapper.TutorialMapper">
+
+	
+<resultMap id="MyMap" type="com.rara.app.dto.TutorialDTO">
+    <result column="ID" property="id"/>
+    <result column="TITLE" property="title"/>
+    <result column="DESCRIPTION" property="description"/>
+    <result column="PUBLISHED" property="published"/>
+</resultMap>
+
+  <!-- Create Tutorial -->
+  <insert id="createTutorial">
+    {call tutorials_pkg.create_tutorial(#{title, jdbcType=VARCHAR}, #{description, jdbcType=VARCHAR}, #{published, jdbcType=INTEGER})}
+  </insert>
+
+  <!-- Delete Tutorial -->
+  <delete id="deleteTutorial">
+    {call tutorials_pkg.delete_tutorial(#{id, jdbcType=INTEGER})}
+  </delete>
+
+  <!-- Update Tutorial -->
+  <update id="updateTutorial">
+    {call tutorials_pkg.update_tutorial(#{id, jdbcType=INTEGER}, #{title, jdbcType=VARCHAR}, #{description, jdbcType=VARCHAR}, #{published, jdbcType=INTEGER})}
+  </update>
+
+  <!-- Read Tutorial -->
+  <select id="readTutorial" resultType="com.rara.app.dto.TutorialDTO">
+    select * from tutorials
+  </select>
+  
+  <select id="freadTutorial" resultMap="MyMap" statementType="CALLABLE">
+    { call #{cursor, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=MyMap} := 
+     tutorials_pkg.read_tutorial() }
+  </select>
+  
+
+</mapper>
