@@ -3,38 +3,201 @@
 
 <mapper namespace="com.rara.app.model.mapper.MemberMapper">
 
-
     <resultMap id="MemberMap" type="com.rara.app.dto.MemberDTO">
         <result column="ID" property="id"/>
-        <result column="TITLE" property="title"/>
-        <result column="DESCRIPTION" property="description"/>
-        <result column="PUBLISHED" property="published"/>
+        <result column="EMAIL" property="email"/>
+        <result column="PWD" property="pwd"/>
+        <result column="NAME" property="name"/>
+        <result column="PH_NUM" property="phNum"/>
+        <result column="ADDR" property="addr"/>
+        <result column="EMER_NUM" property="emerNum"/>
+        <result column="CLASS" property="class_"/>
+        <result column="CENTER" property="center"/>
+        <result column="POSITION" property="position"/>
+        <result column="M_ID" property="mId"/>
+        <result column="SEPARATOR" property="separator"/>
     </resultMap>
 
     <!-- Insert Member -->
-    <insert id="insertMember">
-        {call tutorials_pkg.create_tutorial(#{title, jdbcType=VARCHAR}, #{description, jdbcType=VARCHAR}, #{published, jdbcType=INTEGER})}
+    <insert id="insertMember" parameterType="com.rara.app.dto.MemberDTO">
+        {call member_pkg.insert_member(
+        #{email, jdbcType=VARCHAR},
+        #{pwd, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{phNum, jdbcType=VARCHAR},
+        #{addr, jdbcType=VARCHAR},
+        #{emerNum, jdbcType=VARCHAR},
+        #{class_, jdbcType=VARCHAR},
+        #{center, jdbcType=VARCHAR},
+        #{position, jdbcType=VARCHAR},
+        #{mId, jdbcType=NUMERIC},
+        #{separator, jdbcType=VARCHAR}
+        )}
     </insert>
 
     <!-- Delete Member -->
     <delete id="deleteMember">
-        {call tutorials_pkg.delete_tutorial(#{id, jdbcType=INTEGER})}
+        {call member_pkg.delete_member(#{id, jdbcType=NUMERIC})}
     </delete>
 
     <!-- Update Member -->
-    <update id="updateMember">
-        {call tutorials_pkg.update_tutorial(#{id, jdbcType=INTEGER}, #{title, jdbcType=VARCHAR}, #{description, jdbcType=VARCHAR}, #{published, jdbcType=INTEGER})}
+    <update id="updateMember" parameterType="com.rara.app.dto.MemberDTO">
+        {call member_pkg.update_member(
+        #{id, jdbcType=NUMERIC},
+        #{email, jdbcType=VARCHAR},
+        #{pwd, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{phNum, jdbcType=VARCHAR},
+        #{addr, jdbcType=VARCHAR},
+        #{emerNum, jdbcType=VARCHAR},
+        #{class_, jdbcType=VARCHAR},
+        #{center, jdbcType=VARCHAR},
+        #{position, jdbcType=VARCHAR},
+        #{mId, jdbcType=NUMERIC},
+        #{separator, jdbcType=VARCHAR}
+        )}
+    </update>
+
+    <update id="updateMemberSetEmailOrPwdOrNameOrPhNumOrAddr">
+        <if test="email != null and email !='' ">
+            {call member_pkg.update_email(
+            #{id, jdbcType=NUMERIC},
+            #{email, jdbcType=VARCHAR}
+            )}
+        </if>
+        <if test="pwd != null and pwd !='' ">
+            {call member_pkg.update_pwd(
+            #{id, jdbcType=NUMERIC},
+            #{pwd, jdbcType=VARCHAR}
+            )}
+        </if>
+        <if test="name != null and name !='' ">
+            {call member_pkg.update_name(
+            #{id, jdbcType=NUMERIC},
+            #{name, jdbcType=VARCHAR}
+            )}
+        </if>
+        <if test="phNum != null and phNum !='' ">
+            {call member_pkg.update_ph_num(
+            #{id, jdbcType=NUMERIC},
+            #{phNum, jdbcType=VARCHAR}
+            )}
+        </if>
+        <if test="addr != null and addr !='' ">
+            {call member_pkg.update_addr(
+            #{id, jdbcType=NUMERIC},
+            #{addr, jdbcType=VARCHAR}
+            )}
+        </if>
     </update>
 
     <!-- Select Member -->
-    <select id="selectMember" resultType="com.rara.app.dto.MemberDTO">
-        select * from tutorials
+    <select id="selectMembersAll" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+        member_pkg.select_members_all() }
     </select>
 
-    <select id="freadMember" resultMap="MemberMap" statementType="CALLABLE">
-        { call #{cursor, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=MyMap} :=
-        tutorials_pkg.read_tutorial() }
+    <select id="selectMemberById" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+        member_pkg.select_member_by_id(
+        #{id, jdbcType=NUMERIC}
+        )
+        }
     </select>
 
+    <select id="selectMemberByEmail" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+        member_pkg.select_member_by_email(
+        #{email, jdbcType=VARCHAR}
+        )
+        }
+    </select>
+
+    <select id="selectMemberBySeparatorAndNameOrPhNumOrMId" statementType="CALLABLE">
+        <choose>
+            <when test="name != null and name != '' ">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+                member_pkg.select_member_by_separator_name(
+                #{separator, jdbcType=VARCHAR},
+                #{name, jdbcType=VARCHAR}
+                )
+                }
+            </when>
+            <when test="phNum != null and phNum != '' ">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+                member_pkg.select_member_by_separator_ph_num(
+                #{separator, jdbcType=VARCHAR},
+                #{phNum, jdbcType=VARCHAR}
+                )
+                }
+            </when>
+            <when test="mId != null">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+                member_pkg.select_member_by_separator_m_id(
+                #{separator, jdbcType=VARCHAR},
+                #{mId, jdbcType=NUMERIC}
+                )
+                }
+            </when>
+            <otherwise>
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+                member_pkg.select_member_by_separator(
+                #{separator, jdbcType=VARCHAR}
+                )
+                }
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectMemberBySeparatorAndCenterAndNameOrClass_OrPosition" statementType="CALLABLE">
+        <choose>
+            <when test="name != null and name != '' ">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+                member_pkg.select_member_by_separator_center_name(
+                #{separator, jdbcType=VARCHAR},
+                #{center, jdbcType=VARCHAR},
+                #{name, jdbcType=VARCHAR}
+                )
+                }
+            </when>
+            <when test="class_ != null and class_ != '' ">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+                member_pkg.select_member_by_separator_center_class(
+                #{separator, jdbcType=VARCHAR},
+                #{center, jdbcType=VARCHAR},
+                #{class_, jdbcType=VARCHAR}
+                )
+                }
+            </when>
+            <when test="position != null and position != '' ">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+                member_pkg.select_member_by_separator_center_position(
+                #{separator, jdbcType=VARCHAR},
+                #{center, jdbcType=VARCHAR},
+                #{position, jdbcType=VARCHAR}
+                )
+                }
+            </when>
+            <otherwise>
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=MemberMap} :=
+                member_pkg.select_member_by_separator_center(
+                #{separator, jdbcType=VARCHAR},
+                #{center, jdbcType=VARCHAR}
+                )
+                }
+            </otherwise>
+        </choose>
+    </select>
 
 </mapper>

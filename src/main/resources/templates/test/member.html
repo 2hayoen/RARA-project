@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>member info</title>
+</head>
+
+<body>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td th:text="${member.id}"></td>
+        <td th:text="${member.name}"></td>
+        <td th:text="${member.email}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>
