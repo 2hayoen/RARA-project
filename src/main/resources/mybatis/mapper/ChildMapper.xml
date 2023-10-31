@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rara.app.model.mapper.ChildMapper">
+
+    <!-- Create Child -->
+    <insert id="insertChild" parameterType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.insert_child(
+        #{name, mode=IN, jdbcType=VARCHAR},
+        #{birth, mode=IN, jdbcType=VARCHAR},
+        #{photo, mode=IN, jdbcType=VARCHAR},
+        #{property, mode=IN, jdbcType=VARCHAR},
+        #{m_t_id, mode=IN, jdbcType=INTEGER},
+        #{m_c_id, mode=IN, jdbcType=INTEGER}
+        )}
+    </insert>
+
+    <!-- Read all children -->
+    <select id="selectAllChildren" resultType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.select_child_all()}
+    </select>
+
+    <!-- Read child by ID -->
+    <select id="selectChildById" resultType="com.rara.app.dto.ChildDTO" parameterType="java.lang.Long">
+        {call child_pkg.select_child_by_id(
+        #{value, mode=IN, jdbcType=INTEGER}
+        )}
+    </select>
+
+    <!-- Read child by name -->
+    <select id="selectChildByName" resultType="com.rara.app.dto.ChildDTO" parameterType="java.lang.String">
+        {call child_pkg.select_child_by_name(
+        #{value, mode=IN, jdbcType=VARCHAR}
+        )}
+    </select>
+
+    <!-- Read child by birth -->
+    <select id="selectChildByBirth" resultType="com.rara.app.dto.ChildDTO" parameterType="java.lang.String">
+        {call child_pkg.select_child_by_birth(
+        #{value, mode=IN, jdbcType=VARCHAR}
+        )}
+    </select>
+
+    <!-- Read child by m_t_id -->
+    <select id="selectChildByM_T_Id" resultType="com.rara.app.dto.ChildDTO" parameterType="java.lang.Long">
+        {call child_pkg.select_child_by_m_t_id(
+        #{value, mode=IN, jdbcType=INTEGER}
+        )}
+    </select>
+
+    <!-- Read child by m_c_id -->
+    <select id="selectChildByM_C_Id" resultType="com.rara.app.dto.ChildDTO" parameterType="java.lang.Long">
+        {call child_pkg.select_child_by_m_c_id(
+        #{value, mode=IN, jdbcType=INTEGER}
+        )}
+    </select>
+
+    <!-- Update Child -->
+    <update id="updateChild" parameterType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.update_child(
+        #{id, mode=IN, jdbcType=INTEGER},
+        #{name, mode=IN, jdbcType=VARCHAR},
+        #{birth, mode=IN, jdbcType=VARCHAR},
+        #{photo, mode=IN, jdbcType=VARCHAR},
+        #{property, mode=IN, jdbcType=VARCHAR},
+        #{m_t_id, mode=IN, jdbcType=INTEGER},
+        #{m_c_id, mode=IN, jdbcType=INTEGER}
+        )}
+    </update>
+
+    <!-- Update Child Name -->
+    <update id="updateChildName" parameterType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.update_name(
+        #{id, mode=IN, jdbcType=INTEGER},
+        #{name, mode=IN, jdbcType=VARCHAR}
+        )}
+    </update>
+
+    <!-- Update Child Birth -->
+    <update id="updateChildBirth" parameterType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.update_birth(
+        #{id, mode=IN, jdbcType=INTEGER},
+        #{birth, mode=IN, jdbcType=VARCHAR}
+        )}
+    </update>
+
+    <!-- Update Child Photo -->
+    <update id="updateChildPhoto" parameterType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.update_photo(
+        #{id, mode=IN, jdbcType=INTEGER},
+        #{photo, mode=IN, jdbcType=VARCHAR}
+        )}
+    </update>
+
+    <!-- Update Child Property -->
+    <update id="updateChildProperty" parameterType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.update_property(
+        #{id, mode=IN, jdbcType=INTEGER},
+        #{property, mode=IN, jdbcType=VARCHAR}
+        )}
+    </update>
+
+    <!-- Update Child m_t_id -->
+    <update id="updateChildM_T_Id" parameterType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.update_m_t_id(
+        #{id, mode=IN, jdbcType=INTEGER},
+        #{m_t_id, mode=IN, jdbcType=INTEGER}
+        )}
+    </update>
+
+    <!-- Update Child m_c_id -->
+    <update id="updateChildM_C_Id" parameterType="com.rara.app.dto.ChildDTO">
+        {call child_pkg.update_m_c_id(
+        #{id, mode=IN, jdbcType=INTEGER},
+        #{m_c_id, mode=IN, jdbcType=INTEGER}
+        )}
+    </update>
+
+    <!-- Delete Child -->
+    <delete id="deleteChild" parameterType="java.lang.Long">
+        {call child_pkg.delete_child(
+        #{value, mode=IN, jdbcType=INTEGER}
+        )}
+    </delete>
+
+</mapper>
