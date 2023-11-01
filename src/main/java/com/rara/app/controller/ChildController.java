@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/childTest")  // URL
@@ -20,7 +22,7 @@ public class ChildController {
     @GetMapping("/all")
     public String readAllChildren(Model model) {
         try {
-            List<ChildDTO> children = childService.readAllChildren();
+            List<ChildDTO> children = childService.selectChildrenAll();
             model.addAttribute("children", children);
             return "childTest";  // HTML 파일 명
         } catch (Exception e) {
@@ -33,7 +35,7 @@ public class ChildController {
     @GetMapping("/readById/{id}")
     public String readChildById(@PathVariable Long id, Model model) {
         try {
-            List<ChildDTO> child = childService.readChildById(id);
+            ChildDTO child = childService.selectChildById(id);
             model.addAttribute("child", child);
             return "child/readById";
         } catch (Exception e) {
@@ -46,7 +48,7 @@ public class ChildController {
     @GetMapping("/readByName")
     public String readChildByName(@RequestParam String name, Model model) {
         try {
-            List<ChildDTO> children = childService.readChildByName(name);
+            List<ChildDTO> children = childService.selectChildByName(name);
             model.addAttribute("children", children);
             return "child/readByName";
         } catch (Exception e) {
@@ -59,7 +61,7 @@ public class ChildController {
     @GetMapping("/readByBirth")
     public String readChildByBirth(@RequestParam String birth, Model model) {
         try {
-            List<ChildDTO> children = childService.readChildByBirth(birth);
+            List<ChildDTO> children = childService.selectChildByBirth(birth);
             model.addAttribute("children", children);
             return "child/readByBirth";
         } catch (Exception e) {
@@ -72,7 +74,7 @@ public class ChildController {
     @GetMapping("/readByM_T_Id")
     public String readChildByM_T_Id(@RequestParam Long m_t_id, Model model) {
         try {
-            List<ChildDTO> children = childService.readChildByM_T_Id(m_t_id);
+            List<ChildDTO> children = childService.selectChildByMTId(m_t_id);
             model.addAttribute("children", children);
             return "child/readByM_T_Id";
         } catch (Exception e) {
@@ -85,7 +87,7 @@ public class ChildController {
     @GetMapping("/readByM_C_Id")
     public String readChildByM_C_Id(@RequestParam Long m_c_id, Model model) {
         try {
-            List<ChildDTO> children = childService.readChildByM_C_Id(m_c_id);
+            List<ChildDTO> children = childService.selectChildByMCId(m_c_id);
             model.addAttribute("children", children);
             return "child/readByM_C_Id";
         } catch (Exception e) {
@@ -104,7 +106,7 @@ public class ChildController {
     @PostMapping("/create")
     public String createChild(@ModelAttribute ChildDTO childDTO) {
         try {
-            childService.createChild(childDTO);
+            childService.insertChild(childDTO);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -142,7 +144,10 @@ public class ChildController {
     @PostMapping("/updateName/{id}")
     public String updateChildName(@PathVariable Long id, @RequestParam String name) {
         try {
-            childService.updateChildName(id, name);
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            params.put("name", name);
+            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -154,7 +159,10 @@ public class ChildController {
     @PostMapping("/updateBirth/{id}")
     public String updateChildBirth(@PathVariable Long id, @RequestParam String birth) {
         try {
-            childService.updateChildBirth(id, birth);
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            params.put("birth", birth);
+            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -166,7 +174,10 @@ public class ChildController {
     @PostMapping("/updatePhoto/{id}")
     public String updateChildPhoto(@PathVariable Long id, @RequestParam String photo) {
         try {
-            childService.updateChildPhoto(id, photo);
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            params.put("photo", photo);
+            childService.updateChildSetPhotoOrProperty(params);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -178,7 +189,10 @@ public class ChildController {
     @PostMapping("/updateProperty/{id}")
     public String updateChildProperty(@PathVariable Long id, @RequestParam String property) {
         try {
-            childService.updateChildProperty(id, property);
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            params.put("property", property);
+            childService.updateChildSetPhotoOrProperty(params);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -187,10 +201,13 @@ public class ChildController {
     }
 
     // Child 업데이트 - 부모의 Teacher ID
-    @PostMapping("/updateM_T_Id/{id}")
-    public String updateChildM_T_Id(@PathVariable Long id, @RequestParam Long m_t_id) {
+    @PostMapping("/updateMTId/{id}")
+    public String updateChildM_T_Id(@PathVariable Long id, @RequestParam Long mTId) {
         try {
-            childService.updateChildM_T_Id(id, m_t_id);
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            params.put("mTId", mTId);
+            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -200,9 +217,12 @@ public class ChildController {
 
     // Child 업데이트 - 부모의 Child ID
     @PostMapping("/updateM_C_Id/{id}")
-    public String updateChildM_C_Id(@PathVariable Long id, @RequestParam Long m_c_id) {
+    public String updateChildM_C_Id(@PathVariable Long id, @RequestParam Long mCId) {
         try {
-            childService.updateChildM_C_Id(id, m_c_id);
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            params.put("mCId", mCId);
+            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가

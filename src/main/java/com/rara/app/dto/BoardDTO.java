@@ -22,4 +22,5 @@ public class BoardDTO {
     private String file1;
     private String file2;
     private Long mId;
+    private String author;
 }

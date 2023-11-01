@@ -2,6 +2,7 @@
 ### oracle cloud files ###
 src/main/resources/Wallet_edudb/*
 src/main/resources/application-db.yml
+src/main/resources/sql/*
 
 
 .gradle

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="base :: html_header">
+    <title>Child Template</title>
+    <!-- ... 다른 head 요소 ... -->
+</head>
+<body>
+    
+    <th:block th:insert="base :: html_body"></th:block>
+	
+	<h1>Welcome to the Child Template!</h1>
+	
+	<th:block th:replace="base :: html_body"></th:block>
+</body>
+</html>

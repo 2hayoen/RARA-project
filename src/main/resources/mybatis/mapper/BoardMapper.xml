@@ -12,6 +12,7 @@
         <result column="FILE1" property="file1"/>
         <result column="FILE2" property="file2"/>
         <result column="M_ID" property="mId"/>
+        <result column="AUTHOR" property="author"/>
     </resultMap>
 
     <!-- Insert Board -->
@@ -22,7 +23,8 @@
         #{category, jdbcType=VARCHAR},
         #{file1, jdbcType=VARCHAR},
         #{file2, jdbcType=VARCHAR},
-        #{mId, jdbcType=NUMERIC}
+        #{mId, jdbcType=NUMERIC},
+        #{author, jdbcType=VARCHAR}
         )}
     </insert>
 

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>dailyPlan list</title>
+</head>
+
+<body>
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('TEST DAILY PLAN PKG -------------------');
+DBMS_OUTPUT.PUT_LINE(' ');
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test insert, select all');
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Key1</th>
+    </tr>
+    <tr th:each="dailyPlan : ${dailyPlans}">
+        <td th:text="${dailyPlan.id}"></td>
+        <td th:text="${dailyPlan.year}"></td>
+        <td th:text="${dailyPlan.key1}"></td>
+    </tr>
+</table>
+
+DBMS_OUTPUT.PUT_LINE('YEAR: ' || v_result.year || ', KEY1: ' || v_result.key1);
+DBMS_OUTPUT.PUT_LINE('MONTH: ' || v_result.month || ', M ID: ' || v_result.m_id);
+DBMS_OUTPUT.PUT_LINE('DAY: ' || v_result.day || ', KEY2: ' || v_result.key2);
+DBMS_OUTPUT.PUT_LINE('ID: ' || v_result.id || ', KEY3: ' || v_result.key3);
+DBMS_OUTPUT.PUT_LINE('FILE1: ' || v_result.file1 || ', FILE2: ' || v_result.file2);
+DBMS_OUTPUT.PUT_LINE('ACT1_TYPE: ' || v_result.act1_type || ', ACT2_TYPE: ' || v_result.act2_type);
+DBMS_OUTPUT.PUT_LINE('ACT1_GOAL: ' || v_result.act1_goal || ', ACT2_GOAL: ' || v_result.act2_goal);
+DBMS_OUTPUT.PUT_LINE('ACT1_TIME: ' || v_result.act1_time || ', ACT2_TIME: ' || v_result.act2_time);
+DBMS_OUTPUT.PUT_LINE('ACT1_TITLE: ' || v_result.act1_title || ', ACT2_TITLE: ' || v_result.act2_title);
+DBMS_OUTPUT.PUT_LINE('ACT1_SUB: ' || v_result.act1_sub || ', ACT2_SUB: ' || v_result.act2_sub);
+DBMS_OUTPUT.PUT_LINE('ACT1_DESC: ' || v_result.act1_desc || ', ACT2_DESC: ' || v_result.act2_desc);
+DBMS_OUTPUT.PUT_LINE('ACT1_MATER: ' || v_result.act1_mater || ', ACT2_MATER: ' || v_result.act2_mater);
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test update (all, columns)');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select id : 1');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select year : 2023');
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select month : 8');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select day : 1');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select year, month : 2023, 10');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select year, month, day : 2023, 8, 1');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select file1 : u_file2-1');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select file2 : u_file2-2');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select m id : 2');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select m id, year : 2, 2023');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select m id, act title : 2, title');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test select m id, act type : 2, type');
+
+
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('Test delete id : 3');
+
+</body>
+
+</html>
