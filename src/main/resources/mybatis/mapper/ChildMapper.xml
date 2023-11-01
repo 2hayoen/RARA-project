@@ -4,6 +4,16 @@
 
 <mapper namespace="com.rara.app.model.mapper.ChildMapper">
 
+    <resultMap id="ChildMap" type="com.rara.app.dto.ChildDTO">
+        <result column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="BIRTH" property="birth"/>
+        <result column="PHOTO" property="photo"/>
+        <result column="PROPERTY" property="property"/>
+        <result column="M_T_ID" property="m_t_id"/>
+        <result column="M_C_ID" property="m_c_id"/>
+    </resultMap>
+
     <!-- Create Child -->
     <insert id="insertChild" parameterType="com.rara.app.dto.ChildDTO">
         {call child_pkg.insert_child(
@@ -17,8 +27,10 @@
     </insert>
 
     <!-- Read all children -->
-    <select id="selectAllChildren" resultType="com.rara.app.dto.ChildDTO">
-        {call child_pkg.select_child_all()}
+    <select id="selectAllChildren" statementType="CALLABLE">
+        {call
+        #{cursor, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=ChildMap} :=
+        child_pkg.select_child_all()}
     </select>
 
     <!-- Read child by ID -->

@@ -3,12 +3,13 @@ package com.rara.app.model.mapper;
 import com.rara.app.dto.ChildDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ChildMapper {
     void insertChild(ChildDTO childDTO);
     void deleteChild(Long id);
     void updateChild(ChildDTO childDTO);
-    List<ChildDTO> selectAllChildren();
+    List<ChildDTO> selectAllChildren(Map<String, Object> params);
     List<ChildDTO> selectChildById(Long id);
     List<ChildDTO> selectChildByName(String name);
     List<ChildDTO> selectChildByBirth(String birth);

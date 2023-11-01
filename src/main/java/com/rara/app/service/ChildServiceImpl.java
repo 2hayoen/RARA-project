@@ -1,8 +1,11 @@
 package com.rara.app.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.rara.app.dto.ChildDTO;
+import com.rara.app.dto.TutorialDTO;
 import com.rara.app.model.mapper.ChildMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +67,9 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     public List<ChildDTO> readAllChildren() throws Exception {
-        return childMapper.selectAllChildren();
+        Map<String, Object> params = new HashMap<>();
+        childMapper.selectAllChildren(params);
+        return (List<ChildDTO>) params.get("cursor");
     }
 
     @Override
