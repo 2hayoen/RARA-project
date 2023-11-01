@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>dailyPlan list</title>
+</head>
+
+<body>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Key1</th>
+    </tr>
+    <tr th:each="dailyPlan : ${dailyPlans}">
+        <td th:text="${dailyPlan.id}"></td>
+        <td th:text="${dailyPlan.year}"></td>
+        <td th:text="${dailyPlan.key1}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>

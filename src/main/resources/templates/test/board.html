@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>board info</title>
+</head>
+
+<body>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Created</th>
+    </tr>
+    <tr>
+        <td th:text="${board.id}"></td>
+        <td th:text="${board.title}"></td>
+        <td th:text="${board.created}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>

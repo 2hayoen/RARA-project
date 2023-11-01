@@ -1,0 +1,264 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rara.app.model.mapper.DailyPlanMapper">
+
+    <resultMap id="DailyPlanMap" type="com.rara.app.dto.DailyPlanDTO">
+        <result column="ID" property="id"/>
+        <result column="YEAR" property="year"/>
+        <result column="MONTH" property="month"/>
+        <result column="DAY" property="day"/>
+        <result column="KEY1" property="key1"/>
+        <result column="KEY2" property="key2"/>
+        <result column="KEY3" property="key3"/>
+        <result column="FILE1" property="file1"/>
+        <result column="FILE2" property="file2"/>
+        <result column="ACT1_TYPE" property="act1Type"/>
+        <result column="ACT2_TYPE" property="act2Type"/>
+        <result column="ACT1_GOAL" property="act1Goal"/>
+        <result column="ACT2_GOAL" property="act2Goal"/>
+        <result column="ACT1_TIME" property="act1Time"/>
+        <result column="ACT2_TIME" property="act2Time"/>
+        <result column="ACT1_TITLE" property="act1Title"/>
+        <result column="ACT2_TITLE" property="act2Title"/>
+        <result column="ACT1_SUB" property="act1Sub"/>
+        <result column="ACT2_SUB" property="act2Sub"/>
+        <result column="ACT1_DESC" property="act1Desc"/>
+        <result column="ACT2_DESC" property="act2Desc"/>
+        <result column="ACT1_MATER" property="act1Mater"/>
+        <result column="ACT2_MATER" property="act2Mater"/>
+        <result column="M_ID" property="mId"/>
+    </resultMap>
+
+    <!-- Insert DailyPlan -->
+    <insert id="insertDailyPlan" parameterType="com.rara.app.dto.DailyPlanDTO">
+        {call dailyplan_pkg.insert_dailyplan(
+        #{year, jdbcType=NUMERIC},
+        #{month, jdbcType=NUMERIC},
+        #{key1, jdbcType=VARCHAR},
+        #{mId, jdbcType=NUMERIC}
+        )}
+    </insert>
+
+    <!-- Delete DailyPlan -->
+    <delete id="deleteDailyPlan">
+        {call dailyplan_pkg.delete_dailyplan(#{id, jdbcType=NUMERIC})}
+    </delete>
+
+
+    <update id="updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3">
+        <if test="year != null">
+            {call dailyplan_pkg.update_year(
+            #{id, jdbcType=NUMERIC},
+            #{year, jdbcType=NUMERIC}
+            )}
+        </if>
+        <if test="month != null">
+            {call dailyplan_pkg.update_month(
+            #{id, jdbcType=NUMERIC},
+            #{month, jdbcType=NUMERIC}
+            )}
+        </if>
+        <if test="key1 != null and key1 !='' ">
+            {call dailyplan_pkg.update_key1(
+            #{id, jdbcType=NUMERIC},
+            #{key1, jdbcType=VARCHAR}
+            )}
+        </if>
+        <if test="key2 != null and key2 !='' ">
+            {call dailyplan_pkg.update_key2(
+            #{id, jdbcType=NUMERIC},
+            #{key2, jdbcType=VARCHAR}
+            )}
+        </if>
+        <if test="key3 != null and key3 !='' ">
+            {call dailyplan_pkg.update_key3(
+            #{id, jdbcType=NUMERIC},
+            #{key3, jdbcType=VARCHAR}
+            )}
+        </if>
+    </update>
+
+
+    <update id="updateDailyPlanSetDayOrFile1OrFile2OrMId">
+        <if test="day != null">
+            {call dailyplan_pkg.update_day(
+            #{id, jdbcType=NUMERIC},
+            #{day, jdbcType=NUMERIC}
+            )}
+        </if>
+        <if test="file1 != null and file1 !='' ">
+            {call dailyplan_pkg.update_file1(
+            #{id, jdbcType=NUMERIC},
+            #{file1, jdbcType=VARCHAR}
+            )}
+        </if>
+        <if test="file2 != null and file2 !='' ">
+            {call dailyplan_pkg.update_file2(
+            #{id, jdbcType=NUMERIC},
+            #{file2, jdbcType=VARCHAR}
+            )}
+        </if>
+        <if test="mId != null">
+            {call dailyplan_pkg.update_m_id(
+            #{id, jdbcType=NUMERIC},
+            #{mId, jdbcType=NUMERIC}
+            )}
+        </if>
+    </update>
+
+    <update id="updateDailyPlanSetAct1TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater">
+        {call dailyplan_pkg.update_act1(
+        #{id, jdbcType=NUMERIC},
+        #{act1Type, jdbcType=VARCHAR},
+        #{act1Goal, jdbcType=VARCHAR},
+        #{act1Time, jdbcType=NUMERIC},
+        #{act1Title, jdbcType=VARCHAR},
+        #{act1Sub, jdbcType=VARCHAR},
+        #{act1Desc, jdbcType=VARCHAR},
+        #{act1Mater, jdbcType=VARCHAR}
+        )}
+    </update>
+
+    <update id="updateDailyPlanSetAct2TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater">
+        {call dailyplan_pkg.update_act2(
+        #{id, jdbcType=NUMERIC},
+        #{act2Type, jdbcType=VARCHAR},
+        #{act2Goal, jdbcType=VARCHAR},
+        #{act2Time, jdbcType=NUMERIC},
+        #{act2Title, jdbcType=VARCHAR},
+        #{act2Sub, jdbcType=VARCHAR},
+        #{act2Desc, jdbcType=VARCHAR},
+        #{act2Mater, jdbcType=VARCHAR}
+        )}
+    </update>
+
+    <!-- Select DailyPlan -->
+    <select id="selectDailyPlansAll" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+        dailyplan_pkg.select_dailyplan_all() }
+    </select>
+
+    <select id="selectDailyPlanById" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+        dailyplan_pkg.select_dailyplan_by_id(
+        #{id, jdbcType=NUMERIC}
+        )
+        }
+    </select>
+
+    <select id="selectDailyPlanByMonth" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+        dailyplan_pkg.select_dailyplan_by_month(
+        #{month, jdbcType=NUMERIC}
+        )
+        }
+    </select>
+
+    <select id="selectDailyPlanByDay" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+        dailyplan_pkg.select_dailyplan_by_day(
+        #{day, jdbcType=NUMERIC}
+        )
+        }
+    </select>
+
+    <select id="selectDailyPlanByFile1" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+        dailyplan_pkg.select_dailyplan_by_file1(
+        #{file1, jdbcType=VARCHAR}
+        )
+        }
+    </select>
+
+    <select id="selectDailyPlanByFile2" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+        dailyplan_pkg.select_dailyplan_by_file2(
+        #{file2, jdbcType=VARCHAR}
+        )
+        }
+    </select>
+
+
+    <select id="selectDailyPlanByYearOrMonthOrDay" statementType="CALLABLE">
+        <choose>
+            <when test="month != null">
+                <choose>
+                    <when test="day != null">
+                        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+                        dailyplan_pkg.select_dailyplan_by_year_month_day(
+                        #{year, jdbcType=NUMERIC},
+                        #{month, jdbcType=NUMERIC},
+                        #{day, jdbcType=NUMERIC}
+                        )
+                        }
+                    </when>
+                    <otherwise>
+                        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+                        dailyplan_pkg.select_dailyplan_by_year_month(
+                        #{year, jdbcType=NUMERIC},
+                        #{month, jdbcType=NUMERIC}
+                        )
+                        }
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+                dailyplan_pkg.select_dailyplan_by_year(
+                #{year, jdbcType=NUMERIC}
+                )
+                }
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectDailyPlanByMIdOrYearOrActTitleOrActType" statementType="CALLABLE">
+        <choose>
+            <when test="year != null">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+                dailyplan_pkg.select_dailyplan_by_m_id_year(
+                #{mId, jdbcType=NUMERIC},
+                #{year, jdbcType=NUMERIC}
+                )
+                }
+            </when>
+            <when test="actTitle != null">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+                dailyplan_pkg.select_dailyplan_by_m_id_act_title(
+                #{mId, jdbcType=NUMERIC},
+                #{actTitle, jdbcType=VARCHAR}
+                )
+                }
+            </when>
+            <when test="actType != null">
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+                dailyplan_pkg.select_dailyplan_by_m_id_act_type(
+                #{mId, jdbcType=NUMERIC},
+                #{actType, jdbcType=VARCHAR}
+                )
+                }
+            </when>
+            <otherwise>
+                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=DailyPlanMap} :=
+                dailyplan_pkg.select_dailyplan_by_m_id(
+                #{mId, jdbcType=NUMERIC}
+                )
+                }
+            </otherwise>
+        </choose>
+    </select>
+</mapper>
