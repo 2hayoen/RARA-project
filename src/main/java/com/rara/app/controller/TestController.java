@@ -2,9 +2,11 @@ package com.rara.app.controller;
 
 import com.rara.app.dto.BoardDTO;
 import com.rara.app.dto.DailyPlanDTO;
+import com.rara.app.dto.DailyRecordDTO;
 import com.rara.app.dto.MemberDTO;
 import com.rara.app.service.BoardService;
 import com.rara.app.service.DailyPlanService;
+import com.rara.app.service.DailyRecordService;
 import com.rara.app.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -107,6 +109,31 @@ public class TestController {
             DailyPlanDTO dailyPlan = dailyPlanService.selectDailyPlanById(id);
             model.addAttribute("dailyPlan", dailyPlan);
             return "test/dailyPlan";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @Autowired
+    DailyRecordService dailyRecordService;
+
+    @GetMapping("/dailyrecord")
+    public String getDailyRecordsAll(Model model) {
+        try {
+            List<DailyRecordDTO> dailyRecords = dailyRecordService.selectDailyRecordsAll();
+            model.addAttribute("dailyRecords", dailyRecords);
+            return "test/dailyRecords";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @GetMapping("/dailyrecord/{id}")
+    public String getDailyRecordById(@PathVariable Long id, Model model) {
+        try {
+            DailyRecordDTO dailyRecord = dailyRecordService.selectDailyRecordById(id);
+            model.addAttribute("dailyRecord", dailyRecord);
+            return "test/dailyRecord";
         } catch (Exception e) {
             return "error";
         }
