@@ -22,11 +22,6 @@ public class WebTestController {
         return "base_test";
     }
 
-    @GetMapping("/main_base")
-    public String main_base(Model model) {
-        return "home_base";
-    }
-
 
     @GetMapping("/class")
     public String child_class(Model model) {
