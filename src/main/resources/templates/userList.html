@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+</head>
+<body>
+<h2>User List</h2>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>email</th>
+        <th>password</th>
+        <th>address</th>
+        <th>phone</th>
+        <th>center</th>
+        <th>class</th>
+    </tr>
+    <th:block th:if="${list != null}">
+        <tr th:each="users : ${list}">
+            <td th:text="${users.id}"></td>
+            <td th:text="${users.email}"></td>
+            <td th:text="${users.pwd}"></td>
+            <td th:text="${users.addr}"></td>
+            <td th:text="${users.phNum}"></td>
+            <td th:text="${users.center}"></td>
+            <td th:text="${users.class_}"></td>
+            <td th:text="${users.id}"></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
