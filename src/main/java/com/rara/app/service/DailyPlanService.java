@@ -36,9 +36,9 @@ public interface DailyPlanService {
 
     List<DailyPlanDTO> selectDailyPlanByFile2(String file2) throws Exception;
 
-    List<DailyPlanDTO> selectDailyPlanByYearOrMonthOrDay(
+    List<DailyPlanDTO> selectDailyPlanByYearAndMonthOrDay(
             Map<String, Object> params) throws Exception;
 
-    List<DailyPlanDTO> selectDailyPlanByMIdOrYearOrActTitleOrActType(
+    List<DailyPlanDTO> selectDailyPlanByMIdAndYearOrActTitleOrActType(
             Map<String, Object> params) throws Exception;
 }

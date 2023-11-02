@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Test Board All</title>
+</head>
+
+<body>
+
+<p>&nbsp</p>
+<p>TEST BOARD PKG -------------------</p>
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+<p>Test insert, select all</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Created</th>
+        <th>MId</th>
+        <th>Author</th>
+    </tr>
+    <th:block th:if="${boardsInserted != null}">
+        <tr th:each="board : ${boardsInserted}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.content}"></td>
+            <td th:text="${board.category}"></td>
+            <td th:text="${board.file1}"></td>
+            <td th:text="${board.file2}"></td>
+            <td th:text="${board.created}"></td>
+            <td th:text="${board.mId}"></td>
+            <td th:text="${board.author}"></td>
+        </tr>
+    </th:block>
+</table>
+
+
+<p>&nbsp</p>
+<p>Test select id : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Created</th>
+        <th>MId</th>
+        <th>Author</th>
+    </tr>
+    <th:block th:if="${boardById != null}">
+        <tr>
+            <td th:text="${boardById.id}"></td>
+            <td th:text="${boardById.title}"></td>
+            <td th:text="${boardById.content}"></td>
+            <td th:text="${boardById.category}"></td>
+            <td th:text="${boardById.file1}"></td>
+            <td th:text="${boardById.file2}"></td>
+            <td th:text="${boardById.created}"></td>
+            <td th:text="${boardById.mId}"></td>
+            <td th:text="${boardById.author}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p>&nbsp</p>
+<p>Test select category, title : category1, title</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Created</th>
+        <th>MId</th>
+        <th>Author</th>
+    </tr>
+    <th:block th:if="${boardByCategoryAndTitle != null}">
+        <tr th:each="board : ${boardByCategoryAndTitle}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.content}"></td>
+            <td th:text="${board.category}"></td>
+            <td th:text="${board.file1}"></td>
+            <td th:text="${board.file2}"></td>
+            <td th:text="${board.created}"></td>
+            <td th:text="${board.mId}"></td>
+            <td th:text="${board.author}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p>&nbsp</p>
+<p>Test select category, content : category2, content</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Created</th>
+        <th>MId</th>
+        <th>Author</th>
+    </tr>
+    <th:block th:if="${boardByCategoryAndContent != null}">
+        <tr th:each="board : ${boardByCategoryAndContent}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.content}"></td>
+            <td th:text="${board.category}"></td>
+            <td th:text="${board.file1}"></td>
+            <td th:text="${board.file2}"></td>
+            <td th:text="${board.created}"></td>
+            <td th:text="${board.mId}"></td>
+            <td th:text="${board.author}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p>&nbsp</p>
+<p>Test select category, m id : category1, 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Created</th>
+        <th>MId</th>
+        <th>Author</th>
+    </tr>
+    <th:block th:if="${boardByCategoryAndMId != null}">
+        <tr th:each="board : ${boardByCategoryAndMId}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.content}"></td>
+            <td th:text="${board.category}"></td>
+            <td th:text="${board.file1}"></td>
+            <td th:text="${board.file2}"></td>
+            <td th:text="${board.created}"></td>
+            <td th:text="${board.mId}"></td>
+            <td th:text="${board.author}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p>&nbsp</p>
+<p>Test update (all, columns)</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Created</th>
+        <th>MId</th>
+        <th>Author</th>
+    </tr>
+    <th:block th:if="${boardsUpdated != null}">
+        <tr th:each="board : ${boardsUpdated}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.content}"></td>
+            <td th:text="${board.category}"></td>
+            <td th:text="${board.file1}"></td>
+            <td th:text="${board.file2}"></td>
+            <td th:text="${board.created}"></td>
+            <td th:text="${board.mId}"></td>
+            <td th:text="${board.author}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p>&nbsp</p>
+<p>Test delete id : 3</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Created</th>
+        <th>MId</th>
+        <th>Author</th>
+    </tr>
+    <th:block th:if="${boardsDeleted != null}">
+        <tr th:each="board : ${boardsDeleted}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.content}"></td>
+            <td th:text="${board.category}"></td>
+            <td th:text="${board.file1}"></td>
+            <td th:text="${board.file2}"></td>
+            <td th:text="${board.created}"></td>
+            <td th:text="${board.mId}"></td>
+            <td th:text="${board.author}"></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+
+</html>

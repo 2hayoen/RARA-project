@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>dailyRecord list</title>
+</head>
+
+<body>
+
+
+<p> &nbsp </p>
+<p>TEST DAILY RECORD PKG ------------------------</p>
+<p> &nbsp </p>
+
+
+<p> &nbsp </p>
+<p>Test insert, select all</p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Rec</th>
+        <th>Act2Rec</th>
+        <th>CId</th>
+        <th>DpId</th>
+    </tr>
+    <th:block th:if="${dailyRecordInserted != null}">
+        <tr th:each="dailyRecord : ${dailyRecordInserted}">
+            <td th:text="${dailyRecord.id}"></td>
+            <td th:text="${dailyRecord.title}"></td>
+            <td th:text="${dailyRecord.content}"></td>
+            <td th:text="${dailyRecord.file1}"></td>
+            <td th:text="${dailyRecord.file2}"></td>
+            <td th:text="${dailyRecord.act1Rec}"></td>
+            <td th:text="${dailyRecord.act2Rec}"></td>
+            <td th:text="${dailyRecord.cId}"></td>
+            <td th:text="${dailyRecord.dpId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test update (all, columns)</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Rec</th>
+        <th>Act2Rec</th>
+        <th>CId</th>
+        <th>DpId</th>
+    </tr>
+    <th:block th:if="${dailyRecordUpdated != null}">
+        <tr th:each="dailyRecord : ${dailyRecordUpdated}">
+            <td th:text="${dailyRecord.id}"></td>
+            <td th:text="${dailyRecord.title}"></td>
+            <td th:text="${dailyRecord.content}"></td>
+            <td th:text="${dailyRecord.file1}"></td>
+            <td th:text="${dailyRecord.file2}"></td>
+            <td th:text="${dailyRecord.act1Rec}"></td>
+            <td th:text="${dailyRecord.act2Rec}"></td>
+            <td th:text="${dailyRecord.cId}"></td>
+            <td th:text="${dailyRecord.dpId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select id : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Rec</th>
+        <th>Act2Rec</th>
+        <th>CId</th>
+        <th>DpId</th>
+    </tr>
+    <th:block th:if="${dailyRecordById != null}">
+        <tr>
+            <td th:text="${dailyRecordById.id}"></td>
+            <td th:text="${dailyRecordById.title}"></td>
+            <td th:text="${dailyRecordById.content}"></td>
+            <td th:text="${dailyRecordById.file1}"></td>
+            <td th:text="${dailyRecordById.file2}"></td>
+            <td th:text="${dailyRecordById.act1Rec}"></td>
+            <td th:text="${dailyRecordById.act2Rec}"></td>
+            <td th:text="${dailyRecordById.cId}"></td>
+            <td th:text="${dailyRecordById.dpId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select title : title</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Rec</th>
+        <th>Act2Rec</th>
+        <th>CId</th>
+        <th>DpId</th>
+    </tr>
+    <th:block th:if="${dailyRecordByTitle != null}">
+        <tr th:each="dailyRecord : ${dailyRecordByTitle}">
+            <td th:text="${dailyRecord.id}"></td>
+            <td th:text="${dailyRecord.title}"></td>
+            <td th:text="${dailyRecord.content}"></td>
+            <td th:text="${dailyRecord.file1}"></td>
+            <td th:text="${dailyRecord.file2}"></td>
+            <td th:text="${dailyRecord.act1Rec}"></td>
+            <td th:text="${dailyRecord.act2Rec}"></td>
+            <td th:text="${dailyRecord.cId}"></td>
+            <td th:text="${dailyRecord.dpId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select content : content</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Rec</th>
+        <th>Act2Rec</th>
+        <th>CId</th>
+        <th>DpId</th>
+    </tr>
+    <th:block th:if="${dailyRecordByContent != null}">
+        <tr th:each="dailyRecord : ${dailyRecordByContent}">
+            <td th:text="${dailyRecord.id}"></td>
+            <td th:text="${dailyRecord.title}"></td>
+            <td th:text="${dailyRecord.content}"></td>
+            <td th:text="${dailyRecord.file1}"></td>
+            <td th:text="${dailyRecord.file2}"></td>
+            <td th:text="${dailyRecord.act1Rec}"></td>
+            <td th:text="${dailyRecord.act2Rec}"></td>
+            <td th:text="${dailyRecord.cId}"></td>
+            <td th:text="${dailyRecord.dpId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select c id : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Rec</th>
+        <th>Act2Rec</th>
+        <th>CId</th>
+        <th>DpId</th>
+    </tr>
+    <th:block th:if="${dailyRecordByCId != null}">
+        <tr th:each="dailyRecord : ${dailyRecordByCId}">
+            <td th:text="${dailyRecord.id}"></td>
+            <td th:text="${dailyRecord.title}"></td>
+            <td th:text="${dailyRecord.content}"></td>
+            <td th:text="${dailyRecord.file1}"></td>
+            <td th:text="${dailyRecord.file2}"></td>
+            <td th:text="${dailyRecord.act1Rec}"></td>
+            <td th:text="${dailyRecord.act2Rec}"></td>
+            <td th:text="${dailyRecord.cId}"></td>
+            <td th:text="${dailyRecord.dpId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select dp id : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Rec</th>
+        <th>Act2Rec</th>
+        <th>CId</th>
+        <th>DpId</th>
+    </tr>
+    <th:block th:if="${dailyRecordByDpId != null}">
+        <tr th:each="dailyRecord : ${dailyRecordByDpId}">
+            <td th:text="${dailyRecord.id}"></td>
+            <td th:text="${dailyRecord.title}"></td>
+            <td th:text="${dailyRecord.content}"></td>
+            <td th:text="${dailyRecord.file1}"></td>
+            <td th:text="${dailyRecord.file2}"></td>
+            <td th:text="${dailyRecord.act1Rec}"></td>
+            <td th:text="${dailyRecord.act2Rec}"></td>
+            <td th:text="${dailyRecord.cId}"></td>
+            <td th:text="${dailyRecord.dpId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test delete id : 3</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Rec</th>
+        <th>Act2Rec</th>
+        <th>CId</th>
+        <th>DpId</th>
+    </tr>
+    <th:block th:if="${dailyRecordDeleted != null}">
+        <tr th:each="dailyRecord : ${dailyRecordDeleted}">
+            <td th:text="${dailyRecord.id}"></td>
+            <td th:text="${dailyRecord.title}"></td>
+            <td th:text="${dailyRecord.content}"></td>
+            <td th:text="${dailyRecord.file1}"></td>
+            <td th:text="${dailyRecord.file2}"></td>
+            <td th:text="${dailyRecord.act1Rec}"></td>
+            <td th:text="${dailyRecord.act2Rec}"></td>
+            <td th:text="${dailyRecord.cId}"></td>
+            <td th:text="${dailyRecord.dpId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+
+</html>

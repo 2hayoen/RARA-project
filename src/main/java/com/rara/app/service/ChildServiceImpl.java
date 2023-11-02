@@ -18,9 +18,8 @@ public class ChildServiceImpl implements ChildService {
     @Autowired
     ChildMapper childMapper;
 
-
     @Override
-    public void createChild(ChildDTO childDTO) throws Exception {
+    public void insertChild(ChildDTO childDTO) throws Exception {
         childMapper.insertChild(childDTO);
     }
 
@@ -35,65 +34,89 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
-    public void updateChildName(Long id, String name) {
-        childMapper.updateChildName(id, name);
-    }
-
-
-    @Override
-    public void updateChildBirth(Long id, String birth) {
-        childMapper.updateChildBirth(id, birth);
+    public void updateChildSetNameOrBirthOrMTIdOrMCId(Map<String, Object> params) {
+        childMapper.updateChildSetNameOrBirthOrMTIdOrMCId(params);
     }
 
     @Override
-    public void updateChildPhoto(Long id, String photo) {
-        childMapper.updateChildPhoto(id, photo);
+    public void updateChildSetPhotoOrProperty(Map<String, Object> params) {
+        childMapper.updateChildSetPhotoOrProperty(params);
     }
 
     @Override
-    public void updateChildProperty(Long id, String property) {
-        childMapper.updateChildProperty(id, property);
-    }
-
-    @Override
-    public void updateChildM_T_Id(Long id, Long m_t_id) {
-        childMapper.updateChildM_T_Id(id, m_t_id);
-    }
-
-    @Override
-    public void updateChildM_C_Id(Long id, Long m_c_id) {
-        childMapper.updateChildM_C_Id(id, m_c_id);
-    }
-
-    @Override
-    public List<ChildDTO> readAllChildren() throws Exception {
+    public List<ChildDTO> selectChildrenAll() throws Exception {
         Map<String, Object> params = new HashMap<>();
-        childMapper.selectAllChildren(params);
+        childMapper.selectChildrenAll(params);
         return (List<ChildDTO>) params.get("cursor");
     }
 
     @Override
-    public List<ChildDTO> readChildById(Long id) throws Exception {
-        return childMapper.selectChildById(id);
+    public ChildDTO selectChildById(Long id) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+
+        childMapper.selectChildById(params);
+
+        List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results.get(0);
+        }
+        return null;
     }
 
     @Override
-    public List<ChildDTO> readChildByName(String name) throws Exception {
-        return childMapper.selectChildByName(name);
+    public List<ChildDTO> selectChildByName(String name) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", name);
+
+        childMapper.selectChildByName(params);
+
+        List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
     }
 
     @Override
-    public List<ChildDTO> readChildByBirth(String birth) throws Exception {
-        return childMapper.selectChildByBirth(birth);
+    public List<ChildDTO> selectChildByBirth(String birth) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("birth", birth);
+
+        childMapper.selectChildByBirth(params);
+
+        List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
     }
 
     @Override
-    public List<ChildDTO> readChildByM_T_Id(Long m_t_id) throws Exception {
-        return childMapper.selectChildByM_T_Id(m_t_id);
+    public List<ChildDTO> selectChildByMTId(Long mTId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("mTId", mTId);
+
+        childMapper.selectChildByMTId(params);
+
+        List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
     }
 
     @Override
-    public List<ChildDTO> readChildByM_C_Id(Long m_c_id) throws Exception {
-        return childMapper.selectChildByM_C_Id(m_c_id);
+    public List<ChildDTO> selectChildByMCId(Long mCId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("mCId", mCId);
+
+        childMapper.selectChildByMCId(params);
+
+        List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
     }
 }
