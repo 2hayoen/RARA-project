@@ -64,7 +64,7 @@ public class DailyRecordServiceImpl implements DailyRecordService {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
 
-        dailyRecordMapper.selectDailyRecordsAll(params);
+        dailyRecordMapper.selectDailyRecordById(params);
 
         List<DailyRecordDTO> results = (List<DailyRecordDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -77,7 +77,7 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     public List<DailyRecordDTO> selectDailyRecordByTitleOrContent(
             Map<String, Object> params) throws Exception {
 
-        dailyRecordMapper.selectDailyRecordsAll(params);
+        dailyRecordMapper.selectDailyRecordByTitleOrContent(params);
 
         List<DailyRecordDTO> results = (List<DailyRecordDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -89,8 +89,8 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     @Override
     public List<DailyRecordDTO> selectDailyRecordByCIdOrDpId(
             Map<String, Object> params) throws Exception {
-        
-        dailyRecordMapper.selectDailyRecordsAll(params);
+
+        dailyRecordMapper.selectDailyRecordByCIdOrDpId(params);
 
         List<DailyRecordDTO> results = (List<DailyRecordDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {

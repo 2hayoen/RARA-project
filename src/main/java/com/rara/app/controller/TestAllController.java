@@ -184,7 +184,7 @@ public class TestAllController {
 
             boardDTO = BoardDTO.builder()
                     .title("title2").content("content2").category("category2")
-                    .file1("file2-1").mId(3L).author("author2").build();
+                    .file1("file2-1").mId(2L).author("author2").build();
             boardService.insertBoard(boardDTO);
 
             boardDTO = BoardDTO.builder()
@@ -327,11 +327,11 @@ public class TestAllController {
             params = new HashMap<>();
             params.put("id", 2L);
             params.put("photo", "u_photo2");
-            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
+            childService.updateChildSetPhotoOrProperty(params);
             params = new HashMap<>();
             params.put("id", 2L);
             params.put("property", "u_property2");
-            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
+            childService.updateChildSetPhotoOrProperty(params);
             params = new HashMap<>();
             params.put("id", 2L);
             params.put("mTId", 2L);
@@ -529,7 +529,7 @@ public class TestAllController {
             params.put("mId", 2L);
             params.put("type", "type");
             model.addAttribute(
-                    "dailyPlanByMIdAndTitle",
+                    "dailyPlanByMIdAndType",
                     dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
             );
 
@@ -539,11 +539,136 @@ public class TestAllController {
                     "dailyPlanDeleted", dailyPlanService.selectDailyPlansAll()
             );
 
-            return "test/all/dailyplan";
+            return "test/all/dailyPlan";
         } catch (Exception e) {
             model.addAttribute("msg", "dailyPlan Error!");
             return "error";
         }
     }
 
+    @GetMapping("/dailyrecord")
+    public String testDailyRecordAll(Model model) {
+
+        try {
+
+            Map<String, Object> params;
+            DailyRecordDTO dailyRecordDTO;
+
+            dailyRecordDTO = DailyRecordDTO.builder()
+                    .title("title1").content("content1")
+                    .cId(1L).dpId(1L).build();
+            dailyRecordService.insertDailyRecord(dailyRecordDTO);
+
+            dailyRecordDTO = DailyRecordDTO.builder()
+                    .title("title2").content("content2")
+                    .cId(2L).dpId(2L).build();
+            dailyRecordService.insertDailyRecord(dailyRecordDTO);
+
+            dailyRecordDTO = DailyRecordDTO.builder()
+                    .title("3").content("3")
+                    .cId(1L).dpId(2L).build();
+            dailyRecordService.insertDailyRecord(dailyRecordDTO);
+
+            model.addAttribute(
+                    "dailyRecordInserted",
+                    dailyRecordService.selectDailyRecordsAll()
+            );
+
+            dailyRecordDTO = DailyRecordDTO.builder()
+                    .id(1L).title("u_title1").content("u_content1")
+                    .cId(2L).dpId(1L).build();
+            dailyRecordService.updateDailyRecord(dailyRecordDTO);
+
+            params = new HashMap<>();
+            params.put("id", 2L);
+            params.put("title", "u_title2");
+            dailyRecordService.updateDailyRecordSetTitleOrContentOrFile1OrFile2(params);
+
+            params = new HashMap<>();
+            params.put("id", 2L);
+            params.put("content", "u_content2");
+            dailyRecordService.updateDailyRecordSetTitleOrContentOrFile1OrFile2(params);
+
+            params = new HashMap<>();
+            params.put("id", 2L);
+            params.put("file1", "u_file2-1");
+            dailyRecordService.updateDailyRecordSetTitleOrContentOrFile1OrFile2(params);
+
+            params = new HashMap<>();
+            params.put("id", 2L);
+            params.put("file2", "u_file2-2");
+            dailyRecordService.updateDailyRecordSetTitleOrContentOrFile1OrFile2(params);
+
+            params = new HashMap<>();
+            params.put("id", 2L);
+            params.put("act1Rec", "u_act1_rec2");
+            dailyRecordService.updateDailyRecordSetAct1RecOrAct2Rec(params);
+
+            params = new HashMap<>();
+            params.put("id", 2L);
+            params.put("act2Rec", "u_act2_rec2");
+            dailyRecordService.updateDailyRecordSetAct1RecOrAct2Rec(params);
+
+            params = new HashMap<>();
+            params.put("id", 3L);
+            params.put("dpId", 1L);
+            dailyRecordService.updateDailyRecordSetCIdOrDpId(params);
+
+            params = new HashMap<>();
+            params.put("id", 2L);
+            params.put("cId", 1L);
+            dailyRecordService.updateDailyRecordSetCIdOrDpId(params);
+
+
+            model.addAttribute(
+                    "dailyRecordUpdated",
+                    dailyRecordService.selectDailyRecordsAll()
+            );
+
+            model.addAttribute(
+                    "dailyRecordById",
+                    dailyRecordService.selectDailyRecordById(1L)
+            );
+
+            params = new HashMap<>();
+            params.put("title", "title");
+            model.addAttribute(
+                    "dailyRecordByTitle",
+                    dailyRecordService.selectDailyRecordByTitleOrContent(params)
+            );
+
+            params = new HashMap<>();
+            params.put("content", "content");
+            model.addAttribute(
+                    "dailyRecordByContent",
+                    dailyRecordService.selectDailyRecordByTitleOrContent(params)
+            );
+
+            params = new HashMap<>();
+            params.put("cId", 1L);
+            model.addAttribute(
+                    "dailyRecordByCId",
+                    dailyRecordService.selectDailyRecordByCIdOrDpId(params)
+            );
+
+            params = new HashMap<>();
+            params.put("dpId", 1L);
+            model.addAttribute(
+                    "dailyRecordByDpId",
+                    dailyRecordService.selectDailyRecordByCIdOrDpId(params)
+            );
+
+            dailyRecordService.deleteDailyRecord(3L);
+
+            model.addAttribute(
+                    "dailyRecordDeleted",
+                    dailyRecordService.selectDailyRecordsAll()
+            );
+
+            return "test/all/dailyRecord";
+        } catch (Exception e) {
+            model.addAttribute("msg", "dailyRecord Error!");
+            return "error";
+        }
+    }
 }

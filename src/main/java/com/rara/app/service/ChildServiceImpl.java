@@ -69,7 +69,7 @@ public class ChildServiceImpl implements ChildService {
         Map<String, Object> params = new HashMap<>();
         params.put("name", name);
 
-        childMapper.selectChildById(params);
+        childMapper.selectChildByName(params);
 
         List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -83,7 +83,7 @@ public class ChildServiceImpl implements ChildService {
         Map<String, Object> params = new HashMap<>();
         params.put("birth", birth);
 
-        childMapper.selectChildById(params);
+        childMapper.selectChildByBirth(params);
 
         List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -97,7 +97,7 @@ public class ChildServiceImpl implements ChildService {
         Map<String, Object> params = new HashMap<>();
         params.put("mTId", mTId);
 
-        childMapper.selectChildById(params);
+        childMapper.selectChildByMTId(params);
 
         List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -111,7 +111,7 @@ public class ChildServiceImpl implements ChildService {
         Map<String, Object> params = new HashMap<>();
         params.put("mCId", mCId);
 
-        childMapper.selectChildById(params);
+        childMapper.selectChildByMCId(params);
 
         List<ChildDTO> results = (List<ChildDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
