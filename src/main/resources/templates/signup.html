@@ -62,10 +62,10 @@
         >
           <div class="navbar-nav font-weight-bold mx-auto py-0">
             <a href="index.html" class="nav-item nav-link">Home</a>
-            <a href="home.html" class="nav-item nav-link">About</a>
-            <a href="classchild.html" class="nav-item nav-link">Classes</a>
+            <a href="about.html" class="nav-item nav-link">About</a>
+            <a href="classchild.html" class="nav-item nav-link active">Classes</a>
             <a href="team.html" class="nav-item nav-link">Teachers</a>
-            <a href="gallery.html" class="nav-item nav-link active">Gallery</a>
+            <a href="gallery.html" class="nav-item nav-link">Gallery</a>
             <div class="nav-item dropdown">
               <a
                 href="#"
@@ -84,133 +84,99 @@
         </div>
       </nav>
     </div>
-    <!-- Navbar End -->
-
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary mb-5">
-      <div
-        class="d-flex flex-column align-items-center justify-content-center"
-        style="min-height: 400px"
-      >
-        <h3 class="display-3 font-weight-bold text-white">Gallery</h3>
-        <div class="d-inline-flex text-white">
-          <p class="m-0"><a class="text-white" href="">Home</a></p>
-          <p class="m-0 px-2">/</p>
-          <p class="m-0">Gallery</p>
+    <!-- Registration Start -->
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>회원가입</title>
+      <link rel="stylesheet" href="styles.css"> <!-- 스타일 시트 파일을 연결하세요 -->
+      
+  </head>
+  <br><br><br>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="signup-form">
+                <h2>Teacher</h2>
+                <form action="register.php" method="post">
+                    <!-- 왼쪽 열의 회원가입 양식 요소들을 여기에 추가하세요 -->
+                    <div class="form-group">
+                        <label for="username">Email</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Pw</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Name</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="username">Phone</label>
+                      <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Class</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="username">Position</label>
+                      <input type="text" id="username" name="username" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="email">Center</label>
+                      <input type="email" id="email" name="email" class="form-control" required>
+                  </div>
+                  <div class="d-flex justify-content-end"> <!-- 로그인 버튼을 오른쪽으로 이동 -->
+                    <button type="submit" class="btn btn-primary">회원가입</button>
+                </div>
+                </form>
+            </div>
         </div>
-      </div>
+        <div class="col-md-6">
+            <div class="signup-form">
+                <h2>Parants</h2>
+                <form action="register.php" method="post">
+                    <!-- 오른쪽 열의 회원가입 양식 요소들을 여기에 추가하세요 -->
+                    <div class="form-group">
+                      <label for="username">Email</label>
+                      <input type="text" id="username" name="username" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="email">Pw</label>
+                      <input type="email" id="email" name="email" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="username">Name</label>
+                      <input type="text" id="username" name="username" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="username">Phone</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="username">비상연락처</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                  </div>
+                  <div class="d-flex justify-content-end"> <!-- 로그인 버튼을 오른쪽으로 이동 -->
+                    <button type="submit" class="btn btn-primary">회원가입</button>
+                </div>
+              
+                </form>
+            </div>
+        </div>
     </div>
-    <!-- Header End -->
-
-    <!-- Gallery Start -->
-    <div class="container-fluid pt-5 pb-3">
-      <div class="container">
-        <div class="text-center pb-2">
-          <p class="section-title px-5">
-            <span class="px-2">Our Gallery</span>
-          </p>
-          <h1 class="mb-4">Our Kids School Gallery</h1>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center mb-2">
-            <ul class="list-inline mb-4" id="portfolio-flters">
-              <li class="btn btn-outline-primary m-1 active" data-filter="*">
-                All
-              </li>
-              <li class="btn btn-outline-primary m-1" data-filter=".first">
-                Playing
-              </li>
-              <li class="btn btn-outline-primary m-1" data-filter=".second">
-                Drawing
-              </li>
-              <li class="btn btn-outline-primary m-1" data-filter=".third">
-                Reading
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="row portfolio-container">
-          <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-            <div class="position-relative overflow-hidden mb-2">
-              <img class="img-fluid w-100" src="img/portfolio-1.jpg" alt="" />
-              <div
-                class="portfolio-btn bg-primary d-flex align-items-center justify-content-center"
-              >
-                <a href="img/portfolio-1.jpg" data-lightbox="portfolio">
-                  <i class="fa fa-plus text-white" style="font-size: 60px"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
-            <div class="position-relative overflow-hidden mb-2">
-              <img class="img-fluid w-100" src="img/portfolio-2.jpg" alt="" />
-              <div
-                class="portfolio-btn bg-primary d-flex align-items-center justify-content-center"
-              >
-                <a href="img/portfolio-2.jpg" data-lightbox="portfolio">
-                  <i class="fa fa-plus text-white" style="font-size: 60px"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 portfolio-item third">
-            <div class="position-relative overflow-hidden mb-2">
-              <img class="img-fluid w-100" src="img/portfolio-3.jpg" alt="" />
-              <div
-                class="portfolio-btn bg-primary d-flex align-items-center justify-content-center"
-              >
-                <a href="img/portfolio-3.jpg" data-lightbox="portfolio">
-                  <i class="fa fa-plus text-white" style="font-size: 60px"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-            <div class="position-relative overflow-hidden mb-2">
-              <img class="img-fluid w-100" src="img/portfolio-4.jpg" alt="" />
-              <div
-                class="portfolio-btn bg-primary d-flex align-items-center justify-content-center"
-              >
-                <a href="img/portfolio-4.jpg" data-lightbox="portfolio">
-                  <i class="fa fa-plus text-white" style="font-size: 60px"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
-            <div class="position-relative overflow-hidden mb-2">
-              <img class="img-fluid w-100" src="img/portfolio-5.jpg" alt="" />
-              <div
-                class="portfolio-btn bg-primary d-flex align-items-center justify-content-center"
-              >
-                <a href="img/portfolio-5.jpg" data-lightbox="portfolio">
-                  <i class="fa fa-plus text-white" style="font-size: 60px"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 portfolio-item third">
-            <div class="position-relative overflow-hidden mb-2">
-              <img class="img-fluid w-100" src="img/portfolio-6.jpg" alt="" />
-              <div
-                class="portfolio-btn bg-primary d-flex align-items-center justify-content-center"
-              >
-                <a href="img/portfolio-6.jpg" data-lightbox="portfolio">
-                  <i class="fa fa-plus text-white" style="font-size: 60px"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="form-group">
+      <a href="signin.html">Do you want signin?</a>
     </div>
-    <!-- Gallery End -->
+</div>
+    
+    <!-- Registration End -->
 
     <!-- Footer Start -->
     <div
-      class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5"
-    >
+      class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
       <div class="row pt-5">
         <div class="col-lg-3 col-md-6 mb-5">
           <a
@@ -300,35 +266,7 @@
             >
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-5">
-          <h3 class="text-primary mb-4">Newsletter</h3>
-          <form action="">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control border-0 py-4"
-                placeholder="Your Name"
-                required="required"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="email"
-                class="form-control border-0 py-4"
-                placeholder="Your Email"
-                required="required"
-              />
-            </div>
-            <div>
-              <button
-                class="btn btn-primary btn-block border-0 py-3"
-                type="submit"
-              >
-                Submit Now
-              </button>
-            </div>
-          </form>
-        </div>
+        
       </div>
       <div
         class="container-fluid pt-5"

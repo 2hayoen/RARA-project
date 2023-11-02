@@ -13,7 +13,9 @@
 
   <!-- Create Tutorial -->
   <insert id="createTutorial">
-    {call tutorials_pkg.create_tutorial(#{title, jdbcType=VARCHAR}, #{description, jdbcType=VARCHAR}, #{published, jdbcType=INTEGER})}
+    {call tutorials_pkg.create_tutorial(#{title, jdbcType=VARCHAR},
+      #{description, jdbcType=VARCHAR},
+      #{published, jdbcType=INTEGER})}
   </insert>
 
   <!-- Delete Tutorial -->
@@ -23,7 +25,10 @@
 
   <!-- Update Tutorial -->
   <update id="updateTutorial">
-    {call tutorials_pkg.update_tutorial(#{id, jdbcType=INTEGER}, #{title, jdbcType=VARCHAR}, #{description, jdbcType=VARCHAR}, #{published, jdbcType=INTEGER})}
+    {call tutorials_pkg.update_tutorial(#{id, jdbcType=INTEGER},
+      #{title, jdbcType=VARCHAR},
+      #{description, jdbcType=VARCHAR},
+      #{published, jdbcType=INTEGER})}
   </update>
 
   <!-- Read Tutorial -->
