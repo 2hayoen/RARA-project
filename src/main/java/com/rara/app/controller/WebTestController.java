@@ -23,9 +23,9 @@ public class WebTestController {
     }
 
 
-    @GetMapping("/class")
+    @GetMapping("/classchild")
     public String child_class(Model model) {
-        return "class";
+        return "classchild";
     }
 
     @GetMapping("/notice_create")
@@ -63,27 +63,9 @@ public class WebTestController {
         return "signin.html";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/footer")
-    public String footer_test(Model model) {
-        return "footer";
-    }
-
-    @GetMapping("/nav")
-    public String nav_test(Model model) {
-        return "navbar";
+    @GetMapping("/noticeboard")
+    public String noticeboard(Model model) {
+        return "noticeboard.html";
     }
 
 
