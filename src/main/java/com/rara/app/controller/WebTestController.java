@@ -55,7 +55,7 @@ public class WebTestController {
 
     @GetMapping("/signup")
     public String signup(Model model) {
-        return "signup";
+        return "signup_jgc";
     }
 
     @GetMapping("/signin")
