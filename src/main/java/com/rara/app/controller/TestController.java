@@ -1,13 +1,7 @@
 package com.rara.app.controller;
 
-import com.rara.app.dto.BoardDTO;
-import com.rara.app.dto.DailyPlanDTO;
-import com.rara.app.dto.DailyRecordDTO;
-import com.rara.app.dto.MemberDTO;
-import com.rara.app.service.BoardService;
-import com.rara.app.service.DailyPlanService;
-import com.rara.app.service.DailyRecordService;
-import com.rara.app.service.MemberService;
+import com.rara.app.dto.*;
+import com.rara.app.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,10 +27,10 @@ public class TestController {
         return "test/base";
     }
 
-    @GetMapping("/child")
+    @GetMapping("/sub")
     public String testChild(Model model) {
         model.addAttribute("message", "Hello, Spring MVC!");
-        return "test/child";
+        return "test/sub";
     }
 
     @Autowired
@@ -139,8 +133,33 @@ public class TestController {
         }
     }
 
-	@GetMapping("/home")
-	public String testHome(Model model) {
-		return "home";
-	}
+    @Autowired
+    ChildService childService;
+
+    @GetMapping("/child")
+    public String getChildrenAll(Model model) {
+        try {
+            List<ChildDTO> children = childService.selectChildrenAll();
+            model.addAttribute("children", children);
+            return "test/children";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @GetMapping("/child/{id}")
+    public String getChildById(@PathVariable Long id, Model model) {
+        try {
+            ChildDTO child = childService.selectChildById(id);
+            model.addAttribute("child", child);
+            return "test/child";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @GetMapping("/home")
+    public String testHome(Model model) {
+        return "home";
+    }
 }

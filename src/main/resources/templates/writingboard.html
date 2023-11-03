@@ -63,13 +63,13 @@
           <div class="navbar-nav font-weight-bold mx-auto py-0">
             <a href="index.html" class="nav-item nav-link">Home</a>
             <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="class.html" class="nav-item nav-link">Classes</a>
+            <a href="class.html" class="nav-item nav-link active">Classes</a>
             <a href="team.html" class="nav-item nav-link">Teachers</a>
             <a href="gallery.html" class="nav-item nav-link">Gallery</a>
             <div class="nav-item dropdown">
               <a
                 href="#"
-                class="nav-link dropdown-toggle active"
+                class="nav-link dropdown-toggle"
                 data-toggle="dropdown"
                 >Pages</a
               >
@@ -84,122 +84,52 @@
         </div>
       </nav>
     </div>
-    <!-- Navbar End -->
 
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary mb-5">
-      <div
-        class="d-flex flex-column align-items-center justify-content-center"
-        style="min-height: 400px"
-      >
-        <h3 class="display-3 font-weight-bold text-white">Our gong ji</h3>
-        <div class="d-inline-flex text-white">
-          <p class="m-0"><a class="text-white" href="">Home</a></p>
-          <p class="m-0 px-2">/</p>
-          <p class="m-0">Our Blog</p>
-        </div>
-      </div>
+    
+    <!-- Registration Start -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지작성</title>
+    <link rel="stylesheet" href="styles.css"> <!-- 스타일 시트 파일을 연결하세요 -->
+</head>
+
+
+<body>
+
+
+  <br>
+  
+  <form action="register.php" method="post">
+    <!-- Text input -->
+    <div class = "col-md-6">
+      <label for="text-input" class="form-label">제목</label>
+      <input class="form-control" type="text" id="title-input" value="">
+   </div>
+
+    <!-- Textarea -->
+    <div class= "col-md-6">
+      <label for="textarea-input" class="form-label">Textarea</label>
+      <textarea class="form-control" id="textarea-input" rows="10"></textarea>
     </div>
-    <!-- Header End -->
-      <body>
-      
-        <div class="container" layout:fragment="content">
-          <div class="page-header">
-              <h1>Board</h1>
-          </div>
-          <div class="row">
-              <div class="col-sm-4">
-                  <!-- 내용이 있을 경우 여기에 배치 -->
-              </div>
-              <div class="col-sm-4"></div>
-              <div class="col-sm-4 text-right">
-                <a href="/board" class="btn btn-primary" style="width: 100px;">등록</a>
-              </div>
-          </div>
-      </div>
-   <div class="container-fluid">
-         <br>
-          <div class="container-fluid">
-              <div class="row">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="warning">
-                              <th class="col-sm-1">No</th>
-                              <th class="col-sm-3">제목</th>
-                              <th class="col-sm-4">내용</th>
-                              <th class="col-sm-2">작성자</th>
-                              <th class="col-sm-2">작성 날짜</th>
-                              
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr th:each="board : ${boardList}">
-                              <td th:text="${board.idx}"></td>
-                              <td>
-                                  <a th:href="'/board?idx='+${board.idx}" th:text="${board.title}"></a>
-                              </td>
-                              <td>
-                                <!-- 내용 -->
-                              </td>
-                              <td>
-                                <!--작성자 -->
-                              </td>
-                              
-                              <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:dd')}">
-                              </td>
-                              
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-              
-              <!-- pagination -->
-              <!-- <nav class="navbar" aria-label="Page navigation" style="text-align: center;">
-                  <ul class="pagination" 
-                      th:with="startNumber=${T(Math).floor(boardList.number/10)} * 10 + 1,
-                              endNumber=(${boardList.totalPages} > ${startNumber} + 9) ? 
-                                          ${startNumber} + 9 : ${boardList.totalPages}">
-                      
-                      <li th:style="${boardList.first} ? 'display:none'">
-                          <a href="/board/list?page=1">&laquo;</a>
-                      </li>
-                      <li th:style="${boardList.first} ? 'display:none'">
-                          <a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a>
-                      </li>
-                      <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}"
-                          th:class="(${page} == ${boardList.number} + 1) ? 'active'">
-                          <a th:href="@{/board/list(page=${page})}" th:text="${page}">
-                              <span class="sr-only"></span>
-                          </a>
-                      </li>
-                      <li th:style="${boardList.last} ? 'display:none'">
-                          <a th:href="@{/board/list(page=${boardList.number} + 2)}">&rsaquo;</a>
-                      </li>
-                      <li th:style="${boardList.last} ? 'display:none'">
-                          <a th:href="@{/board/list(page=${boardList.totalPages})}">&raquo;</a>
-                      </li>
-                  </ul>
-              </nav> -->
-          </div>
-      </div>
 
-      </body>
-    <!-- Blog Start -->
-
-
-
-    <!-- Blog End -->
+    <div class="d-flex justify-content-end"> 
+      <button type="submit" class="btn btn-primary">등록</button>
+      <button type="submit" class="btn btn-primary">수정</button>
+      <button type="submit" class="btn btn-primary">삭제</button>
+    </div>
+  </form>
+</body>
+</html>
 
     <!-- Footer Start -->
     <div
       class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
       <div class="row pt-5">
         <div class="col-lg-3 col-md-6 mb-5">
-          <a
-            href=""
-            class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0"
-            style="font-size: 40px; line-height: 40px"
-          >
+          <a href="" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0"
+            style="font-size: 40px; line-height: 40px">
             <i class="flaticon-043-teddy-bear"></i>
             <span class="text-white">KidKinder</span>
           </a>
@@ -282,7 +212,34 @@
             >
           </div>
         </div>
-        
+        <div class="col-lg-3 col-md-6 mb-5">
+          <h3 class="text-primary mb-4">Newsletter</h3>
+          <form action="">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control border-0 py-4"
+                placeholder="Your Name"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                class="form-control border-0 py-4"
+                placeholder="Your Email"
+                required="required"
+              />
+            </div>
+            <div>
+              <button
+                class="btn btn-primary btn-block border-0 py-3"
+                type="submit">
+                Submit Now
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
       <div
         class="container-fluid pt-5"
@@ -290,26 +247,22 @@
       >
         <p class="m-0 text-center text-white">
           &copy;
-          <a class="text-primary font-weight-bold" href="#">Your Site Name</a>.
-          All Rights Reserved.
+          <a class="text-primary font-weight-bold" href="#">Your Site Name</a>
+          .All Rights Reserved.
 
           <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
           Designed by
-          <a class="text-primary font-weight-bold" href="https://htmlcodex.com"
-            >HTML Codex</a
-          >
+          <a class="text-primary font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
           <br />Distributed By:
           <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
         </p>
       </div>
     </div>
     <!-- Footer End -->
-
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary p-3 back-to-top"
-      ><i class="fa fa-angle-double-up"></i
-    ></a>
-
+    <a href="#" class="btn btn-primary p-3 back-to-top">
+      <i class="fa fa-angle-double-up"></i>
+    </a>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

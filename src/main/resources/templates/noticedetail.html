@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+      <div
+        class="d-flex flex-column align-items-center justify-content-center"
+        style="min-height: 400px"
+      >
+        <h3 class="display-3 font-weight-bold text-white">공지상세</h3>
+        <div class="d-inline-flex text-white">
+          <p class="m-0"><a class="text-white" href="">Home</a></p>
+          <p class="m-0 px-2">/</p>
+          <p class="m-0">Blog Detail</p>
+        </div>
+      </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Detail Start -->
+    <div class="container py-5">
+      <div class="row pt-5">
+        <div class="col-lg-8">
+          <div class="d-flex flex-column text-left mb-3">
+            <p class="section-title pr-5">
+              <span class="pr-2">Blog Detail Page</span>
+            </p>
+            <h1 class="mb-3">
+              11.04 가정통신문
+            </h1>
+            <div class="d-flex">
+              <p class="mr-3"><i class="fa fa-user text-primary"></i> 김혁태</p>
+              <p class="mr-3"><i class="fa fa-comments text-primary"></i> 15</p>
+            </div>
+          </div>
+          <div class="mb-5">
+            <img src="img/blog-1.jpg" alt="" class="img-fluid rounded" />
+          </div>
+            <p>
+              안녕하세요. OO반 교사 OOO입니다. 언제 그렇게 더웠냐는 듯 볼에 닿는 바람이 차갑습니다.
+              해가 일찍 지고 건조한 공기에 겨울이 성큼 다가온 것이 느껴지는데요. 
+              친구들은 바닥에 떨어진 낙엽들을 밟으며 계절의 변화를 몸소 느끼고 있답니다. 
+
+              적절한 옷차림으로 감기 조심하시고 가정에 따뜻하고 평안한 날들이 가득하길 바라겠습니다.
+            </p>
+            
+          </div>
+
+          <!-- Related Post -->
+          
+
+        <div class="col-lg-4 mt-5 mt-lg-0">
+          <!-- Author Bio -->
+          <div
+            class="d-flex flex-column text-center bg-primary rounded mb-5 py-5 px-4"
+          >
+            <img
+              src="img/user.jpg"
+              class="img-fluid rounded-circle mx-auto mb-3"
+              style="width: 100px"
+            />
+            <h3 class="text-secondary mb-3">kim </h3>
+            <p class="text-white m-0">
+              나는야 김혁태 어린아이를 사랑합니다
+            </p>
+          </div>
+
+      
+          <!-- Plain Text -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- Detail End -->
+
+</th:block>
+</html>

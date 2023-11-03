@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="base :: html_header">
-    <title>Child Template</title>
-    <!-- ... 다른 head 요소 ... -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Child Information</title>
 </head>
 <body>
-    
-    <th:block th:insert="base :: html_body"></th:block>
-	
-	<h1>Welcome to the Child Template!</h1>
-	
-	<th:block th:replace="base :: html_body"></th:block>
+<h1>Child Information</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${child.id}"></td>
+        <td th:text="${child.name}"></td>
+        <td th:text="${child.birth}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

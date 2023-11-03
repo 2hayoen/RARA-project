@@ -128,10 +128,10 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByYearOrMonthOrDay(
+    public List<DailyPlanDTO> selectDailyPlanByYearAndMonthOrDay(
             Map<String, Object> params) throws Exception {
 
-        dailyPlanMapper.selectDailyPlanByYearOrMonthOrDay(params);
+        dailyPlanMapper.selectDailyPlanByYearAndMonthOrDay(params);
 
         List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -141,10 +141,10 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByMIdOrYearOrActTitleOrActType(
+    public List<DailyPlanDTO> selectDailyPlanByMIdAndYearOrActTitleOrActType(
             Map<String, Object> params) throws Exception {
 
-        dailyPlanMapper.selectDailyPlanByMIdOrYearOrActTitleOrActType(params);
+        dailyPlanMapper.selectDailyPlanByMIdAndYearOrActTitleOrActType(params);
 
         List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {

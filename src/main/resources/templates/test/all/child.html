@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Child All</title>
+</head>
+<body>
+
+<p> &nbsp </p>
+<p>TEST CHILD PKG -------------------</p>
+<p> &nbsp </p>
+
+<p> &nbsp </p>
+<p>Test insert, select all</p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Photo</th>
+        <th>Property</th>
+        <th>MTId</th>
+        <th>MCId</th>
+    </tr>
+    <th:block th:if="${childrenInserted != null}">
+        <tr th:each="child : ${childrenInserted}">
+            <td th:text="${child.id}"></td>
+            <td th:text="${child.name}"></td>
+            <td th:text="${child.birth}"></td>
+            <td th:text="${child.photo}"></td>
+            <td th:text="${child.property}"></td>
+            <td th:text="${child.mTId}"></td>
+            <td th:text="${child.mCId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+
+<p> &nbsp </p>
+<p>Test select id : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Photo</th>
+        <th>Property</th>
+        <th>MTId</th>
+        <th>MCId</th>
+    </tr>
+    <th:block th:if="${childById != null}">
+        <tr>
+            <td th:text="${childById.id}"></td>
+            <td th:text="${childById.name}"></td>
+            <td th:text="${childById.birth}"></td>
+            <td th:text="${childById.photo}"></td>
+            <td th:text="${childById.property}"></td>
+            <td th:text="${childById.mTId}"></td>
+            <td th:text="${childById.mCId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select name : name</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Photo</th>
+        <th>Property</th>
+        <th>MTId</th>
+        <th>MCId</th>
+    </tr>
+    <th:block th:if="${childrenByName != null}">
+        <tr th:each="child : ${childrenByName}">
+            <td th:text="${child.id}"></td>
+            <td th:text="${child.name}"></td>
+            <td th:text="${child.birth}"></td>
+            <td th:text="${child.photo}"></td>
+            <td th:text="${child.property}"></td>
+            <td th:text="${child.mTId}"></td>
+            <td th:text="${child.mCId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select birth : birth1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Photo</th>
+        <th>Property</th>
+        <th>MTId</th>
+        <th>MCId</th>
+    </tr>
+    <th:block th:if="${childrenByBirth != null}">
+        <tr th:each="child : ${childrenByBirth}">
+            <td th:text="${child.id}"></td>
+            <td th:text="${child.name}"></td>
+            <td th:text="${child.birth}"></td>
+            <td th:text="${child.photo}"></td>
+            <td th:text="${child.property}"></td>
+            <td th:text="${child.mTId}"></td>
+            <td th:text="${child.mCId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select m t id : 2</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Photo</th>
+        <th>Property</th>
+        <th>MTId</th>
+        <th>MCId</th>
+    </tr>
+    <th:block th:if="${childrenByMTId != null}">
+        <tr th:each="child : ${childrenByMTId}">
+            <td th:text="${child.id}"></td>
+            <td th:text="${child.name}"></td>
+            <td th:text="${child.birth}"></td>
+            <td th:text="${child.photo}"></td>
+            <td th:text="${child.property}"></td>
+            <td th:text="${child.mTId}"></td>
+            <td th:text="${child.mCId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select m c id : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Photo</th>
+        <th>Property</th>
+        <th>MTId</th>
+        <th>MCId</th>
+    </tr>
+    <th:block th:if="${childrenByMCId != null}">
+        <tr th:each="child : ${childrenByMCId}">
+            <td th:text="${child.id}"></td>
+            <td th:text="${child.name}"></td>
+            <td th:text="${child.birth}"></td>
+            <td th:text="${child.photo}"></td>
+            <td th:text="${child.property}"></td>
+            <td th:text="${child.mTId}"></td>
+            <td th:text="${child.mCId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test update (all, columns)</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Photo</th>
+        <th>Property</th>
+        <th>MTId</th>
+        <th>MCId</th>
+    </tr>
+    <th:block th:if="${childrenUpdated != null}">
+        <tr th:each="child : ${childrenUpdated}">
+            <td th:text="${child.id}"></td>
+            <td th:text="${child.name}"></td>
+            <td th:text="${child.birth}"></td>
+            <td th:text="${child.photo}"></td>
+            <td th:text="${child.property}"></td>
+            <td th:text="${child.mTId}"></td>
+            <td th:text="${child.mCId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test delete id : 3</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Photo</th>
+        <th>Property</th>
+        <th>MTId</th>
+        <th>MCId</th>
+    </tr>
+    <th:block th:if="${childrenDeleted != null}">
+        <tr th:each="child : ${childrenDeleted}">
+            <td th:text="${child.id}"></td>
+            <td th:text="${child.name}"></td>
+            <td th:text="${child.birth}"></td>
+            <td th:text="${child.photo}"></td>
+            <td th:text="${child.property}"></td>
+            <td th:text="${child.mTId}"></td>
+            <td th:text="${child.mCId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

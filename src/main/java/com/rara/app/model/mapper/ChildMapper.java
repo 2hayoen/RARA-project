@@ -1,24 +1,33 @@
 package com.rara.app.model.mapper;
 
 import com.rara.app.dto.ChildDTO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
 public interface ChildMapper {
+
     void insertChild(ChildDTO childDTO);
-    void deleteChild(Long id);
+
+    void deleteChild(@Param("id") Long id);
+
     void updateChild(ChildDTO childDTO);
-    List<ChildDTO> selectAllChildren(Map<String, Object> params);
-    List<ChildDTO> selectChildById(Long id);
-    List<ChildDTO> selectChildByName(String name);
-    List<ChildDTO> selectChildByBirth(String birth);
-    List<ChildDTO> selectChildByM_T_Id(Long m_t_id);
-    List<ChildDTO> selectChildByM_C_Id(Long m_c_id);
-    void updateChildName(Long id, String name);
-    void updateChildBirth(Long id, String birth);
-    void updateChildPhoto(Long id, String photo);
-    void updateChildProperty(Long id, String property);
-    void updateChildM_T_Id(Long id, Long m_t_id);
-    void updateChildM_C_Id(Long id, Long m_c_id);
+
+    void updateChildSetNameOrBirthOrMTIdOrMCId(Map<String, Object> params);
+
+    void updateChildSetPhotoOrProperty(Map<String, Object> params);
+
+    void selectChildrenAll(Map<String, Object> params);
+
+    void selectChildById(Map<String, Object> params);
+
+    void selectChildByName(Map<String, Object> params);
+
+    void selectChildByBirth(Map<String, Object> params);
+
+    void selectChildByMTId(Map<String, Object> params);
+
+    void selectChildByMCId(Map<String, Object> params);
+    
 }

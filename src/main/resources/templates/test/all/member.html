@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Test Member All</title>
+</head>
+
+<body>
+<p> &nbsp </p>
+<p> TEST MEMBER PKG-------------------------</p>
+<p> &nbsp </p>
+
+<p> &nbsp </p>
+<p>Test insert, select all</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersInserted != null}">
+        <tr th:each="member : ${membersInserted}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select id : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${memberByID != null}">
+        <tr>
+            <td th:text="${memberByID.id}"></td>
+            <td th:text="${memberByID.name}"></td>
+            <td th:text="${memberByID.email}"></td>
+            <td th:text="${memberByID.pwd}"></td>
+            <td th:text="${memberByID.phNum}"></td>
+            <td th:text="${memberByID.addr}"></td>
+            <td th:text="${memberByID.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select email : email1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${memberByEmail != null}">
+        <tr>
+            <td th:text="${memberByEmail.id}"></td>
+            <td th:text="${memberByEmail.name}"></td>
+            <td th:text="${memberByEmail.email}"></td>
+            <td th:text="${memberByEmail.pwd}"></td>
+            <td th:text="${memberByEmail.phNum}"></td>
+            <td th:text="${memberByEmail.addr}"></td>
+            <td th:text="${memberByEmail.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select separator : Teacher</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersBySeparator != null}">
+        <tr th:each="member : ${membersBySeparator}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select separator, name : Teacher, name2</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersBySeparatorAndName != null}">
+        <tr th:each="member : ${membersBySeparatorAndName}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select separator, ph num : Teacher, ph_num2</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersBySeparatorAndPhNum != null}">
+        <tr th:each="member : ${membersBySeparatorAndPhNum}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select separator, m id : Teacher, 2</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersBySeparatorAndMId != null}">
+        <tr th:each="member : ${membersBySeparatorAndMId}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select separator, center : Teacher, center1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersBySeparatorAndCenter != null}">
+        <tr th:each="member : ${membersBySeparatorAndCenter}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select separator, center, name : Teacher, center1, name2</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersBySeparatorAndCenterAndName != null}">
+        <tr th:each="member : ${membersBySeparatorAndCenterAndName}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select separator, center, class : Teacher, center1, class1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersBySeparatorAndCenterAndClass != null}">
+        <tr th:each="member : ${membersBySeparatorAndCenterAndClass}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test select separator, center, position : Teacher, center1, pos1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersBySeparatorAndCenterAndPosition != null}">
+        <tr th:each="member : ${membersBySeparatorAndCenterAndPosition}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+
+<p> &nbsp </p>
+<p> Test update (all, columns)</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersUpdated != null}">
+        <tr th:each="member : ${membersUpdated}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+
+<p> &nbsp </p>
+<p> Test delete id : 4</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>PWD</th>
+        <th>PH</th>
+        <th>Addr</th>
+        <th>Separator</th>
+    </tr>
+
+    <th:block th:if="${membersDeleted != null}">
+        <tr th:each="member : ${membersDeleted}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.name}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.phNum}"></td>
+            <td th:text="${member.addr}"></td>
+            <td th:text="${member.separator}"></td>
+        </tr>
+    </th:block>
+
+</table>
+</body>
+
+</html>

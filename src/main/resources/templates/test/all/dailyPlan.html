@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>dailyPlan list</title>
+</head>
+
+<body>
+
+<p> &nbsp </p>
+<p>TEST DAILY PLAN PKG -------------------</p>
+<p> &nbsp </p>
+
+<p> &nbsp </p>
+<p>Test insert, select all</p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlansInserted != null}">
+        <tr th:each="dailyPlan : ${dailyPlansInserted}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+
+<p> &nbsp </p>
+<p>Test update (all, columns)</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanUpdated != null}">
+        <tr th:each="dailyPlan : ${dailyPlanUpdated}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select id : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanById != null}">
+        <tr>
+            <td th:text="${dailyPlanById.id}"></td>
+            <td th:text="${dailyPlanById.year}"></td>
+            <td th:text="${dailyPlanById.month}"></td>
+            <td th:text="${dailyPlanById.day}"></td>
+            <td th:text="${dailyPlanById.key1}"></td>
+            <td th:text="${dailyPlanById.key2}"></td>
+            <td th:text="${dailyPlanById.key3}"></td>
+            <td th:text="${dailyPlanById.file1}"></td>
+            <td th:text="${dailyPlanById.file2}"></td>
+            <td th:text="${dailyPlanById.act1Type}"></td>
+            <td th:text="${dailyPlanById.act1Goal}"></td>
+            <td th:text="${dailyPlanById.act1Time}"></td>
+            <td th:text="${dailyPlanById.act1Title}"></td>
+            <td th:text="${dailyPlanById.act1Sub}"></td>
+            <td th:text="${dailyPlanById.act1Desc}"></td>
+            <td th:text="${dailyPlanById.act1Mater}"></td>
+            <td th:text="${dailyPlanById.act2Type}"></td>
+            <td th:text="${dailyPlanById.act2Goal}"></td>
+            <td th:text="${dailyPlanById.act2Time}"></td>
+            <td th:text="${dailyPlanById.act2Title}"></td>
+            <td th:text="${dailyPlanById.act2Sub}"></td>
+            <td th:text="${dailyPlanById.act2Desc}"></td>
+            <td th:text="${dailyPlanById.act2Mater}"></td>
+            <td th:text="${dailyPlanById.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select year : 2023</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByYear != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByYear}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select month : 8</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByMonth != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByMonth}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select day : 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByDay != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByDay}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select year, month : 2023, 10</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByYearAndMonth != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByYearAndMonth}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select year, month, day : 2023, 8, 1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByYearAndMonthAndDay != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByYearAndMonthAndDay}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select file1 : u_file2-1</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByFile1 != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByFile1}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select file2 : u_file2-2</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByFile2 != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByFile2}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select m id : 2</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByMId != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByMId}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select m id, year : 2, 2023</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByMIdAndYear != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByMIdAndYear}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select m id, act title : 2, title</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByMIdAndTitle != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByMIdAndTitle}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test select m id, act type : 2, type</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanByMIdAndType != null}">
+        <tr th:each="dailyPlan : ${dailyPlanByMIdAndType}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<p> &nbsp </p>
+<p>Test delete id : 3</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
+    </tr>
+    <th:block th:if="${dailyPlanDeleted != null}">
+        <tr th:each="dailyPlan : ${dailyPlanDeleted}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+
+</html>

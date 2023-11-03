@@ -186,7 +186,7 @@
     </select>
 
 
-    <select id="selectDailyPlanByYearOrMonthOrDay" statementType="CALLABLE">
+    <select id="selectDailyPlanByYearAndMonthOrDay" statementType="CALLABLE">
         <choose>
             <when test="month != null">
                 <choose>
@@ -222,7 +222,7 @@
         </choose>
     </select>
 
-    <select id="selectDailyPlanByMIdOrYearOrActTitleOrActType" statementType="CALLABLE">
+    <select id="selectDailyPlanByMIdAndYearOrActTitleOrActType" statementType="CALLABLE">
         <choose>
             <when test="year != null">
                 { call #{cursor, mode=OUT, jdbcType=CURSOR,

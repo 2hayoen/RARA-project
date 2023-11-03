@@ -35,7 +35,7 @@ public interface DailyPlanMapper {
 
     void selectDailyPlanByFile2(Map<String, Object> params);
 
-    void selectDailyPlanByYearOrMonthOrDay(Map<String, Object> params);
+    void selectDailyPlanByYearAndMonthOrDay(Map<String, Object> params);
 
-    void selectDailyPlanByMIdOrYearOrActTitleOrActType(Map<String, Object> params);
+    void selectDailyPlanByMIdAndYearOrActTitleOrActType(Map<String, Object> params);
 }

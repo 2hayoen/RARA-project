@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Teacher_page</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+    <meta name="keywords"
+          content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" color="#6366f1" href="assets/favicon/safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="white">
+    <!-- Theme mode-->
+    <script>
+      let mode = window.localStorage.getItem('mode'),
+          root = document.getElementsByTagName('html')[0];
+      if (mode !== undefined && mode === 'dark') {
+        root.classList.add('dark-mode');
+      } else {
+        root.classList.remove('dark-mode');
+      }
+      
+      
+
+
+    </script>
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .dark-mode .page-loading {
+        background-color: #121519;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #6f788b;
+      }
+      .dark-mode .page-loading-inner > span {
+        color: #fff;
+        opacity: .6;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        background-color: #d7dde2; 
+        border-radius: 50%;
+        opacity: 0;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      .dark-mode .page-spinner {
+        background-color: rgba(255,255,255,.25);
+      }
+      @-webkit-keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      @keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      
+
+
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 1500);
+        };
+      })();
+
+    </script>
+
+
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"
+          id="google-font">
+    <!-- Vendor styles-->
+
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="Free HTML Templates" name="keywords"/>
+    <meta content="Free HTML Templates" name="description"/>
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon"/>
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+            rel="stylesheet"
+    />
+
+    <!-- Flaticon Font -->
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet"/>
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"/>
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet"/>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<!-- Navbar Start -->
+<div class="container-fluid bg-light position-relative shadow">
+    <nav
+            class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5"
+    >
+        <a
+                href=""
+                class="navbar-brand font-weight-bold text-secondary"
+                style="font-size: 50px"
+        >
+            <i class="flaticon-043-teddy-bear"></i>
+            <span class="text-primary">KidKinder</span>
+        </a>
+        <button
+                type="button"
+                class="navbar-toggler"
+                data-toggle="collapse"
+                data-target="#navbarCollapse"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+                class="collapse navbar-collapse justify-content-between"
+                id="navbarCollapse"
+        >
+            <div class="navbar-nav font-weight-bold mx-auto py-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="classchild.html" class="nav-item nav-link">Classes</a>
+                <a href="team.html" class="nav-item nav-link">Teachers</a>
+                <a href="gallery.html" class="nav-item nav-link active">Gallery</a>
+                <div class="nav-item dropdown">
+                    <a
+                            href="#"
+                            class="nav-link dropdown-toggle"
+                            data-toggle="dropdown"
+                    >Pages</a
+                    >
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="blog.html" class="dropdown-item">Blog Grid</a>
+                        <a href="single.html" class="dropdown-item">Blog Detail</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="" class="btn btn-primary px-4">Join Class</a>
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->
+
+<!-- Header Start -->
+<div class="container-fluid bg-primary mb-5">
+    <div
+            class="d-flex flex-column align-items-center justify-content-center"
+            style="min-height: 400px"
+    >
+        <h3 class="display-3 font-weight-bold text-white">mypage</h3>
+
+    </div>
+</div>
+<!-- Header End -->
+<!-- Page content-->
+<div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+    <div class="row pt-sm-2 pt-lg-0">
+        <!-- Basic info-->
+        <section class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
+            <div class="card-body">
+                <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3">
+                    <!-- <i class="ai-user text-primary lead pe-1 me-2"></i> -->
+                    <h2 class="h4 mb-0"> 교사 마이페이지 </h2>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown"><a
+                            class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0"
+                            href="#" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="width: 80px; height: 80px; background-image: url();"><span
+                            class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)"><i
+                            class="ai-camera"></i></span></a>
+                        <div class="dropdown-menu my-1"><a class="dropdown-item fw-normal" href="#"><i
+                                class="ai-camera fs-base opacity-70 me-2"></i>Upload new photo</a><a
+                                class="dropdown-item text-danger fw-normal" href="#"><i
+                                class="ai-trash fs-base me-2"></i>Delete photo</a></div>
+                    </div>
+                    <div class="ps-3">
+                        <h3 class="h6 mb-1"> 개인정보 수정 </h3>
+                        <p class="fs-sm text-muted mb-0"> 자기소개 :
+                            <소개>
+                        </p>
+                    </div>
+                </div>
+                <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="fn">First name</label>
+                        <input class="form-control" type="text" value="성" id="fn">
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="ln">Last name</label>
+                        <input class="form-control" type="text" value="이름" id="ln">
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="email">Email address</label>
+                        <input class="form-control" type="email" value="000000@example.com" id="email">
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="phone">Phone <span class='text-muted'>(optional)</span></label>
+                        <input class="form-control" type="tel"
+                               data-format="{&quot;numericOnly&quot;: true, &quot;delimiters&quot;: [&quot;+1 &quot;, &quot; &quot;, &quot; &quot;], &quot;blocks&quot;: [0, 3, 3, 2]}"
+                               placeholder="+1 ___ ___ __" id="phone">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="bio">추가 사항 </label>
+                        <textarea class="form-control" rows="5" placeholder="자세히" id="bio"></textarea>
+                    </div>
+
+                    <div class="col-12 d-sm-flex align-items-center">
+                        <div class="form-label text-muted mb-2 mb-sm-0 me-sm-4">연락망</div>
+                        <div class="form-check form-check-inline mb-0">
+                            <input class="form-check-input" type="checkbox" name="communication" value="Email" checked
+                                   id="c-email">
+                            <label class="form-check-label" for="c-email">Email</label>
+                        </div>
+                        <div class="form-check form-check-inline mb-0">
+                            <input class="form-check-input" type="checkbox" name="communication" value="Phone"
+                                   id="c-phone">
+                            <label class="form-check-label" for="c-phone">Phone</label>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end pt-3">
+                        <button class="btn btn-secondary" type="button"> 취소</button>
+                        <button class="btn btn-primary ms-3" type="button"> 저장</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Password-->
+        <section class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
+            <div class="card-body">
+                <div class="d-flex align-items-center pb-4 mt-sm-n1 mb-0 mb-lg-1 mb-xl-3">
+                    <!-- <i class="ai-lock-closed text-primary lead pe-1 me-2"></i> -->
+                    <h2 class="h4 mb-0">비밀 번호 변경</h2>
+                </div>
+                <div class="row align-items-center g-3 g-sm-4 pb-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="current-pass"> 현재 비밀번호</label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" value="hidden@password" id="current-pass">
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <!-- <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span> -->
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6"><a class="d-inline-block fs-sm fw-semibold text-decoration-none mt-sm-4"
+                                             href="account-password-recovery.html">비밀번호 잃어버림?</a></div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="new-pass">새로운 비밀번호</label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="new-pass">
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <!-- <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span> -->
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="confirm-pass">비밀번호 다시 입력 </label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="confirm-pass">
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <!-- <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span> -->
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-info d-flex my-3 my-sm-4"><i class="ai-circle-info fs-xl me-2"></i>
+                    <p class="mb-0">패스워드는 길게 변경해야한다. 짧게 말고 </p>
+                </div>
+                <div class="d-flex justify-content-end pt-3">
+                    <button class="btn btn-secondary" type="button">취소</button>
+                    <button class="btn btn-primary ms-3" type="button">저장</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Class Start -->
+        <div class="container-fluid pt-5">
+            <div class="container">
+                <div class="text-center pb-2">
+                    <h1 class="mb-4"> Class </h1>
+                </div>
+                <div class="row">
+                    <!-- 첫 번째 카드 -->
+                    <div class="col-lg-4 mb-5">
+                        <div class="card border-0 bg-light shadow-sm pb-2">
+                            <img class="card-img-top mb-2" src="img/class-1.jpg" alt=""/>
+                            <div class="card-body text-center">
+                                <h4 class="card-title">1 Class</h4>
+                                <p class="card-text">
+                                    1 class : 다람쥐 반
+                                </p>
+                            </div>
+                            <div class="card-footer bg-transparent py-4 px-5">
+                                <!-- 카드 내용 추가 -->
+                            </div>
+                            <a href="" class="btn btn-primary px-4 mx-auto mb-4"> 반 확인 </a>
+                        </div>
+                    </div>
+
+                    <!-- 두 번째 카드 -->
+                    <div class="col-lg-4 mb-5">
+                        <div class="card border-0 bg-light shadow-sm pb-2">
+                            <img class="card-img-top mb-2" src="img/class-2.jpg" alt=""/>
+                            <div class="card-body text-center">
+                                <h4 class="card-title">2 Class</h4>
+                                <p class="card-text">
+                                    2 class : 오리 반
+                                </p>
+                            </div>
+                            <div class="card-footer bg-transparent py-4 px-5">
+                                <!-- 카드 내용 추가 -->
+                            </div>
+                            <a href="" class="btn btn-primary px-4 mx-auto mb-4"> 반 확인 </a>
+                        </div>
+                    </div>
+
+                    <!-- 세 번째 카드 -->
+                    <div class="col-lg-4 mb-5">
+                        <div class="card border-0 bg-light shadow-sm pb-2">
+                            <img class="card-img-top mb-2" src="img/class-3.jpg" alt=""/>
+                            <div class="card-body text-center">
+                                <h4 class="card-title">3 Class</h4>
+                                <p class="card-text">
+                                    3 class : 팽귄반
+                                </p>
+                            </div>
+                            <div class="card-footer bg-transparent py-4 px-5">
+                                <!-- 카드 내용 추가 -->
+                            </div>
+                            <a href="" class="btn btn-primary px-4 mx-auto mb-4"> 반 확인 </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Class End -->
+
+
+<!-- Footer Start -->
+<div
+        class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5"
+>
+    <div class="row pt-5">
+        <div class="col-lg-3 col-md-6 mb-5">
+            <a
+                    href=""
+                    class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0"
+                    style="font-size: 40px; line-height: 40px"
+            >
+                <i class="flaticon-043-teddy-bear"></i>
+                <span class="text-white">KidKinder</span>
+            </a>
+            <p>
+                Labore dolor amet ipsum ea, erat sit ipsum duo eos. Volup amet ea
+                dolor et magna dolor, elitr rebum duo est sed diam elitr. Stet elitr
+                stet diam duo eos rebum ipsum diam ipsum elitr.
+            </p>
+            <div class="d-flex justify-content-start mt-4">
+                <a
+                        class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                        style="width: 38px; height: 38px"
+                        href="#"
+                ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                        class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                        style="width: 38px; height: 38px"
+                        href="#"
+                ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                        class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                        style="width: 38px; height: 38px"
+                        href="#"
+                ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <a
+                        class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                        style="width: 38px; height: 38px"
+                        href="#"
+                ><i class="fab fa-instagram"></i
+                ></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h3 class="text-primary mb-4">Get In Touch</h3>
+            <div class="d-flex">
+                <h4 class="fa fa-map-marker-alt text-primary"></h4>
+                <div class="pl-3">
+                    <h5 class="text-white">Address</h5>
+                    <p>123 Street, New York, USA</p>
+                </div>
+            </div>
+            <div class="d-flex">
+                <h4 class="fa fa-envelope text-primary"></h4>
+                <div class="pl-3">
+                    <h5 class="text-white">Email</h5>
+                    <p>info@example.com</p>
+                </div>
+            </div>
+            <div class="d-flex">
+                <h4 class="fa fa-phone-alt text-primary"></h4>
+                <div class="pl-3">
+                    <h5 class="text-white">Phone</h5>
+                    <p>+012 345 67890</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h3 class="text-primary mb-4">Quick Links</h3>
+            <div class="d-flex flex-column justify-content-start">
+                <a class="text-white mb-2" href="#"
+                ><i class="fa fa-angle-right mr-2"></i>Home</a
+                >
+                <a class="text-white mb-2" href="#"
+                ><i class="fa fa-angle-right mr-2"></i>About Us</a
+                >
+                <a class="text-white mb-2" href="#"
+                ><i class="fa fa-angle-right mr-2"></i>Our Classes</a
+                >
+                <a class="text-white mb-2" href="#"
+                ><i class="fa fa-angle-right mr-2"></i>Our Teachers</a
+                >
+                <a class="text-white mb-2" href="#"
+                ><i class="fa fa-angle-right mr-2"></i>Our Blog</a
+                >
+                <a class="text-white" href="#"
+                ><i class="fa fa-angle-right mr-2"></i>Contact Us</a
+                >
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h3 class="text-primary mb-4">Newsletter</h3>
+            <form action="">
+                <div class="form-group">
+                    <input
+                            type="text"
+                            class="form-control border-0 py-4"
+                            placeholder="Your Name"
+                            required="required"
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                            type="email"
+                            class="form-control border-0 py-4"
+                            placeholder="Your Email"
+                            required="required"
+                    />
+                </div>
+                <div>
+                    <button
+                            class="btn btn-primary btn-block border-0 py-3"
+                            type="submit"
+                    >
+                        Submit Now
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div
+            class="container-fluid pt-5"
+            style="border-top: 1px solid rgba(23, 162, 184, 0.2) ;"
+    >
+        <p class="m-0 text-center text-white">
+            &copy;
+            <a class="text-primary font-weight-bold" href="#">Your Site Name</a>.
+            All Rights Reserved.
+
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            Designed by
+            <a class="text-primary font-weight-bold" href="https://htmlcodex.com"
+            >HTML Codex</a
+            >
+            <br>Distributed By:
+            <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+        </p>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary p-3 back-to-top"
+><i class="fa fa-angle-double-up"></i
+></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/isotope/isotope.pkgd.min.js"></script>
+<script src="lib/lightbox/js/lightbox.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+</body>
+</html>
