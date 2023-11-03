@@ -85,7 +85,7 @@ public class MemberSecurityController {
         try {
             MemberDTO memberDTO = memberService.selectMemberById(id);
             model.addAttribute("user", memberDTO);
-            return "editPage";
+            return "edit";
         } catch (Exception e) {
             model.addAttribute("msg", "Member edit page Error!");
             return "error";
