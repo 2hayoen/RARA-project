@@ -53,20 +53,21 @@ public class WebTestController {
         return "schedule";
     }
 
-    @GetMapping("/signup")
-    public String signup(Model model) {
-        return "signup_jgc";
-    }
+//    @GetMapping("/signup")
+//    public String signup(Model model) {
+//        return "signup";
+//    }
 
-    @GetMapping("/signin")
-    public String signin(Model model) {
-        return "signin.html";
-    }
+//    @GetMapping("/signin")
+//    public String signin(Model model) {
+//        return "signin";
+//    }
 
-    @GetMapping("/noticeboard")
-    public String noticeboard(Model model) {
-        return "noticeboard.html";
-    }
 
+
+    @GetMapping("/writingboard")
+    public String writingboard(Model model) {
+        return "writingboard";
+    }
 
 }
