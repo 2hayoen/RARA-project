@@ -81,7 +81,7 @@
                  class="nav-link dropdown-toggle"
                  data-toggle="dropdown">Pages</a>
               <div class="dropdown-menu rounded-0 m-0">
-                <a th:href="@{/teacher}" class="dropdown-item">교사</a>
+                <a th:href="@{/schedule}" class="dropdown-item">교사</a>
                 <a th:href="@{/parents}" class="dropdown-item">학부모</a>
               </div>
             </div>
@@ -91,11 +91,12 @@
                  data-toggle="dropdown">공지</a>
               <div class="dropdown-menu rounded-0 m-0">
                 <a th:href="@{/noticeboard}" class="dropdown-item">전체 공지</a>
-                <a th:href="@{/schedule}" class="dropdown-item">월간 일정 계획</a>
+                <a th:href="@{/schedule_detail}" class="dropdown-item">월간 일정 계획</a>
               </div>
             </div>
           </div>
           <a th:href="@{/signin}" class="btn btn-primary px-4">Login</a>
+<!--          <a th:href="@{/}" class="btn btn-primary px-4">Logout</a>-->
         </div>
       </nav>
     </div>
