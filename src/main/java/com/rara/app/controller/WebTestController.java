@@ -64,10 +64,14 @@ public class WebTestController {
 //    }
 
 
-
     @GetMapping("/writingboard")
     public String writingboard(Model model) {
         return "writingboard";
+    }
+
+    @GetMapping("/schedule_detail")
+    public String scheduledetail(Model model) {
+        return "scheduledetail";
     }
 
 }

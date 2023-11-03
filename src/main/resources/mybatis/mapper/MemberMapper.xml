@@ -200,4 +200,11 @@
         </choose>
     </select>
 
+    <!-- 로그인한 회원 정보 -->
+<!--    <select id="selectMemberById" statementType="CALLABLE" resultMap="MemberMap">-->
+<!--        SELECT *-->
+<!--        FROM MEMBER-->
+<!--        WHERE email = #{email}-->
+<!--    </select>-->
+
 </mapper>
