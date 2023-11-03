@@ -60,13 +60,14 @@ public class WebTestController {
 
     @GetMapping("/signin")
     public String signin(Model model) {
-        return "signin.html";
+        return "signin";
     }
 
-    @GetMapping("/noticeboard")
-    public String noticeboard(Model model) {
-        return "noticeboard.html";
-    }
 
+
+    @GetMapping("/writingboard")
+    public String writingboard(Model model) {
+        return "writingboard";
+    }
 
 }

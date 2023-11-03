@@ -11,5 +11,4 @@ public class BoardController {
     public String noticeboard(Model model) {
         return "noticeboard";
     }
-
 }
