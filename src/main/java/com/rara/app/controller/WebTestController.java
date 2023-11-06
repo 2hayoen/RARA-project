@@ -50,7 +50,7 @@ public class WebTestController {
 
     @GetMapping("/schedule")
     public String schedule(Model model) {
-        return "writingschedule";
+        return "schedule";
     }
 
 //    @GetMapping("/signup")
@@ -86,6 +86,8 @@ public class WebTestController {
         return "login_hy";
     }
 
-
-
+    @GetMapping("/acceptdetail")
+    public String acceptdetail(Model model) {
+        return "acceptdetail";
+    }
 }
