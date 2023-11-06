@@ -74,4 +74,18 @@ public class WebTestController {
         return "scheduledetail";
     }
 
+
+    /////// 11/05
+    @GetMapping("/first")
+    public String first_page(Model model) {
+        return "First";
+    }
+
+    @GetMapping("/login_hy")
+    public String login_hy(Model model) {
+        return "login_hy";
+    }
+
+
+
 }
