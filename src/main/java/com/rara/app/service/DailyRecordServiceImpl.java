@@ -31,24 +31,43 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     }
 
     @Override
-    public void updateDailyRecordSetTitleOrContentOrFile1OrFile2(
-            Map<String, Object> params) throws Exception {
-        dailyRecordMapper
-                .updateDailyRecordSetTitleOrContentOrFile1OrFile2(params);
+    public void updateDailyRecordSetTitle(Long id, String title) throws Exception {
+        dailyRecordMapper.updateDailyRecordSetTitle(id, title);
     }
 
     @Override
-    public void updateDailyRecordSetAct1RecOrAct2Rec(
-            Map<String, Object> params) throws Exception {
-        dailyRecordMapper
-                .updateDailyRecordSetAct1RecOrAct2Rec(params);
+    public void updateDailyRecordSetContent(Long id, String content) throws Exception {
+        dailyRecordMapper.updateDailyRecordSetContent(id, content);
     }
 
     @Override
-    public void updateDailyRecordSetCIdOrDpId(
-            Map<String, Object> params) throws Exception {
-        dailyRecordMapper
-                .updateDailyRecordSetCIdOrDpId(params);
+    public void updateDailyRecordSetFile1(Long id, String file1) throws Exception {
+        dailyRecordMapper.updateDailyRecordSetFile1(id, file1);
+    }
+
+    @Override
+    public void updateDailyRecordSetFile2(Long id, String file2) throws Exception {
+        dailyRecordMapper.updateDailyRecordSetFile2(id, file2);
+    }
+
+    @Override
+    public void updateDailyRecordSetAct1Rec(Long id, String act1Rec) throws Exception {
+        dailyRecordMapper.updateDailyRecordSetAct1Rec(id, act1Rec);
+    }
+
+    @Override
+    public void updateDailyRecordSetAct2Rec(Long id, String act2Rec) throws Exception {
+        dailyRecordMapper.updateDailyRecordSetAct2Rec(id, act2Rec);
+    }
+
+    @Override
+    public void updateDailyRecordSetCId(Long id, Long cId) throws Exception {
+        dailyRecordMapper.updateDailyRecordSetCId(id, cId);
+    }
+
+    @Override
+    public void updateDailyRecordSetDpId(Long id, Long dpId) throws Exception {
+        dailyRecordMapper.updateDailyRecordSetDpId(id, dpId);
     }
 
 
@@ -74,10 +93,10 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     }
 
     @Override
-    public List<DailyRecordDTO> selectDailyRecordByTitleOrContent(
-            Map<String, Object> params) throws Exception {
-
-        dailyRecordMapper.selectDailyRecordByTitleOrContent(params);
+    public List<DailyRecordDTO> selectDailyRecordByTitle(String title) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("title", title);
+        dailyRecordMapper.selectDailyRecordByTitle(params);
 
         List<DailyRecordDTO> results = (List<DailyRecordDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -87,10 +106,36 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     }
 
     @Override
-    public List<DailyRecordDTO> selectDailyRecordByCIdOrDpId(
-            Map<String, Object> params) throws Exception {
+    public List<DailyRecordDTO> selectDailyRecordByContent(String content) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("content", content);
+        dailyRecordMapper.selectDailyRecordByContent(params);
 
-        dailyRecordMapper.selectDailyRecordByCIdOrDpId(params);
+        List<DailyRecordDTO> results = (List<DailyRecordDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<DailyRecordDTO> selectDailyRecordByCId(Long cId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("cId", cId);
+        dailyRecordMapper.selectDailyRecordByCId(params);
+
+        List<DailyRecordDTO> results = (List<DailyRecordDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<DailyRecordDTO> selectDailyRecordByDpId(Long dpId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dpId", dpId);
+        dailyRecordMapper.selectDailyRecordByDpId(params);
 
         List<DailyRecordDTO> results = (List<DailyRecordDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {

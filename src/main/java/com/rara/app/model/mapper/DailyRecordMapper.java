@@ -13,24 +13,32 @@ public interface DailyRecordMapper {
 
     void updateDailyRecord(DailyRecordDTO dailyRecordDTO);
 
-    void updateDailyRecordSetTitleOrContentOrFile1OrFile2(
-            Map<String, Object> params);
+    void updateDailyRecordSetTitle(@Param("id") Long id, @Param("title") String title);
 
+    void updateDailyRecordSetContent(@Param("id") Long id, @Param("content") String content);
 
-    void updateDailyRecordSetAct1RecOrAct2Rec(
-            Map<String, Object> params);
+    void updateDailyRecordSetFile1(@Param("id") Long id, @Param("file1") String file1);
 
-    void updateDailyRecordSetCIdOrDpId(
-            Map<String, Object> params);
+    void updateDailyRecordSetFile2(@Param("id") Long id, @Param("file2") String file2);
+
+    void updateDailyRecordSetAct1Rec(@Param("id") Long id, @Param("act1Rec") String act1Rec);
+
+    void updateDailyRecordSetAct2Rec(@Param("id") Long id, @Param("act2Rec") String act2Rec);
+
+    void updateDailyRecordSetCId(@Param("id") Long id, @Param("cId") Long cId);
+
+    void updateDailyRecordSetDpId(@Param("id") Long id, @Param("dpId") Long dpId);
 
     void selectDailyRecordsAll(Map<String, Object> params);
 
     void selectDailyRecordById(Map<String, Object> params);
 
-    void selectDailyRecordByTitleOrContent(
-            Map<String, Object> params);
+    void selectDailyRecordByTitle(Map<String, Object> params);
 
-    void selectDailyRecordByCIdOrDpId(
-            Map<String, Object> params);
+    void selectDailyRecordByContent(Map<String, Object> params);
+
+    void selectDailyRecordByCId(Map<String, Object> params);
+
+    void selectDailyRecordByDpId(Map<String, Object> params);
 
 }
