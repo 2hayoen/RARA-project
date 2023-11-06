@@ -3,33 +3,42 @@
 <th:block layout:fragment="content">
 
 
-<br><br><br>
+    <br><br><br>
 
-<form class="needs-validation" novalidate>
-    <div class="row justify-content-center">
-        <div class="col-md-2 text-center">
-            <label for="validationTooltip01" class="form-label">Keyword 1</label>
-            <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
-            <div class="valid-tooltip">Looks good!</div>
+    <form class="needs-validation" novalidate>
+        <div class="row justify-content-center">
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip00" class="form-label">수업일수</label>
+                <input class="form-control" type="text" id="validationTooltip00" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip"></div>
+            </div>
         </div>
-        <div class="col-md-2 text-center">
-            <label for="validationTooltip02" class="form-label">Keyword 2</label>
-            <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value="" required>
-            <div class="valid-tooltip">Looks good!</div>
+    </form>
+
+    <form class="needs-validation" novalidate>
+        <div class="row justify-content-center">
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip01" class="form-label">Keyword 1</label>
+                <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip"></div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip02" class="form-label">Keyword 2</label>
+                <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip"> </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltipUsername" class="form-label">Keyword 3</label>
+                <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword" required>
+            </div>
         </div>
-        <div class="col-md-2 text-center">
-            <label for="validationTooltipUsername" class="form-label">Keyword 3</label>
-            <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword" required>
-        </div>
-    </div>
-</form>
+    </form>
 
     <br>
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary" style="margin-right: 0.1cm;">교육활동 목록 생성</button>
-
+                <button type="submit" class="btn btn-primary" style="margin-left: 10cm;">교육활동 목록 생성</button>
             </div>
         </div>
     </div>
@@ -45,10 +54,14 @@
                             the bulk of the card's content.</p>
                     </div>
                 </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#scrollableModal1" style="background-color: #17a2b8;; color: #fff;">수정
+                            </button>
+                        </div>
+                    </div>
                 <br>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                        data-bs-target="#scrollableModal1" style="background-color: #17a2b8;; color: #fff;">수정
-                </button>
                 <!-- Scrollable 모달 1 -->
                 <div class="modal fade" id="scrollableModal1" tabindex="-1"
                      aria-labelledby="scrollableModalLabel1"
@@ -95,8 +108,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="editableContent">활동 내용</label>
-                                    <textarea id="editableContent" class="form-control" rows="5"
+                                    <label for="editableContent1">활동 내용</label>
+                                    <textarea id="editableContent1" class="form-control" rows="5"
                                               placeholder="활동 내용"></textarea>
                                 </div>
 
@@ -127,7 +140,7 @@
                 </div>
                 <br>
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                        data-bs-target="#scrollableModal2" style="background-color: #17a2b8;; color: #fff;">수정
+                        data-bs-target="#scrollableModal2" style="background-color: #17a2b8;; color: #fff; align-self-end">수정
                 </button>
                 <button type="button" class="btn btn-secondary" style="background-color: #17a2b8;; color: #fff;">승인
                 </button>
@@ -214,7 +227,7 @@
           });
       });
     </script>
-</form>
+    </form>
 
     </div>
 </th:block>

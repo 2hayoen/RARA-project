@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <title>검색 화면</title>
     <style>
@@ -14,20 +15,31 @@
 
         .search-container {
             text-align: center;
+            border: 2px solid #eec76c;
+            border-radius: 30px; /* Add border-radius to make the container rounded */
+            padding: 20px;
         }
 
         .search-input {
-            padding: 10px 30px 10px 10px;
-            font-size: 16px;
-        }
+            border: none;
+            outline: none;
+            flex: 1;
+            width: auto;
+            border-radius: 30px;
+            padding: 10px; /* Increase the padding for the input field */
+            font-size: 18px; /* Increase the font size */
+}
 
         .search-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+            background: none;
             border: none;
-            font-size: 16px;
             cursor: pointer;
+            font-size: 0; /* 텍스트 숨김 */
+        }
+
+        .search-button .fa-search {
+            font-family: FontAwesome;
+            font-size: 20px; /* 원하는 아이콘 크기로 설정 */
         }
 
         .search-icon {
@@ -38,12 +50,18 @@
     </style>
 </head>
 <body>
-<div class="search-container">
-    <div>
-        <img src="img/child.png" alt="아이콘" class="search-icon"> <!-- 이미지 삽입 -->
+<div class="col-lg-4 mb-5">
+    <div class="card border-0 bg-light shadow-sm pb-2">
+        <img class="card-img-top mb-2" src="img/child.png" width="400" height="280"> <!-- 이미지 삽입 -->
     </div>
-    <input type="text" class="search-input" placeholder="검색어를 입력하세요">
-    <button class="search-button">찾기</button>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="검색어를 입력하세요">
+        <button class="search-button">
+            <a th:href="@{/login}"></a> <!-- "찾기" 텍스트를 숨김 -->
+            <i class="fa fa-search" ></i> <!-- 돋보기 아이콘을 추가 -->
+        </button>
+    </div>
 </div>
 </body>
 </html>
