@@ -77,25 +77,35 @@
              id="navbarCollapse">
           <div class="navbar-nav font-weight-bold mx-auto py-0">
             <a th:href="@{/}" class="nav-item nav-link">어린이집 소개</a>
-            <a th:href="@{/classchild}" class="nav-item nav-link">우리 반</a>
+<!--            <a th:href="@{/classchild}" class="nav-item nav-link">우리 반</a>-->
 
             <div class="nav-item dropdown">
               <a href="#"
                  class="nav-link dropdown-toggle"
-                 data-toggle="dropdown">Pages</a>
-              <div class="dropdown-menu rounded-0 m-0">
-                <a th:href="@{/schedule}" class="dropdown-item">교사</a>
-                <a th:href="@{/parents}" class="dropdown-item">학부모</a>
-              </div>
+                 data-toggle="dropdown">우리반</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                              <a th:href="@{/classchild}" class="dropdown-item">교사</a>
+                              <a th:href="@{/parents}" class="dropdown-item">학부모</a>
+                            </div>
+            </div>
+
+            <div class="nav-item dropdown">
+              <a href="#"
+                 class="nav-link dropdown-toggle"
+                 data-toggle="dropdown">일정계획수립</a>
+<!--              <div class="dropdown-menu rounded-0 m-0">-->
+<!--                <a th:href="@{/schedule}" class="dropdown-item">교사</a>-->
+<!--                <a th:href="@{/parents}" class="dropdown-item">학부모</a>-->
+<!--              </div>-->
             </div>
             <div class="nav-item dropdown">
               <a href="#"
                  class="nav-link dropdown-toggle"
-                 data-toggle="dropdown">공지</a>
-              <div class="dropdown-menu rounded-0 m-0">
-                <a th:href="@{/noticeboard}" class="dropdown-item">전체 공지</a>
-                <a th:href="@{/schedule_detail}" class="dropdown-item">월간 일정 계획</a>
-              </div>
+                 data-toggle="dropdown">승인</a>
+<!--              <div class="dropdown-menu rounded-0 m-0">-->
+<!--                <a th:href="@{/noticeboard}" class="dropdown-item">전체 공지</a>-->
+<!--                <a th:href="@{/schedule_detail}" class="dropdown-item">월간 일정 계획</a>-->
+<!--              </div>-->
             </div>
           </div>
           <a th:href="@{/signin}" class="btn btn-primary px-4">Login</a>
