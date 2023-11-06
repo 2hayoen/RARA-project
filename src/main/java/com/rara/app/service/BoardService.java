@@ -6,22 +6,50 @@ import java.util.List;
 import java.util.Map;
 
 public interface BoardService {
+    void insertBoard(BoardDTO board);
 
-    void insertBoard(BoardDTO boardDTO) throws Exception;
+    List<BoardDTO> getBoardsAll();
 
-    void deleteBoard(Long id) throws Exception;
+    BoardDTO getBoardById(long id);
 
-    void updateBoard(BoardDTO boardDTO) throws Exception;
+    List<BoardDTO> getBoardByCategoryAndTitle(String category, String title);
 
-    void updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(
-            Map<String, Object> params) throws Exception;
+    List<BoardDTO> getBoardByCategoryAndContent(String category, String content);
 
+    List<BoardDTO> getBoardByCategoryAndMId(String category, long mId);
 
-    List<BoardDTO> selectBoardsAll() throws Exception;
+    void updateBoard(BoardDTO board);
 
-    BoardDTO selectBoardById(Long id) throws Exception;
+    void updateTitle(BoardDTO board);
 
-    List<BoardDTO> selectBoardByCategoryAndTitleOrContentOrMId(
-            Map<String, Object> params) throws Exception;
+    void updateContent(BoardDTO board);
 
+    void updateCategory(BoardDTO board);
+
+    void updateFile1(BoardDTO board);
+
+    void updateFile2(BoardDTO board);
+
+    void deleteBoard(long id);
 }
+
+//public interface BoardService {
+//
+//    void insertBoard(BoardDTO boardDTO) throws Exception;
+//
+//    void deleteBoard(Long id) throws Exception;
+//
+//    void updateBoard(BoardDTO boardDTO) throws Exception;
+//
+//    void updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(
+//            Map<String, Object> params) throws Exception;
+//
+//
+//    List<BoardDTO> selectBoardsAll() throws Exception;
+//
+//    BoardDTO selectBoardById(Long id) throws Exception;
+//
+//    List<BoardDTO> selectBoardByCategoryAndTitleOrContentOrMId(
+//            Map<String, Object> params) throws Exception;
+//
+//}

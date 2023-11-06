@@ -86,6 +86,20 @@ public class WebTestController {
         return "login_hy";
     }
 
+    //////// 11/06
+    @GetMapping("/schedule_list")
+    public String schedule_list(Model model) {
+        return "schedule_list";
+    }
 
+    @GetMapping("/accept_detail")
+    public String accep_detail(Model model) {
+        return "accept_detail";
+    }
+
+//    @GetMapping("/accept_list")
+//    public String accep_list(Model model) {
+//        return "accept_list";
+//    }
 
 }

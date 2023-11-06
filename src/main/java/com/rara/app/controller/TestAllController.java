@@ -24,8 +24,8 @@ public class TestAllController {
     @Autowired
     ChildService childService;
 
-    @Autowired
-    BoardService boardService;
+//    @Autowired
+//    BoardService boardService;
 
     @Autowired
     DailyPlanService dailyPlanService;
@@ -169,99 +169,99 @@ public class TestAllController {
         }
     }
 
-    @GetMapping("/board")
-    public String testBoardAll(Model model) {
-
-        try {
-
-            Map<String, Object> params;
-            BoardDTO boardDTO;
-
-            boardDTO = BoardDTO.builder()
-                    .title("title1").content("content1").category("category1")
-                    .file1("file1-1").file2("file1-2").mId(1L).author("author1").build();
-            boardService.insertBoard(boardDTO);
-
-            boardDTO = BoardDTO.builder()
-                    .title("title2").content("content2").category("category2")
-                    .file1("file2-1").mId(2L).author("author2").build();
-            boardService.insertBoard(boardDTO);
-
-            boardDTO = BoardDTO.builder()
-                    .title("3").content("3").category("category1")
-                    .file1("3").mId(3L).author("3").build();
-            boardService.insertBoard(boardDTO);
-
-            model.addAttribute(
-                    "boardsInserted", boardService.selectBoardsAll()
-            );
-
-            model.addAttribute(
-                    "boardById", boardService.selectBoardById(1L)
-            );
-
-            params = new HashMap<>();
-            params.put("category", "category1");
-            params.put("title", "title");
-            model.addAttribute(
-                    "boardByCategoryAndTitle",
-                    boardService.selectBoardByCategoryAndTitleOrContentOrMId(params)
-            );
-
-            params = new HashMap<>();
-            params.put("category", "category2");
-            params.put("content", "content");
-            model.addAttribute(
-                    "boardByCategoryAndContent",
-                    boardService.selectBoardByCategoryAndTitleOrContentOrMId(params)
-            );
-
-            params = new HashMap<>();
-            params.put("category", "category1");
-            params.put("mId", 1L);
-            model.addAttribute(
-                    "boardByCategoryAndMId",
-                    boardService.selectBoardByCategoryAndTitleOrContentOrMId(params)
-            );
-
-            boardDTO = BoardDTO.builder()
-                    .id(1L).title("u_title1").content("u_content1")
-                    .category("u_cate1").file1("u_file1-1").file2("u_file1-2").build();
-            boardService.updateBoard(boardDTO);
-
-            params = new HashMap<>();
-            params.put("id", 2L);
-            params.put("title", "u_title2");
-            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
-            params = new HashMap<>();
-            params.put("id", 2L);
-            params.put("content", "u_content2");
-            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
-            params = new HashMap<>();
-            params.put("id", 2L);
-            params.put("category", "u_cate2");
-            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
-            params = new HashMap<>();
-            params.put("id", 2L);
-            params.put("file1", "u_file2-1");
-            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
-            params = new HashMap<>();
-            params.put("id", 2L);
-            params.put("file2", "u_file2-2");
-            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
-
-            model.addAttribute("boardsUpdated", boardService.selectBoardsAll());
-
-            boardService.deleteBoard(3L);
-
-            model.addAttribute("boardsDeleted", boardService.selectBoardsAll());
-
-            return "test/all/board";
-        } catch (Exception e) {
-            model.addAttribute("msg", "Board Error!");
-            return "error";
-        }
-    }
+//    @GetMapping("/board")
+//    public String testBoardAll(Model model) {
+//
+//        try {
+//
+//            Map<String, Object> params;
+//            BoardDTO boardDTO;
+//
+//            boardDTO = BoardDTO.builder()
+//                    .title("title1").content("content1").category("category1")
+//                    .file1("file1-1").file2("file1-2").mId(1L).author("author1").build();
+//            boardService.insertBoard(boardDTO);
+//
+//            boardDTO = BoardDTO.builder()
+//                    .title("title2").content("content2").category("category2")
+//                    .file1("file2-1").mId(2L).author("author2").build();
+//            boardService.insertBoard(boardDTO);
+//
+//            boardDTO = BoardDTO.builder()
+//                    .title("3").content("3").category("category1")
+//                    .file1("3").mId(3L).author("3").build();
+//            boardService.insertBoard(boardDTO);
+//
+//            model.addAttribute(
+//                    "boardsInserted", boardService.selectBoardsAll()
+//            );
+//
+//            model.addAttribute(
+//                    "boardById", boardService.selectBoardById(1L)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("category", "category1");
+//            params.put("title", "title");
+//            model.addAttribute(
+//                    "boardByCategoryAndTitle",
+//                    boardService.selectBoardByCategoryAndTitleOrContentOrMId(params)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("category", "category2");
+//            params.put("content", "content");
+//            model.addAttribute(
+//                    "boardByCategoryAndContent",
+//                    boardService.selectBoardByCategoryAndTitleOrContentOrMId(params)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("category", "category1");
+//            params.put("mId", 1L);
+//            model.addAttribute(
+//                    "boardByCategoryAndMId",
+//                    boardService.selectBoardByCategoryAndTitleOrContentOrMId(params)
+//            );
+//
+//            boardDTO = BoardDTO.builder()
+//                    .id(1L).title("u_title1").content("u_content1")
+//                    .category("u_cate1").file1("u_file1-1").file2("u_file1-2").build();
+//            boardService.updateBoard(boardDTO);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("title", "u_title2");
+//            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("content", "u_content2");
+//            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("category", "u_cate2");
+//            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("file1", "u_file2-1");
+//            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("file2", "u_file2-2");
+//            boardService.updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2(params);
+//
+//            model.addAttribute("boardsUpdated", boardService.selectBoardsAll());
+//
+//            boardService.deleteBoard(3L);
+//
+//            model.addAttribute("boardsDeleted", boardService.selectBoardsAll());
+//
+//            return "test/all/board";
+//        } catch (Exception e) {
+//            model.addAttribute("msg", "Board Error!");
+//            return "error";
+//        }
+//    }
 
     @GetMapping("/child")
     public String testChildAll(Model model) {

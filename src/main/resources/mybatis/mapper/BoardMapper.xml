@@ -3,21 +3,9 @@
 
 <mapper namespace="com.rara.app.model.mapper.BoardMapper">
 
-    <resultMap id="BoardMap" type="com.rara.app.dto.BoardDTO">
-        <result column="ID" property="id"/>
-        <result column="TITLE" property="title"/>
-        <result column="CONTENT" property="content"/>
-        <result column="CREATED" property="created"/>
-        <result column="CATEGORY" property="category"/>
-        <result column="FILE1" property="file1"/>
-        <result column="FILE2" property="file2"/>
-        <result column="M_ID" property="mId"/>
-        <result column="AUTHOR" property="author"/>
-    </resultMap>
-
-    <!-- Insert Board -->
+    <!-- CREATE/INSERT 프로시저 매핑 -->
     <insert id="insertBoard" parameterType="com.rara.app.dto.BoardDTO">
-        {call board_pkg.insert_board(
+        { call board_pkg.insert_board(
         #{title, jdbcType=VARCHAR},
         #{content, jdbcType=VARCHAR},
         #{category, jdbcType=VARCHAR},
@@ -28,14 +16,77 @@
         )}
     </insert>
 
-    <!-- Delete Board -->
+    <!-- DELETE 프로시저 매핑 -->
     <delete id="deleteBoard">
-        {call board_pkg.delete_board(#{id, jdbcType=NUMERIC})}
+        { call board_pkg.delete_board(
+        #{id, jdbcType=NUMERIC})}
     </delete>
 
-    <!-- Update Board -->
+
+<!--    ############################################################################################     -->
+    <resultMap id="BoardMap" type="com.rara.app.dto.BoardDTO">
+            <result column="ID" property="id"/>
+            <result column="TITLE" property="title"/>
+            <result column="CONTENT" property="content"/>
+            <result column="CREATED" property="created"/>
+            <result column="CATEGORY" property="category"/>
+            <result column="FILE1" property="file1"/>
+            <result column="FILE2" property="file2"/>
+            <result column="M_ID" property="mId"/>
+            <result column="AUTHOR" property="author"/>
+        </resultMap>
+
+    <!-- READ (SELECT) 프로시저 매핑 -->
+    <select id="selectBoardsAll" statementType="CALLABLE" >
+        { call
+        #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=
+        board_pkg.select_boards_all() }
+    </select>
+
+    <select id="selectBoardById" statementType="CALLABLE">
+        { call
+        #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=
+        board_pkg.select_board_by_id(
+        #{id, jdbcType=NUMERIC}
+        )
+        }
+    </select>
+
+    <select id="selectBoardByCategoryAndTitle" statementType="CALLABLE" >
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=
+        board_pkg.select_board_by_category_title(
+        #{category, jdbcType=VARCHAR},
+        #{title, jdbcType=VARCHAR}
+        )
+        }
+    </select>
+
+    <select id="selectBoardByCategoryAndContent" statementType="CALLABLE" >
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=
+        board_pkg.select_board_by_category_content(
+        #{category, jdbcType=VARCHAR},
+        #{content, jdbcType=VARCHAR}
+        )
+        }
+    </select>
+
+    <select id="selectBoardByCategoryAndMId" statementType="CALLABLE" >
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=
+        board_pkg.select_board_by_category_m_id(
+        #{category, jdbcType=VARCHAR},
+        #{mId, jdbcType=NUMERIC}
+        )
+        }
+    </select>
+
+    <!-- UPDATE 프로시저 매핑 -->
     <update id="updateBoard" parameterType="com.rara.app.dto.BoardDTO">
-        {call board_pkg.update_board(
+        { call board_pkg.update_board(
         #{id, jdbcType=NUMERIC},
         #{title, jdbcType=VARCHAR},
         #{content, jdbcType=VARCHAR},
@@ -45,86 +96,166 @@
         )}
     </update>
 
-    <update id="updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2">
-        <if test="title != null and title !='' ">
-            {call board_pkg.update_title(
-            #{id, jdbcType=NUMERIC},
-            #{title, jdbcType=VARCHAR}
-            )}
-        </if>
-        <if test="content != null and content !='' ">
-            {call board_pkg.update_content(
-            #{id, jdbcType=NUMERIC},
-            #{content, jdbcType=VARCHAR}
-            )}
-        </if>
-        <if test="category != null and category !='' ">
-            {call board_pkg.update_category(
-            #{id, jdbcType=NUMERIC},
-            #{category, jdbcType=VARCHAR}
-            )}
-        </if>
-        <if test="file1 != null and file1 !='' ">
-            {call board_pkg.update_file1(
-            #{id, jdbcType=NUMERIC},
-            #{file1, jdbcType=VARCHAR}
-            )}
-        </if>
-        <if test="file2 != null and file2 !='' ">
-            {call board_pkg.update_file2(
-            #{id, jdbcType=NUMERIC},
-            #{file2, jdbcType=VARCHAR}
-            )}
-        </if>
+    <update id="updateTitle" parameterType="com.rara.app.dto.BoardDTO">
+        { call board_pkg.update_title(
+        #{id, jdbcType=NUMERIC},
+        #{title, jdbcType=VARCHAR}
+        )}
     </update>
 
+    <update id="updateContent" parameterType="com.rara.app.dto.BoardDTO">
+        { call board_pkg.update_content(
+        #{id, jdbcType=NUMERIC},
+        #{content, jdbcType=VARCHAR}
+        )}
+    </update>
 
-    <!-- Select Board -->
-    <select id="selectBoardsAll" statementType="CALLABLE">
-        { call #{cursor, mode=OUT, jdbcType=CURSOR,
-                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=
-        board_pkg.select_boards_all() }
-    </select>
+    <update id="updateCategory" parameterType="com.rara.app.dto.BoardDTO">
+        { call board_pkg.update_category(
+        #{id, jdbcType=NUMERIC},
+        #{category, jdbcType=VARCHAR}
+        )}
+    </update>
 
-    <select id="selectBoardById" statementType="CALLABLE">
-        { call #{cursor, mode=OUT, jdbcType=CURSOR,
-                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=
-        board_pkg.select_board_by_id(
-        #{id, jdbcType=NUMERIC}
-        )
-        }
-    </select>
+    <update id="updateFile1" parameterType="com.rara.app.dto.BoardDTO">
+        { call board_pkg.update_file1(
+        #{id, jdbcType=NUMERIC},
+        #{file1, jdbcType=VARCHAR}
+        )}
+    </update>
 
-    <select id="selectBoardByCategoryAndTitleOrContentOrMId" statementType="CALLABLE">
-        <choose>
-            <when test="title != null and title != '' ">
-                { call #{cursor, mode=OUT, jdbcType=CURSOR,
-                        javaType=java.sql.ResultSet, resultMap=BoardMap} :=
-                board_pkg.select_board_by_category_title(
-                #{category, jdbcType=VARCHAR},
-                #{title, jdbcType=VARCHAR}
-                )
-                }
-            </when>
-            <when test="content != null and content != '' ">
-                { call #{cursor, mode=OUT, jdbcType=CURSOR,
-                        javaType=java.sql.ResultSet, resultMap=BoardMap} :=
-                board_pkg.select_board_by_category_content(
-                #{category, jdbcType=VARCHAR},
-                #{content, jdbcType=VARCHAR}
-                )
-                }
-            </when>
-            <when test="mId != null">
-                { call #{cursor, mode=OUT, jdbcType=CURSOR,
-                        javaType=java.sql.ResultSet, resultMap=BoardMap} :=
-                board_pkg.select_board_by_category_m_id(
-                #{category, jdbcType=VARCHAR},
-                #{mId, jdbcType=NUMERIC}
-                )
-                }
-            </when>
-        </choose>
-    </select>
-
+    <update id="updateFile2" parameterType="com.rara.app.dto.BoardDTO">
+        { call board_pkg.update_file2(
+        #{id, jdbcType=NUMERIC},
+        #{file2, jdbcType=VARCHAR}
+        )}
+    </update>
 </mapper>
+
+
+
+        <!--    <resultMap id="BoardMap" type="com.rara.app.dto.BoardDTO">-->
+        <!--        <result column="ID" property="id"/>-->
+        <!--        <result column="TITLE" property="title"/>-->
+        <!--        <result column="CONTENT" property="content"/>-->
+        <!--        <result column="CREATED" property="created"/>-->
+        <!--        <result column="CATEGORY" property="category"/>-->
+        <!--        <result column="FILE1" property="file1"/>-->
+        <!--        <result column="FILE2" property="file2"/>-->
+        <!--        <result column="M_ID" property="mId"/>-->
+        <!--        <result column="AUTHOR" property="author"/>-->
+        <!--    </resultMap>-->
+
+        <!--    &lt;!&ndash; Insert Board &ndash;&gt;-->
+        <!--    <insert id="insertBoard" parameterType="com.rara.app.dto.BoardDTO">-->
+        <!--        {call board_pkg.insert_board(-->
+        <!--        #{title, jdbcType=VARCHAR},-->
+        <!--        #{content, jdbcType=VARCHAR},-->
+        <!--        #{category, jdbcType=VARCHAR},-->
+        <!--        #{file1, jdbcType=VARCHAR},-->
+        <!--        #{file2, jdbcType=VARCHAR},-->
+        <!--        #{mId, jdbcType=NUMERIC},-->
+        <!--        #{author, jdbcType=VARCHAR}-->
+        <!--        )}-->
+        <!--    </insert>-->
+
+        <!--    &lt;!&ndash; Delete Board &ndash;&gt;-->
+        <!--    <delete id="deleteBoard">-->
+        <!--        {call board_pkg.delete_board(#{id, jdbcType=NUMERIC})}-->
+        <!--    </delete>-->
+
+        <!--    &lt;!&ndash; Update Board &ndash;&gt;-->
+        <!--    <update id="updateBoard" parameterType="com.rara.app.dto.BoardDTO">-->
+        <!--        {call board_pkg.update_board(-->
+        <!--        #{id, jdbcType=NUMERIC},-->
+        <!--        #{title, jdbcType=VARCHAR},-->
+        <!--        #{content, jdbcType=VARCHAR},-->
+        <!--        #{category, jdbcType=VARCHAR},-->
+        <!--        #{file1, jdbcType=VARCHAR},-->
+        <!--        #{file2, jdbcType=VARCHAR}-->
+        <!--        )}-->
+        <!--    </update>-->
+
+        <!--    <update id="updateBoardSetTitleOrContentOrCategoryOrFile1OrFile2">-->
+        <!--        <if test="title != null and title !='' ">-->
+        <!--            {call board_pkg.update_title(-->
+        <!--            #{id, jdbcType=NUMERIC},-->
+        <!--            #{title, jdbcType=VARCHAR}-->
+        <!--            )}-->
+        <!--        </if>-->
+        <!--        <if test="content != null and content !='' ">-->
+        <!--            {call board_pkg.update_content(-->
+        <!--            #{id, jdbcType=NUMERIC},-->
+        <!--            #{content, jdbcType=VARCHAR}-->
+        <!--            )}-->
+        <!--        </if>-->
+        <!--        <if test="category != null and category !='' ">-->
+        <!--            {call board_pkg.update_category(-->
+        <!--            #{id, jdbcType=NUMERIC},-->
+        <!--            #{category, jdbcType=VARCHAR}-->
+        <!--            )}-->
+        <!--        </if>-->
+        <!--        <if test="file1 != null and file1 !='' ">-->
+        <!--            {call board_pkg.update_file1(-->
+        <!--            #{id, jdbcType=NUMERIC},-->
+        <!--            #{file1, jdbcType=VARCHAR}-->
+        <!--            )}-->
+        <!--        </if>-->
+        <!--        <if test="file2 != null and file2 !='' ">-->
+        <!--            {call board_pkg.update_file2(-->
+        <!--            #{id, jdbcType=NUMERIC},-->
+        <!--            #{file2, jdbcType=VARCHAR}-->
+        <!--            )}-->
+        <!--        </if>-->
+        <!--    </update>-->
+
+
+        <!--    &lt;!&ndash; Select Board &ndash;&gt;-->
+        <!--    <select id="selectBoardsAll" statementType="CALLABLE">-->
+        <!--        { call #{cursor, mode=OUT, jdbcType=CURSOR,-->
+        <!--                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=-->
+        <!--        board_pkg.select_boards_all() }-->
+        <!--    </select>-->
+
+        <!--    <select id="selectBoardById" statementType="CALLABLE">-->
+        <!--        { call #{cursor, mode=OUT, jdbcType=CURSOR,-->
+        <!--                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=-->
+        <!--        board_pkg.select_board_by_id(-->
+        <!--        #{id, jdbcType=NUMERIC}-->
+        <!--        )-->
+        <!--        }-->
+        <!--    </select>-->
+
+        <!--    <select id="selectBoardByCategoryAndTitleOrContentOrMId" statementType="CALLABLE">-->
+        <!--        <choose>-->
+        <!--            <when test="title != null and title != '' ">-->
+        <!--                { call #{cursor, mode=OUT, jdbcType=CURSOR,-->
+        <!--                        javaType=java.sql.ResultSet, resultMap=BoardMap} :=-->
+        <!--                board_pkg.select_board_by_category_title(-->
+        <!--                #{category, jdbcType=VARCHAR},-->
+        <!--                #{title, jdbcType=VARCHAR}-->
+        <!--                )-->
+        <!--                }-->
+        <!--            </when>-->
+        <!--            <when test="content != null and content != '' ">-->
+        <!--                { call #{cursor, mode=OUT, jdbcType=CURSOR,-->
+        <!--                        javaType=java.sql.ResultSet, resultMap=BoardMap} :=-->
+        <!--                board_pkg.select_board_by_category_content(-->
+        <!--                #{category, jdbcType=VARCHAR},-->
+        <!--                #{content, jdbcType=VARCHAR}-->
+        <!--                )-->
+        <!--                }-->
+        <!--            </when>-->
+        <!--            <when test="mId != null">-->
+        <!--                { call #{cursor, mode=OUT, jdbcType=CURSOR,-->
+        <!--                        javaType=java.sql.ResultSet, resultMap=BoardMap} :=-->
+        <!--                board_pkg.select_board_by_category_m_id(-->
+        <!--                #{category, jdbcType=VARCHAR},-->
+        <!--                #{mId, jdbcType=NUMERIC}-->
+        <!--                )-->
+        <!--                }-->
+        <!--            </when>-->
+        <!--        </choose>-->
+        <!--    </select>-->
+
+        <!--</mapper>-->

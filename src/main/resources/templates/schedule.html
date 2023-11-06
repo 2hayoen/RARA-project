@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/default_layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/default_layout">
 <th:block layout:fragment="content">
 
     <!-- Header Start -->
     <div class="container-fluid bg-primary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center"
-             style="min-height: 200px">
-
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 200px"
+        >
             <h3 class="display-3 font-weight-bold text-white">일정 계획 수립</h3>
-
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="">일정계획 수립</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">Input</p>
+            </div>
         </div>
     </div>
     <!-- Header End -->
 
-    <!-- Page content-->
-<form class="needs-validation" novalidate>
-    <div class="row justify-content-center">
-        <div class="col-md-2 text-center">
-            <label for="validationTooltip01" class="form-label">Keyword 1</label>
-            <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
-            <div class="valid-tooltip">Looks good!</div>
+
+    <form class="needs-validation" novalidate>
+        <div class="row justify-content-center">
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip01" class="form-label">수업일수</label>
+                <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip">Looks good!</div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip01" class="form-label">Keyword 1</label>
+                <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip">Looks good!</div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip02" class="form-label">Keyword 2</label>
+                <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip">Looks good!</div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltipUsername" class="form-label">Keyword 3</label>
+                <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword" required>
+            </div>
         </div>
-        <div class="col-md-2 text-center">
-            <label for="validationTooltip02" class="form-label">Keyword 2</label>
-            <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value="" required>
-            <div class="valid-tooltip">Looks good!</div>
-        </div>
-        <div class="col-md-2 text-center">
-            <label for="validationTooltipUsername" class="form-label">Keyword 3</label>
-            <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword" required>
-        </div>
-    </div>
-</form>
+    </form>
 
     <br>
     <div class="row">
@@ -73,6 +82,11 @@
                                     x
                                 </button>
                             </div>
+                            <!--<div class="modal-body">-->
+                            <!--&lt;!&ndash; 수정 가능한 내용 &ndash;&gt;-->
+                            <!--<textarea id="editableContent1" class="form-control" rows="5"-->
+                            <!--placeholder="내용을 수정하세요."></textarea>-->
+                            <!--</div>-->
                             <div class="modal-body">
                                 <!-- 수정 가능한 내용 -->
                                 <div class="form-group">
@@ -100,8 +114,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="editableContent">활동 내용</label>
-                                    <textarea id="editableContent" class="form-control" rows="5"
+                                    <label for="editableContent1">활동 내용</label>
+                                    <textarea id="editableContent1" class="form-control" rows="5"
                                               placeholder="활동 내용"></textarea>
                                 </div>
 
@@ -113,7 +127,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="saveChangesButton2"
+                                <button type="button" class="btn btn-primary" id="saveChangesButton1"
                                         style="background-color: #17a2b8;; color: #fff;">저장 변경
                                 </button>
                             </div>
@@ -150,6 +164,11 @@
                                     x
                                 </button>
                             </div>
+                            <!--<div class="modal-body">-->
+                            <!--&lt;!&ndash; 수정 가능한 내용 &ndash;&gt;-->
+                            <!--<textarea id="editableContent1" class="form-control" rows="5"-->
+                            <!--placeholder="내용을 수정하세요."></textarea>-->
+                            <!--</div>-->
                             <div class="modal-body">
                                 <!-- 수정 가능한 내용 -->
                                 <div class="form-group">
@@ -188,8 +207,8 @@
                                               placeholder="준비물"></textarea>
                                 </div>
                             </div>
-                            <div class="modal-footer">
 
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" id="saveChangesButton2"
                                         style="background-color: #17a2b8;; color: #fff;">저장 변경
                                 </button>
@@ -214,7 +233,7 @@
           });
       });
     </script>
-</form>
+    </form>
 
     </div>
 </th:block>

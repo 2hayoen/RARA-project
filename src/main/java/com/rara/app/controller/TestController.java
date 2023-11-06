@@ -58,30 +58,30 @@ public class TestController {
         }
     }
 
-    @Autowired
-    BoardService boardService;
-
-    @GetMapping("/board")
-    public String getBoardsAll(Model model) {
-        try {
-            List<BoardDTO> boards = boardService.selectBoardsAll();
-            model.addAttribute("boards", boards);
-            return "test/boards";
-        } catch (Exception e) {
-            return "error";
-        }
-    }
-
-    @GetMapping("/board/{id}")
-    public String getBoardById(@PathVariable Long id, Model model) {
-        try {
-            BoardDTO board = boardService.selectBoardById(id);
-            model.addAttribute("board", board);
-            return "test/board";
-        } catch (Exception e) {
-            return "error";
-        }
-    }
+//    @Autowired
+//    BoardService boardService;
+//
+//    @GetMapping("/board")
+//    public String getBoardsAll(Model model) {
+//        try {
+//            List<BoardDTO> boards = boardService.selectBoardsAll();
+//            model.addAttribute("boards", boards);
+//            return "test/boards";
+//        } catch (Exception e) {
+//            return "error";
+//        }
+//    }
+//
+//    @GetMapping("/board/{id}")
+//    public String getBoardById(@PathVariable Long id, Model model) {
+//        try {
+//            BoardDTO board = boardService.selectBoardById(id);
+//            model.addAttribute("board", board);
+//            return "test/board";
+//        } catch (Exception e) {
+//            return "error";
+//        }
+//    }
 
     @Autowired
     DailyPlanService dailyPlanService;
