@@ -39,14 +39,14 @@
 
 <!--인증시 사용된 객체에 대한 정보-->
 <b>Authenticated DTO:</b>
-<div sec:authentication="authentication"></div>
+<div sec:authentication="principal"></div>
 
 <!--인증시 사용된 객체의 Username (ID)-->
 <b>Authenticated username:</b>
-<div sec:authentication="principal"></div>
+<div sec:authentication="principal.email"></div>
 
 <!--객체의 권한-->
-<b>Authenticated user role:</b>
+<b>Authenticated user password:</b>
 <div sec:authentication="principal.password"></div>
 
 
