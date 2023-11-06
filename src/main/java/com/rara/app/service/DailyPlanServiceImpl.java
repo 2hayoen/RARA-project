@@ -26,15 +26,55 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public void updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(
-            Map<String, Object> params) throws Exception {
-        dailyPlanMapper.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
+    public void updateDailyPlan(DailyPlanDTO dailyPlanDTO) throws Exception {
+        dailyPlanMapper.updateDailyPlan(dailyPlanDTO);
+    }
+
+    ;
+
+    @Override
+    public void updateDailyPlanSetYear(Long id, Long year) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetYear(id, year);
     }
 
     @Override
-    public void updateDailyPlanSetDayOrFile1OrFile2OrMId(
-            Map<String, Object> params) throws Exception {
-        dailyPlanMapper.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
+    public void updateDailyPlanSetMonth(Long id, Long month) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetMonth(id, month);
+    }
+
+    @Override
+    public void updateDailyPlanSetDay(Long id, Long day) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetDay(id, day);
+    }
+
+    @Override
+    public void updateDailyPlanSetKey1(Long id, String key1) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetKey1(id, key1);
+    }
+
+    @Override
+    public void updateDailyPlanSetKey2(Long id, String key2) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetKey2(id, key2);
+    }
+
+    @Override
+    public void updateDailyPlanSetKey3(Long id, String key3) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetKey3(id, key3);
+    }
+
+    @Override
+    public void updateDailyPlanSetFile1(Long id, String file1) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetFile1(id, file1);
+    }
+
+    @Override
+    public void updateDailyPlanSetFile2(Long id, String file2) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetFile2(id, file2);
+    }
+
+    @Override
+    public void updateDailyPlanSetMId(Long id, Long mId) throws Exception {
+        dailyPlanMapper.updateDailyPlanSetMId(id, mId);
     }
 
     @Override
@@ -50,6 +90,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
         dailyPlanMapper
                 .updateDailyPlanSetAct2TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
     }
+
 
     @Override
     public List<DailyPlanDTO> selectDailyPlansAll() throws Exception {
@@ -67,6 +108,19 @@ public class DailyPlanServiceImpl implements DailyPlanService {
         List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
             return results.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public List<DailyPlanDTO> selectDailyPlanByYear(Long year) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("year", year);
+        dailyPlanMapper.selectDailyPlanByYear(params);
+
+        List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
         }
         return null;
     }
@@ -91,6 +145,36 @@ public class DailyPlanServiceImpl implements DailyPlanService {
         Map<String, Object> params = new HashMap<>();
         params.put("day", day);
         dailyPlanMapper.selectDailyPlanByDay(params);
+
+        List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<DailyPlanDTO> selectDailyPlanByYearAndMonth(Long year, Long month) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("year", year);
+        params.put("month", month);
+        dailyPlanMapper.selectDailyPlanByYearAndMonth(params);
+
+        List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<DailyPlanDTO> selectDailyPlanByYearAndMonthAndDay(
+            Long year, Long month, Long day) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("year", year);
+        params.put("month", month);
+        params.put("day", day);
+        dailyPlanMapper.selectDailyPlanByYearAndMonthAndDay(params);
 
         List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -128,10 +212,10 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByYearAndMonthOrDay(
-            Map<String, Object> params) throws Exception {
-
-        dailyPlanMapper.selectDailyPlanByYearAndMonthOrDay(params);
+    public List<DailyPlanDTO> selectDailyPlanByMId(Long mId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("mId", mId);
+        dailyPlanMapper.selectDailyPlanByMId(params);
 
         List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -141,10 +225,39 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByMIdAndYearOrActTitleOrActType(
-            Map<String, Object> params) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByMIdAndYear(Long mId, Long year) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("mId", mId);
+        params.put("year", year);
+        dailyPlanMapper.selectDailyPlanByMIdAndYear(params);
 
-        dailyPlanMapper.selectDailyPlanByMIdAndYearOrActTitleOrActType(params);
+        List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<DailyPlanDTO> selectDailyPlanByMIdAndActTitle(Long mId, String actTitle) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("mId", mId);
+        params.put("actTitle", actTitle);
+        dailyPlanMapper.selectDailyPlanByMIdAndActTitle(params);
+
+        List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<DailyPlanDTO> selectDailyPlanByMIdAndActType(Long mId, String actType) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("mId", mId);
+        params.put("actType", actType);
+        dailyPlanMapper.selectDailyPlanByMIdAndActType(params);
 
         List<DailyPlanDTO> results = (List<DailyPlanDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {

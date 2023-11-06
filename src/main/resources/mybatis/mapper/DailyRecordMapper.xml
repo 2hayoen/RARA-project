@@ -21,6 +21,10 @@
         {call dailyrecord_pkg.insert_record(
         #{title, jdbcType=VARCHAR},
         #{content, jdbcType=VARCHAR},
+        #{file1, jdbcType=VARCHAR},
+        #{file2, jdbcType=VARCHAR},
+        #{act1Rec, jdbcType=VARCHAR},
+        #{act2Rec, jdbcType=VARCHAR},
         #{cId, jdbcType=NUMERIC},
         #{dpId, jdbcType=NUMERIC}
         )}
@@ -38,30 +42,43 @@
         #{id, jdbcType=NUMERIC},
         #{title, jdbcType=VARCHAR},
         #{content, jdbcType=VARCHAR},
+        #{file1, jdbcType=VARCHAR},
+        #{file2, jdbcType=VARCHAR},
+        #{act1Rec, jdbcType=VARCHAR},
+        #{act2Rec, jdbcType=VARCHAR},
         #{cId, jdbcType=NUMERIC},
         #{dpId, jdbcType=NUMERIC}
         )}
     </update>
 
-    <update id="updateDailyRecordSetTitleOrContentOrFile1OrFile2">
+    <update id="updateDailyRecordSetTitle">
         <if test="title != null and title !='' ">
             {call dailyrecord_pkg.update_title(
             #{id, jdbcType=NUMERIC},
             #{title, jdbcType=VARCHAR}
             )}
         </if>
+    </update>
+
+    <update id="updateDailyRecordSetContent">
         <if test="content != null and content !='' ">
             {call dailyrecord_pkg.update_content(
             #{id, jdbcType=NUMERIC},
             #{content, jdbcType=VARCHAR}
             )}
         </if>
+    </update>
+
+    <update id="updateDailyRecordSetFile1">
         <if test="file1 != null and file1 !='' ">
             {call dailyrecord_pkg.update_file1(
             #{id, jdbcType=NUMERIC},
             #{file1, jdbcType=VARCHAR}
             )}
         </if>
+    </update>
+
+    <update id="updateDailyRecordSetFile2">
         <if test="file2 != null and file2 !='' ">
             {call dailyrecord_pkg.update_file2(
             #{id, jdbcType=NUMERIC},
@@ -70,13 +87,16 @@
         </if>
     </update>
 
-    <update id="updateDailyRecordSetAct1RecOrAct2Rec">
+    <update id="updateDailyRecordSetAct1Rec">
         <if test="act1Rec != null and act1Rec !='' ">
             {call dailyrecord_pkg.update_act1_rec(
             #{id, jdbcType=NUMERIC},
             #{act1Rec, jdbcType=VARCHAR}
             )}
         </if>
+    </update>
+
+    <update id="updateDailyRecordSetAct2Rec">
         <if test="act2Rec != null and act2Rec !='' ">
             {call dailyrecord_pkg.update_act2_rec(
             #{id, jdbcType=NUMERIC},
@@ -85,13 +105,16 @@
         </if>
     </update>
 
-    <update id="updateDailyRecordSetCIdOrDpId">
+    <update id="updateDailyRecordSetCId">
         <if test="cId != null">
             {call dailyrecord_pkg.update_c_id(
             #{id, jdbcType=NUMERIC},
             #{cId, jdbcType=NUMERIC}
             )}
         </if>
+    </update>
+
+    <update id="updateDailyRecordSetDpId">
         <if test="dpId != null">
             {call dailyrecord_pkg.update_dp_id(
             #{id, jdbcType=NUMERIC},
@@ -99,7 +122,6 @@
             )}
         </if>
     </update>
-
 
     <!-- Select DailyRecord -->
     <select id="selectDailyRecordsAll" statementType="CALLABLE">
@@ -117,45 +139,39 @@
         }
     </select>
 
-    <select id="selectDailyRecordByTitleOrContent" statementType="CALLABLE">
-        <choose>
-            <when test="title != null and title != '' ">
-                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+    <select id="selectDailyRecordByTitle" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
                         javaType=java.sql.ResultSet, resultMap=DailyRecordMap} :=
-                dailyrecord_pkg.select_record_by_title(
-                #{title, jdbcType=VARCHAR}
-                )
-                }
-            </when>
-            <when test="content != null and content != '' ">
-                { call #{cursor, mode=OUT, jdbcType=CURSOR,
-                        javaType=java.sql.ResultSet, resultMap=DailyRecordMap} :=
-                dailyrecord_pkg.select_record_by_content(
-                #{content, jdbcType=VARCHAR}
-                )
-                }
-            </when>
-        </choose>
+        dailyrecord_pkg.select_record_by_title(
+        #{title, jdbcType=VARCHAR}
+        )
+        }
     </select>
 
-    <select id="selectDailyRecordByCIdOrDpId" statementType="CALLABLE">
-        <choose>
-            <when test="cId != null">
-                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+    <select id="selectDailyRecordByContent" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
                         javaType=java.sql.ResultSet, resultMap=DailyRecordMap} :=
-                dailyrecord_pkg.select_record_by_c_id(
-                #{cId, jdbcType=NUMERIC}
-                )
-                }
-            </when>
-            <when test="dpId != null">
-                { call #{cursor, mode=OUT, jdbcType=CURSOR,
+        dailyrecord_pkg.select_record_by_content(
+        #{content, jdbcType=VARCHAR}
+        )
+        }
+    </select>
+    
+    <select id="selectDailyRecordByCId" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
                         javaType=java.sql.ResultSet, resultMap=DailyRecordMap} :=
-                dailyrecord_pkg.select_record_by_dp_id(
-                #{dpId, jdbcType=NUMERIC}
-                )
-                }
-            </when>
-        </choose>
+        dailyrecord_pkg.select_record_by_c_id(
+        #{cId, jdbcType=NUMERIC}
+        )
+        }
+    </select>
+
+    <select id="selectDailyRecordByDpId" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                        javaType=java.sql.ResultSet, resultMap=DailyRecordMap} :=
+        dailyrecord_pkg.select_record_by_dp_id(
+        #{dpId, jdbcType=NUMERIC}
+        )
+        }
     </select>
 </mapper>

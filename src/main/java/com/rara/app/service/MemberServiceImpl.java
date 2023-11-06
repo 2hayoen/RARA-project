@@ -46,16 +46,30 @@ public class MemberServiceImpl implements MemberService {
         memberMapper.updateMember(memberDTO);
     }
 
-
     @Override
-    public void updateMemberSetEmailOrPwdOrNameOrPhNumOrAddr(
-            Map<String, Object> params) throws Exception {
-        if (params.get("pwd") != null) {
-            params.put("pwd", passwordEncoder.encode((String) params.get("pwd")));
-        }
-        memberMapper.updateMemberSetEmailOrPwdOrNameOrPhNumOrAddr(params);
+    public void updateMemberSetEmail(Long id, String email) throws Exception {
+        memberMapper.updateMemberSetEmail(id, email);
     }
 
+    @Override
+    public void updateMemberSetPwd(Long id, String pwd) throws Exception {
+        memberMapper.updateMemberSetPwd(id, passwordEncoder.encode(pwd));
+    }
+
+    @Override
+    public void updateMemberSetName(Long id, String name) throws Exception {
+        memberMapper.updateMemberSetName(id, name);
+    }
+
+    @Override
+    public void updateMemberSetPhNum(Long id, String phNum) throws Exception {
+        memberMapper.updateMemberSetPhNum(id, phNum);
+    }
+
+    @Override
+    public void updateMemberSetAddr(Long id, String addr) throws Exception {
+        memberMapper.updateMemberSetAddr(id, addr);
+    }
 
     @Override
     public List<MemberDTO> selectMembersAll() throws Exception {
@@ -96,12 +110,11 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
-
     @Override
-    public List<MemberDTO> selectMemberBySeparatorAndNameOrPhNumOrMId(
-            Map<String, Object> params) throws Exception {
-
-        memberMapper.selectMemberBySeparatorAndNameOrPhNumOrMId(params);
+    public List<MemberDTO> selectMemberBySeparator(String separator) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("separator", separator);
+        memberMapper.selectMemberBySeparator(params);
 
         List<MemberDTO> results = (List<MemberDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -110,12 +123,102 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
+    @Override
+    public List<MemberDTO> selectMemberBySeparatorAndName(String separator, String name) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("separator", separator);
+        params.put("name", name);
+        memberMapper.selectMemberBySeparatorAndName(params);
+
+        List<MemberDTO> results = (List<MemberDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
 
     @Override
-    public List<MemberDTO> selectMemberBySeparatorAndCenterAndNameOrClass_OrPosition(
-            Map<String, Object> params) throws Exception {
+    public List<MemberDTO> selectMemberBySeparatorAndPhNum(String separator, String phNum) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("separator", separator);
+        params.put("phNum", phNum);
+        memberMapper.selectMemberBySeparatorAndPhNum(params);
 
-        memberMapper.selectMemberBySeparatorAndCenterAndNameOrClass_OrPosition(params);
+        List<MemberDTO> results = (List<MemberDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<MemberDTO> selectMemberBySeparatorAndMId(String separator, Long mId) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("separator", separator);
+        params.put("mId", mId);
+        memberMapper.selectMemberBySeparatorAndMId(params);
+
+        List<MemberDTO> results = (List<MemberDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<MemberDTO> selectMemberBySeparatorAndCenter(String separator, String center) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("separator", separator);
+        params.put("center", center);
+        memberMapper.selectMemberBySeparatorAndCenter(params);
+
+        List<MemberDTO> results = (List<MemberDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<MemberDTO> selectMemberBySeparatorAndCenterAndName(
+            String separator, String center, String name) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("separator", separator);
+        params.put("center", center);
+        params.put("name", name);
+        memberMapper.selectMemberBySeparatorAndCenterAndName(params);
+
+        List<MemberDTO> results = (List<MemberDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<MemberDTO> selectMemberBySeparatorAndCenterAndClass_(
+            String separator, String center, String class_) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("separator", separator);
+        params.put("center", center);
+        params.put("class_", class_);
+        memberMapper.selectMemberBySeparatorAndCenterAndClass_(params);
+
+        List<MemberDTO> results = (List<MemberDTO>) params.get("cursor");
+        if (results != null && !results.isEmpty()) {
+            return results;
+        }
+        return null;
+    }
+
+    @Override
+    public List<MemberDTO> selectMemberBySeparatorAndCenterAndPosition(
+            String separator, String center, String position) throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("separator", separator);
+        params.put("center", center);
+        params.put("position", position);
+        memberMapper.selectMemberBySeparatorAndCenterAndPosition(params);
 
         List<MemberDTO> results = (List<MemberDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
