@@ -13,24 +13,24 @@ public interface MemberService {
 
     void insertMember(MemberDTO memberDTO) throws Exception;
 
-    void deleteMember(Long id) throws Exception;
+    void deleteMember(long id) throws Exception;
 
     void updateMember(MemberDTO memberDTO) throws Exception;
 
-    void updateMemberSetEmail(Long id, String email) throws Exception;
+    void updateMemberSetEmail(long id, String email) throws Exception;
 
-    void updateMemberSetPwd(Long id, String pwd) throws Exception;
+    void updateMemberSetPwd(long id, String pwd) throws Exception;
 
-    void updateMemberSetName(Long id, String name) throws Exception;
+    void updateMemberSetName(long id, String name) throws Exception;
 
-    void updateMemberSetPhNum(Long id, String phNum) throws Exception;
+    void updateMemberSetPhNum(long id, String phNum) throws Exception;
 
-    void updateMemberSetAddr(Long id, String addr) throws Exception;
+    void updateMemberSetAddr(long id, String addr) throws Exception;
 
 
     List<MemberDTO> selectMembersAll() throws Exception;
 
-    MemberDTO selectMemberById(Long id) throws Exception;
+    MemberDTO selectMemberById(long id) throws Exception;
 
     MemberDTO selectMemberByEmail(String email) throws Exception;
 
@@ -40,7 +40,7 @@ public interface MemberService {
 
     List<MemberDTO> selectMemberBySeparatorAndPhNum(String separator, String phNum) throws Exception;
 
-    List<MemberDTO> selectMemberBySeparatorAndMId(String separator, Long mId) throws Exception;
+    List<MemberDTO> selectMemberBySeparatorAndMId(String separator, long mId) throws Exception;
 
     List<MemberDTO> selectMemberBySeparatorAndCenter(String separator, String center) throws Exception;
 

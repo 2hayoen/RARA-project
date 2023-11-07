@@ -21,7 +21,7 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     }
 
     @Override
-    public void deleteDailyRecord(Long id) throws Exception {
+    public void deleteDailyRecord(long id) throws Exception {
         dailyRecordMapper.deleteDailyRecord(id);
     }
 
@@ -31,42 +31,42 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     }
 
     @Override
-    public void updateDailyRecordSetTitle(Long id, String title) throws Exception {
+    public void updateDailyRecordSetTitle(long id, String title) throws Exception {
         dailyRecordMapper.updateDailyRecordSetTitle(id, title);
     }
 
     @Override
-    public void updateDailyRecordSetContent(Long id, String content) throws Exception {
+    public void updateDailyRecordSetContent(long id, String content) throws Exception {
         dailyRecordMapper.updateDailyRecordSetContent(id, content);
     }
 
     @Override
-    public void updateDailyRecordSetFile1(Long id, String file1) throws Exception {
+    public void updateDailyRecordSetFile1(long id, String file1) throws Exception {
         dailyRecordMapper.updateDailyRecordSetFile1(id, file1);
     }
 
     @Override
-    public void updateDailyRecordSetFile2(Long id, String file2) throws Exception {
+    public void updateDailyRecordSetFile2(long id, String file2) throws Exception {
         dailyRecordMapper.updateDailyRecordSetFile2(id, file2);
     }
 
     @Override
-    public void updateDailyRecordSetAct1Rec(Long id, String act1Rec) throws Exception {
+    public void updateDailyRecordSetAct1Rec(long id, String act1Rec) throws Exception {
         dailyRecordMapper.updateDailyRecordSetAct1Rec(id, act1Rec);
     }
 
     @Override
-    public void updateDailyRecordSetAct2Rec(Long id, String act2Rec) throws Exception {
+    public void updateDailyRecordSetAct2Rec(long id, String act2Rec) throws Exception {
         dailyRecordMapper.updateDailyRecordSetAct2Rec(id, act2Rec);
     }
 
     @Override
-    public void updateDailyRecordSetCId(Long id, Long cId) throws Exception {
+    public void updateDailyRecordSetCId(long id, long cId) throws Exception {
         dailyRecordMapper.updateDailyRecordSetCId(id, cId);
     }
 
     @Override
-    public void updateDailyRecordSetDpId(Long id, Long dpId) throws Exception {
+    public void updateDailyRecordSetDpId(long id, long dpId) throws Exception {
         dailyRecordMapper.updateDailyRecordSetDpId(id, dpId);
     }
 
@@ -79,7 +79,7 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     }
 
     @Override
-    public DailyRecordDTO selectDailyRecordById(Long id) throws Exception {
+    public DailyRecordDTO selectDailyRecordById(long id) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
 
@@ -119,7 +119,7 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     }
 
     @Override
-    public List<DailyRecordDTO> selectDailyRecordByCId(Long cId) throws Exception {
+    public List<DailyRecordDTO> selectDailyRecordByCId(long cId) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("cId", cId);
         dailyRecordMapper.selectDailyRecordByCId(params);
@@ -132,7 +132,7 @@ public class DailyRecordServiceImpl implements DailyRecordService {
     }
 
     @Override
-    public List<DailyRecordDTO> selectDailyRecordByDpId(Long dpId) throws Exception {
+    public List<DailyRecordDTO> selectDailyRecordByDpId(long dpId) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("dpId", dpId);
         dailyRecordMapper.selectDailyRecordByDpId(params);

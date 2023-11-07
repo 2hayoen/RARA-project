@@ -10,9 +10,21 @@ public interface ChildMapper {
 
     void insertChild(ChildDTO childDTO);
 
-    void deleteChild(@Param("id") Long id);
+    void deleteChild(@Param("id") long id);
 
     void updateChild(ChildDTO childDTO);
+
+    void updateChildSetName(@Param("id") long id, @Param("name") String name);
+
+    void updateChildSetBirth(@Param("id") long id, @Param("birth") String birth);
+
+    void updateChildSetMTId(@Param("id") long id, @Param("mTId") long mTId);
+
+    void updateChildSetMCId(@Param("id") long id, @Param("mCId") long mCId);
+
+    void updateChildSetPhoto(@Param("id") long id, @Param("photo") String photo);
+
+    void updateChildSetProperty(@Param("id") long id, @Param("property") String property);
 
     void updateChildSetNameOrBirthOrMTIdOrMCId(Map<String, Object> params);
 
@@ -29,5 +41,5 @@ public interface ChildMapper {
     void selectChildByMTId(Map<String, Object> params);
 
     void selectChildByMCId(Map<String, Object> params);
-    
+
 }
