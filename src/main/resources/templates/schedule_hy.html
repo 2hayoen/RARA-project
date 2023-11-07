@@ -19,52 +19,21 @@
     </div>
     <!-- Header End -->
 
-
-    <!--    <form class="needs-validation" novalidate>-->
-    <!--        <div class="col-md-2 text-left">-->
-    <!--            <label for="validationTooltip01" class="form-label">수업일수</label>-->
-    <!--            <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value=""-->
-    <!--                   required>-->
-    <!--            <div class="valid-tooltip">Looks good!</div>-->
-    <!--        </div>-->
-    <!--        <div class="row justify-content-center">-->
-    <!--&lt;!&ndash;            <div class="col-md-2 text-left">&ndash;&gt;-->
-    <!--&lt;!&ndash;                <label for="validationTooltip01" class="form-label">수업일수</label>&ndash;&gt;-->
-    <!--&lt;!&ndash;                <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value=""&ndash;&gt;-->
-    <!--&lt;!&ndash;                       required>&ndash;&gt;-->
-    <!--&lt;!&ndash;                <div class="valid-tooltip">Looks good!</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;            </div>&ndash;&gt;-->
-    <!--            <div class="col-md-2 text-left">-->
-    <!--                <label for="validationTooltip01" class="form-label">Keyword 1</label>-->
-    <!--                <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value=""-->
-    <!--                       required>-->
-    <!--                <div class="valid-tooltip">Looks good!</div>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-2 text-left">-->
-    <!--                <label for="validationTooltip02" class="form-label">Keyword 2</label>-->
-    <!--                <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value=""-->
-    <!--                       required>-->
-    <!--                <div class="valid-tooltip">Looks good!</div>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-2 text-left">-->
-    <!--                <label for="validationTooltipUsername" class="form-label">Keyword 3</label>-->
-    <!--                <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword" required>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </form>-->
-    <!--    <br>-->
-    <h3 style="margin-left: 460px;"><mark>기본 설정</mark></h3>
+    <h3 style="margin-left: 460px;">
+        <mark>기본 설정</mark>
+    </h3>
     <br>
     <div class="container" style="max-width: 800px;">
+
         <form class="needs-validation" novalidate>
             <div class="row">
                 <div class="col-md-4">
-                    <label for="validationTooltip01" class="form-label">수업일자</label>
+                    <label for="list_num" class="form-label">수업일자</label>
                     <div class="input-group">
-                        <input class="form-control" type="text" id="validationTooltip01" placeholder="이번 달 수업 일 수"
+                        <input class="form-control" type="text" id="list_num" placeholder="이번 달 수업 일 수"
                                value="" required>
                     </div>
-                    <div class="valid-tooltip">Looks good!</div>
+<!--                    <div class="valid-tooltip">Looks good!</div>-->
                 </div>
             </div>
 
@@ -72,41 +41,31 @@
 
             <div class="row justify-content-between">
                 <div class="col-md-4">
-                    <label for="validationTooltip01" class="form-label">Keyword 1</label>
-                    <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value=""
+                    <label for="keyword1" class="form-label">교육활동 주제 키워드 1</label>
+                    <input class="form-control" type="text" id="keyword1" placeholder="Keyword1" value=""
                            required>
-                    <div class="valid-tooltip">Looks good!</div>
+<!--                    <div class="valid-tooltip">Looks good!</div>-->
                 </div>
                 <div class="col-md-4">
-                    <label for="validationTooltip02" class="form-label">Keyword 2</label>
-                    <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value=""
+                    <label for="keyword2" class="form-label">2</label>
+                    <input class="form-control" type="text" id="keyword2" placeholder="Keyword2" value=""
                            required>
-                    <div class="valid-tooltip">Looks good!</div>
+<!--                    <div class="valid-tooltip">Looks good!</div>-->
                 </div>
                 <div class="col-md-4">
-                    <label for="validationTooltipUsername" class="form-label">Keyword 3</label>
-                    <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword"
+                    <label for="keyword3" class="form-label">3</label>
+                    <input class="form-control" type="text" id="keyword3" placeholder="Keyword3"
                            required>
                 </div>
             </div>
-<!--            <br>-->
             <div class="row justify-content-end mt-4">
                 <div class="col-md-4 ml-auto" style="text-align: right;">
-                    <button type="submit" class="btn btn-primary">교육활동 목록 생성</button>
+<!--                    <button type="submit" class="btn btn-primary">교육활동 목록 생성</button>-->
+                    <input type="submit" id="submit" class="btn btn-primary">교육활동 목록 생성</input>
                 </div>
             </div>
         </form>
     </div>
-
-    <!--    <br>-->
-    <!--    <div class="row">-->
-    <!--        <div class="col-md-6 offset-md-3">-->
-    <!--            <div class="d-flex justify-content-end">-->
-    <!--                <button type="submit" class="btn btn-primary" style="margin-left: 10cm;">교육활동 목록 생성</button>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-
     <br>
     <hr>
     <br>
@@ -218,6 +177,7 @@
 caption.a11y-hidden { position: static; }
 
 
+
     </style>
 
     <!-- Page content-->
@@ -268,11 +228,6 @@ caption.a11y-hidden { position: static; }
                                             x
                                         </button>
                                     </div>
-                                    <!--<div class="modal-body">-->
-                                    <!--&lt;!&ndash; 수정 가능한 내용 &ndash;&gt;-->
-                                    <!--<textarea id="editableContent1" class="form-control" rows="5"-->
-                                    <!--placeholder="내용을 수정하세요."></textarea>-->
-                                    <!--</div>-->
                                     <div class="modal-body">
                                         <!-- 수정 가능한 내용 -->
                                         <div class="form-group">
@@ -342,6 +297,7 @@ caption.a11y-hidden { position: static; }
               });
           });
       });
+
 
 
 
