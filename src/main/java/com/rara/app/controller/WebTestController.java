@@ -97,9 +97,9 @@ public class WebTestController {
         return "accept_detail";
     }
 
-//    @GetMapping("/accept_list")
-//    public String accep_list(Model model) {
-//        return "accept_list";
-//    }
+    @GetMapping("/accept_list")
+    public String accep_list(Model model) {
+        return "accept_list";
+    }
 
 }
