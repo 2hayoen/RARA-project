@@ -9,27 +9,27 @@ public interface DailyPlanMapper {
 
     void insertDailyPlan(DailyPlanDTO dailyPlanDTO);
 
-    void deleteDailyPlan(@Param("id") Long id);
+    void deleteDailyPlan(@Param("id") long id);
 
     void updateDailyPlan(DailyPlanDTO dailyPlanDTO);
 
-    void updateDailyPlanSetYear(@Param("id") Long id, @Param("year") Long year);
+    void updateDailyPlanSetYear(@Param("id") long id, @Param("year") long year);
 
-    void updateDailyPlanSetMonth(@Param("id") Long id, @Param("month") Long month);
+    void updateDailyPlanSetMonth(@Param("id") long id, @Param("month") long month);
 
-    void updateDailyPlanSetDay(@Param("id") Long id, @Param("day") Long day);
+    void updateDailyPlanSetDay(@Param("id") long id, @Param("day") long day);
 
-    void updateDailyPlanSetKey1(@Param("id") Long id, @Param("key1") String key1);
+    void updateDailyPlanSetKey1(@Param("id") long id, @Param("key1") String key1);
 
-    void updateDailyPlanSetKey2(@Param("id") Long id, @Param("key2") String key2);
+    void updateDailyPlanSetKey2(@Param("id") long id, @Param("key2") String key2);
 
-    void updateDailyPlanSetKey3(@Param("id") Long id, @Param("key3") String key3);
+    void updateDailyPlanSetKey3(@Param("id") long id, @Param("key3") String key3);
 
-    void updateDailyPlanSetFile1(@Param("id") Long id, @Param("file1") String file1);
+    void updateDailyPlanSetFile1(@Param("id") long id, @Param("file1") String file1);
 
-    void updateDailyPlanSetFile2(@Param("id") Long id, @Param("file2") String file2);
+    void updateDailyPlanSetFile2(@Param("id") long id, @Param("file2") String file2);
 
-    void updateDailyPlanSetMId(@Param("id") Long id, @Param("mId") Long mId);
+    void updateDailyPlanSetMId(@Param("id") long id, @Param("mId") long mId);
 
     void updateDailyPlanSetAct1TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(
             Map<String, Object> params);

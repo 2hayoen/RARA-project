@@ -34,13 +34,33 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
-    public void updateChildSetNameOrBirthOrMTIdOrMCId(Map<String, Object> params) {
-        childMapper.updateChildSetNameOrBirthOrMTIdOrMCId(params);
+    public void updateChildSetName(long id, String name) {
+        childMapper.updateChildSetName(id, name);
     }
 
     @Override
-    public void updateChildSetPhotoOrProperty(Map<String, Object> params) {
-        childMapper.updateChildSetPhotoOrProperty(params);
+    public void updateChildSetBirth(long id, String birth) {
+        childMapper.updateChildSetBirth(id, birth);
+    }
+
+    @Override
+    public void updateChildSetMTId(long id, long mTId) {
+        childMapper.updateChildSetMTId(id, mTId);
+    }
+
+    @Override
+    public void updateChildSetMCId(long id, long mCId) {
+        childMapper.updateChildSetMCId(id, mCId);
+    }
+
+    @Override
+    public void updateChildSetPhoto(long id, String photo) {
+        childMapper.updateChildSetPhoto(id, photo);
+    }
+
+    @Override
+    public void updateChildSetProperty(long id, String property) {
+        childMapper.updateChildSetProperty(id, property);
     }
 
     @Override

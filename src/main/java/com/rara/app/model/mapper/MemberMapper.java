@@ -8,19 +8,19 @@ import java.util.Map;
 public interface MemberMapper {
     void insertMember(MemberDTO memberDTO);
 
-    void deleteMember(@Param("id") Long id);
+    void deleteMember(@Param("id") long id);
 
     void updateMember(MemberDTO memberDTO);
 
-    void updateMemberSetEmail(@Param("id") Long id, @Param("email") String email);
+    void updateMemberSetEmail(@Param("id") long id, @Param("email") String email);
 
-    void updateMemberSetPwd(@Param("id") Long id, @Param("pwd") String pwd);
+    void updateMemberSetPwd(@Param("id") long id, @Param("pwd") String pwd);
 
-    void updateMemberSetName(@Param("id") Long id, @Param("name") String name);
+    void updateMemberSetName(@Param("id") long id, @Param("name") String name);
 
-    void updateMemberSetPhNum(@Param("id") Long id, @Param("phNum") String phNum);
+    void updateMemberSetPhNum(@Param("id") long id, @Param("phNum") String phNum);
 
-    void updateMemberSetAddr(@Param("id") Long id, @Param("addr") String addr);
+    void updateMemberSetAddr(@Param("id") long id, @Param("addr") String addr);
 
     void selectMembersAll(Map<String, Object> params);
 

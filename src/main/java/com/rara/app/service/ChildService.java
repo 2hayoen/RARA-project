@@ -13,16 +13,18 @@ public interface ChildService {
 
     void updateChild(ChildDTO childDTO) throws Exception;
 
-    void updateChildSetNameOrBirthOrMTIdOrMCId(Map<String, Object> params);
-//    void updateChildName(Long id, String name);
-//    void updateChildBirth(Long id, String birth);
-//    void updateChildM_T_Id(Long id, Long m_t_id);
-//    void updateChildM_C_Id(Long id, Long m_c_id);
+    void updateChildSetName(long id, String name);
 
-    void updateChildSetPhotoOrProperty(Map<String, Object> params);
-//    void updateChildPhoto(Long id, String photo);
-//    void updateChildProperty(Long id, String property);
+    void updateChildSetBirth(long id, String birth);
 
+    void updateChildSetMTId(long id, long mTId);
+
+    void updateChildSetMCId(long id, long mCId);
+
+    void updateChildSetPhoto(long id, String photo);
+
+    void updateChildSetProperty(long id, String property);
+    
     List<ChildDTO> selectChildrenAll() throws Exception;
 
     ChildDTO selectChildById(Long id) throws Exception;

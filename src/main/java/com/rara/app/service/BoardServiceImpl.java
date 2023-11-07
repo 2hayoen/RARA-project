@@ -13,13 +13,13 @@ import java.util.Map;
 @Service
 public class BoardServiceImpl implements BoardService {
 
-
-    private final BoardMapper boardMapper;
-
     @Autowired
-    public BoardServiceImpl(BoardMapper boardMapper) {
-        this.boardMapper = boardMapper;
-    }
+    private BoardMapper boardMapper;
+
+//    @Autowired
+//    public BoardServiceImpl(BoardMapper boardMapper) {
+//        this.boardMapper = boardMapper;
+//    }
 
     @Override
     public void insertBoard(BoardDTO board) {
@@ -27,18 +27,18 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDTO> getBoardsAll() {
+    public List<BoardDTO> selectBoardsAll() {
         Map<String, Object> params = new HashMap<>();
         boardMapper.selectBoardsAll(params);
         return (List<BoardDTO>) params.get("cursor");
     }
 
     @Override
-    public BoardDTO getBoardById(long id) {
+    public BoardDTO selectBoardById(long id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
 
-        boardMapper.selectBoardsAll(params);
+        boardMapper.selectBoardById(params);
 
         List<BoardDTO> results = (List<BoardDTO>) params.get("cursor");
         if (results != null && !results.isEmpty()) {
@@ -48,32 +48,41 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDTO> getBoardByCategoryAndTitle(String category, String title) {
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("category", category);
-        paramMap.put("title", title);
-        boardMapper.selectBoardByCategoryAndTitle(paramMap);
-        List<BoardDTO> results = (List<BoardDTO>) paramMap.get("cursor");
+    public List<BoardDTO> selectBoardByCategory(String category) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("category", category);
+        boardMapper.selectBoardByCategory(params);
+        List<BoardDTO> results = (List<BoardDTO>) params.get("cursor");
         return results;
     }
 
     @Override
-    public List<BoardDTO> getBoardByCategoryAndContent(String category, String content) {
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("category", category);
-        paramMap.put("content", content);
-        boardMapper.selectBoardByCategoryAndContent(paramMap);
-        List<BoardDTO> results = (List<BoardDTO>) paramMap.get("cursor");
+    public List<BoardDTO> selectBoardByCategoryAndTitle(String category, String title) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("category", category);
+        params.put("title", title);
+        boardMapper.selectBoardByCategoryAndTitle(params);
+        List<BoardDTO> results = (List<BoardDTO>) params.get("cursor");
         return results;
     }
 
     @Override
-    public List<BoardDTO> getBoardByCategoryAndMId(String category, long mId) {
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("category", category);
-        paramMap.put("mId", mId);
-        boardMapper.selectBoardByCategoryAndMId(paramMap);
-        List<BoardDTO> results = (List<BoardDTO>) paramMap.get("cursor");
+    public List<BoardDTO> selectBoardByCategoryAndContent(String category, String content) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("category", category);
+        params.put("content", content);
+        boardMapper.selectBoardByCategoryAndContent(params);
+        List<BoardDTO> results = (List<BoardDTO>) params.get("cursor");
+        return results;
+    }
+
+    @Override
+    public List<BoardDTO> selectBoardByCategoryAndMId(String category, long mId) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("category", category);
+        params.put("mId", mId);
+        boardMapper.selectBoardByCategoryAndMId(params);
+        List<BoardDTO> results = (List<BoardDTO>) params.get("cursor");
         return results;
     }
 
@@ -83,28 +92,28 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void updateTitle(BoardDTO board) {
-        boardMapper.updateTitle(board);
+    public void updateTitle(long id, String title) {
+        boardMapper.updateTitle(id, title);
     }
 
     @Override
-    public void updateContent(BoardDTO board) {
-        boardMapper.updateContent(board);
+    public void updateContent(long id, String content) {
+        boardMapper.updateContent(id, content);
     }
 
     @Override
-    public void updateCategory(BoardDTO board) {
-        boardMapper.updateCategory(board);
+    public void updateCategory(long id, String category) {
+        boardMapper.updateCategory(id, category);
     }
 
     @Override
-    public void updateFile1(BoardDTO board) {
-        boardMapper.updateFile1(board);
+    public void updateFile1(long id, String file1) {
+        boardMapper.updateFile1(id, file1);
     }
 
     @Override
-    public void updateFile2(BoardDTO board) {
-        boardMapper.updateFile2(board);
+    public void updateFile2(long id, String file2) {
+        boardMapper.updateFile2(id, file2);
     }
 
     @Override
