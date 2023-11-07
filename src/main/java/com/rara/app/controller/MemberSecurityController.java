@@ -23,6 +23,11 @@ public class MemberSecurityController {
     public String home(Model model) { // 인증된 사용자의 정보를 보여줌
 
         MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(member);
+        System.out.println(SecurityContextHolder.getContext());
+        System.out.println(SecurityContextHolder.getContext().getAuthentication());
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+
         Long id = member.getId();
 
         try {

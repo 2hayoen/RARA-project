@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+
+  <!-- Header Start -->
+  <div class="container-fluid bg-primary mb-5">
+    <div
+            class="d-flex flex-column align-items-center justify-content-center"
+            style="min-height: 200px">
+      <h6 class="display-3 font-weight-bold text-white">교육활동 일정 확인</h6>
+      <div class="d-inline-flex text-white">
+        <p class="m-0"><a class="text-white" href="">승인</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">교육활동 일정 확인</p>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+
+
+  <div class="container" style="max-width: 800px;">
+    <div class="form-group">
+      <label for="activityTitle">주제 활동명</label>
+      <p id="activityTitle">주제 활동명의 내용</p>
+    </div>
+
+    <div class="form-group">
+      <label for="activityArea">누리과정 영역</label>
+      <p id="activityArea">누리과정 영역의 내용</p>
+    </div>
+
+    <div class="form-group">
+      <label for="activityTime">교육활동 소요 시간</label>
+      <p id="activityTime">교육활동 소요 시간의 내용</p>
+    </div>
+
+    <div class="form-group">
+      <label for="activityGoal">목표</label>
+      <p id="activityGoal">목표의 내용</p>
+    </div>
+
+    <div class="form-group">
+      <label for="activityContent">활동 내용</label>
+      <p id="activityContent">활동 내용의 내용</p>
+    </div>
+
+    <div class="form-group">
+      <label for="activityMaterials">준비물</label>
+      <p id="activityMaterials">준비물의 내용</p>
+    </div>
+  </div>
+
+  <div>
+    <!-- 목록으로 돌아가는 링크 -->
+    <a th:href="@{/schedule_list}" class="btn btn-primary">목록</a>
+
+    <!-- 승인 확인 페이지로 이동하는 링크 -->
+<!--    <a th:href="@{/schedule_list}" class="btn btn-primary">승인</a>-->
+    <button type="button" id="approvalButton" class="btn btn-primary" onclick="changeText()">승인 확인</button>
+  </div>
+
+  <script>
+function changeText() {
+    var button = document.getElementById("approvalButton");
+    if (button.innerHTML === "승인 확인") {
+        button.innerHTML = "확인";
+    } else {
+        button.innerHTML = "승인 확인";
+    }
+}
+</script>
+
+</th:block>
+</html>

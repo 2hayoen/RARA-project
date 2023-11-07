@@ -2,75 +2,80 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/default_layout">
 <th:block layout:fragment="content">
 
-    <div class="container">
-        <div class="profile">
-            <div class="top">
-                <span>떡잎 어린이집</span>
-                <button type="button" class="btn btn-primary">개인정보 수정</button>
-            </div>
-            <div class="detail">
-                <div class="image-and-table">
-                    <img class="avata" src="https://img1.daumcdn.net/thumb/R300x300/?fname=http%3A%2F%2Ft1.daumcdn.net%2Ffriends%2Fprod%2Fproduct%2FFRPBRYBCU0001_A_000.jpg">
-                    <table>
-                    <tr>
-                        <th>담당 선생님</th>
-                        <td th:text="${member.name}"></td>
-                    </tr>
-                    <tr>
-                        <th>회사</th>
-                        <td>카카오</td>
-                    </tr>
-                    <tr>
-                        <th>소속</th>
-                        <td>카카오파머 TF</td>
-                    </tr>
-                    <tr>
-                        <th>생일</th>
-                        <td>3월 22일</td>
-                    </tr>
-                    <tr>
-                        <th>자리위치</th>
-                        <td>제주</td>
-                    </tr>
-                    <tr>
-                        <th>자기소개</th>
-                        <td>기초웹개발론 강의를 맡고 있습니다</td>
-                    </tr>
-                    <tr>
-                        <th>휴대폰</th>
-                        <td>010-4661-3397 <a href="#" class="modify_cell">수정하기</a></td>
-                    </tr>
-                </table>
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 200px"
+        >
+            <h3 class="display-3 font-weight-bold text-white">일정 계획 수립</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="">일정계획 수립</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">Input</p>
             </div>
         </div>
     </div>
-<br><br><br>
+    <!-- Header End -->
 
-<form class="needs-validation" novalidate>
-    <div class="row justify-content-center">
-        <div class="col-md-2 text-center">
-            <label for="validationTooltip01" class="form-label">Keyword 1</label>
-            <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
-            <div class="valid-tooltip">Looks good!</div>
+
+    <form class="needs-validation" novalidate>
+        <div class="row justify-content-center">
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip01" class="form-label">수업일수</label>
+                <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip">Looks good!</div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip01" class="form-label">Keyword 1</label>
+                <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip">Looks good!</div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip02" class="form-label">Keyword 2</label>
+                <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip">Looks good!</div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltipUsername" class="form-label">Keyword 3</label>
+                <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword" required>
+            </div>
         </div>
-        <div class="col-md-2 text-center">
-            <label for="validationTooltip02" class="form-label">Keyword 2</label>
-            <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value="" required>
-            <div class="valid-tooltip">Looks good!</div>
+    </form>
+    <form class="needs-validation" novalidate>
+        <div class="row justify-content-center">
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip00" class="form-label">수업일수</label>
+                <input class="form-control" type="text" id="validationTooltip00" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip"></div>
+            </div>
         </div>
-        <div class="col-md-2 text-center">
-            <label for="validationTooltipUsername" class="form-label">Keyword 3</label>
-            <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword" required>
+    </form>
+
+    <form class="needs-validation" novalidate>
+        <div class="row justify-content-center">
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip01" class="form-label">Keyword 1</label>
+                <input class="form-control" type="text" id="validationTooltip01" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip"></div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltip02" class="form-label">Keyword 2</label>
+                <input class="form-control" type="text" id="validationTooltip02" placeholder="Keyword" value="" required>
+                <div class="valid-tooltip"> </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <label for="validationTooltipUsername" class="form-label">Keyword 3</label>
+                <input class="form-control" type="text" id="validationTooltipUsername" placeholder="Keyword" required>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 
     <br>
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary" style="margin-right: 0.1cm;">월간일정</button>
-                <button type="submit" class="btn btn-primary">상세일정</button>
+                <button type="submit" class="btn btn-primary" style="margin-left: 10cm;">교육활동 목록 생성</button>
             </div>
         </div>
     </div>
@@ -86,29 +91,74 @@
                             the bulk of the card's content.</p>
                     </div>
                 </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#scrollableModal1" style="background-color: #17a2b8;; color: #fff;">수정
+                            </button>
+                        </div>
+                    </div>
                 <br>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                        data-bs-target="#scrollableModal1" style="background-color: #17a2b8;; color: #fff;">수정
-                </button>
                 <!-- Scrollable 모달 1 -->
-                <div class="modal fade" id="scrollableModal1" tabindex="-1" aria-labelledby="scrollableModalLabel1"
+                <div class="modal fade" id="scrollableModal1" tabindex="-1"
+                     aria-labelledby="scrollableModalLabel1"
                      aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="scrollableModalLabel1">스크롤 가능하며 수정 가능한 모달 1</h5>
-                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close"
-                                        style="background-color: #f0f2f3;; color: #0e0e0e;">x
+                                <h5 class="modal-title" id="scrollableModalLabel1">교육 활동 내용 상세 확인</h5>
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                        style="width: 60px; background-color: #f0f2f3; color: #0e0e0e;">
+                                    x
                                 </button>
                             </div>
+                            <!--<div class="modal-body">-->
+                            <!--&lt;!&ndash; 수정 가능한 내용 &ndash;&gt;-->
+                            <!--<textarea id="editableContent1" class="form-control" rows="5"-->
+                            <!--placeholder="내용을 수정하세요."></textarea>-->
+                            <!--</div>-->
                             <div class="modal-body">
                                 <!-- 수정 가능한 내용 -->
-                                <textarea id="editableContent1" class="form-control" rows="5"
-                                          placeholder="내용을 수정하세요."></textarea>
+                                <div class="form-group">
+                                    <label for="editableTitle1">주제 활동명</label>
+                                    <input id="editableTitle1" class="form-control" type="text"
+                                           placeholder="주제 활동명">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableArea1">누리과정 영역</label>
+                                    <input id="editableArea1" class="form-control" type="text"
+                                           placeholder="누리과정 영역">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableTime1">교육활동 소요 시간</label>
+                                    <input id="editableTime1" class="form-control" type="text"
+                                           placeholder="교육활동 소요 시간">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableGoal1">목표</label>
+                                    <textarea id="editableGoal1" class="form-control" rows="3"
+                                              placeholder="목표"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableContent1">활동 내용</label>
+                                    <textarea id="editableContent1" class="form-control" rows="5"
+                                              placeholder="활동 내용"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableMaterials1">준비물</label>
+                                    <textarea id="editableMaterials1" class="form-control" rows="3"
+                                              placeholder="준비물"></textarea>
+                                </div>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="saveChangesButton2"
+                                <button type="button" class="btn btn-primary" id="saveChangesButton1"
                                         style="background-color: #17a2b8;; color: #fff;">저장 변경
                                 </button>
                             </div>
@@ -127,28 +177,69 @@
                 </div>
                 <br>
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                        data-bs-target="#scrollableModal2" style="background-color: #17a2b8;; color: #fff;">수정
+                        data-bs-target="#scrollableModal2" style="background-color: #17a2b8;; color: #fff; align-self-end">수정
                 </button>
                 <button type="button" class="btn btn-secondary" style="background-color: #17a2b8;; color: #fff;">승인
                 </button>
                 <!-- Scrollable 모달 2 -->
-                <div class="modal fade" id="scrollableModal2" tabindex="-1" aria-labelledby="scrollableModalLabel2"
+                <div class="modal fade" id="scrollableModal2" tabindex="-1"
+                     aria-labelledby="scrollableModalLabel1"
                      aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="scrollableModalLabel2">스크롤 가능하며 수정 가능한 모달 2</h5>
-                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close"
-                                        style="background-color: #f0f2f3;; color: #0e0e0e;">x
+                                <h5 class="modal-title" id="scrollableModalLabel2">교육 활동 내용 상세 확인</h5>
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                        style="width: 60px; background-color: #f0f2f3; color: #0e0e0e;">
+                                    x
                                 </button>
                             </div>
+                            <!--<div class="modal-body">-->
+                            <!--&lt;!&ndash; 수정 가능한 내용 &ndash;&gt;-->
+                            <!--<textarea id="editableContent1" class="form-control" rows="5"-->
+                            <!--placeholder="내용을 수정하세요."></textarea>-->
+                            <!--</div>-->
                             <div class="modal-body">
                                 <!-- 수정 가능한 내용 -->
-                                <textarea id="editableContent2" class="form-control" rows="5"
-                                          placeholder="내용을 수정하세요."></textarea>
-                            </div>
-                            <div class="modal-footer">
+                                <div class="form-group">
+                                    <label for="editableTitle">주제 활동명</label>
+                                    <input id="editableTitle" class="form-control" type="text"
+                                           placeholder="주제 활동명">
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="editableArea">누리과정 영역</label>
+                                    <input id="editableArea" class="form-control" type="text"
+                                           placeholder="누리과정 영역">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableTime">교육활동 소요 시간</label>
+                                    <input id="editableTime" class="form-control" type="text"
+                                           placeholder="교육활동 소요 시간">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableGoal">목표</label>
+                                    <textarea id="editableGoal" class="form-control" rows="3"
+                                              placeholder="목표"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableContent">활동 내용</label>
+                                    <textarea id="editableContent" class="form-control" rows="5"
+                                              placeholder="활동 내용"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editableMaterials">준비물</label>
+                                    <textarea id="editableMaterials" class="form-control" rows="3"
+                                              placeholder="준비물"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" id="saveChangesButton2"
                                         style="background-color: #17a2b8;; color: #fff;">저장 변경
                                 </button>

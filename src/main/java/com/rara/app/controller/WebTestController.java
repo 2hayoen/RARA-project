@@ -50,7 +50,7 @@ public class WebTestController {
 
     @GetMapping("/schedule")
     public String schedule(Model model) {
-        return "schedule";
+        return "schedule_hy";
     }
 
 //    @GetMapping("/signup")
@@ -72,6 +72,39 @@ public class WebTestController {
     @GetMapping("/schedule_detail")
     public String scheduledetail(Model model) {
         return "scheduledetail";
+    }
+
+
+    /////// 11/05
+    @GetMapping("/first")
+    public String first_page(Model model) {
+        return "First";
+    }
+
+    @GetMapping("/login_hy")
+    public String login_hy(Model model) {
+        return "login_hy";
+    }
+
+    //////// 11/06
+    @GetMapping("/schedule_list")
+    public String schedule_list(Model model) {
+        return "schedule_list";
+    }
+
+    @GetMapping("/accept_detail")
+    public String accep_detail(Model model) {
+        return "accept_detail";
+    }
+
+    @GetMapping("/accept_list")
+    public String accep_list(Model model) {
+        return "accept_list";
+    }
+
+    @GetMapping("/schedule_read")
+    public String schedule_read(Model model) {
+        return "schedule_read";
     }
 
 }
