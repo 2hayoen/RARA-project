@@ -3,6 +3,19 @@
 
 <mapper namespace="com.rara.app.model.mapper.BoardMapper">
 
+    <!--    ############################################################################################     -->
+    <resultMap id="BoardMap" type="com.rara.app.dto.BoardDTO">
+        <result column="ID" property="id"/>
+        <result column="TITLE" property="title"/>
+        <result column="CONTENT" property="content"/>
+        <result column="CREATED" property="created"/>
+        <result column="CATEGORY" property="category"/>
+        <result column="FILE1" property="file1"/>
+        <result column="FILE2" property="file2"/>
+        <result column="M_ID" property="mId"/>
+        <result column="AUTHOR" property="author"/>
+    </resultMap>
+    
     <!-- CREATE/INSERT 프로시저 매핑 -->
     <insert id="insertBoard" parameterType="com.rara.app.dto.BoardDTO">
         { call board_pkg.insert_board(
@@ -22,22 +35,8 @@
         #{id, jdbcType=NUMERIC})}
     </delete>
 
-
-<!--    ############################################################################################     -->
-    <resultMap id="BoardMap" type="com.rara.app.dto.BoardDTO">
-            <result column="ID" property="id"/>
-            <result column="TITLE" property="title"/>
-            <result column="CONTENT" property="content"/>
-            <result column="CREATED" property="created"/>
-            <result column="CATEGORY" property="category"/>
-            <result column="FILE1" property="file1"/>
-            <result column="FILE2" property="file2"/>
-            <result column="M_ID" property="mId"/>
-            <result column="AUTHOR" property="author"/>
-        </resultMap>
-
     <!-- READ (SELECT) 프로시저 매핑 -->
-    <select id="selectBoardsAll" statementType="CALLABLE" >
+    <select id="selectBoardsAll" statementType="CALLABLE">
         { call
         #{cursor, mode=OUT, jdbcType=CURSOR,
                  javaType=java.sql.ResultSet, resultMap=BoardMap} :=
@@ -54,7 +53,16 @@
         }
     </select>
 
-    <select id="selectBoardByCategoryAndTitle" statementType="CALLABLE" >
+    <select id="selectBoardByCategory" statementType="CALLABLE">
+        { call #{cursor, mode=OUT, jdbcType=CURSOR,
+                 javaType=java.sql.ResultSet, resultMap=BoardMap} :=
+        board_pkg.select_board_by_category(
+        #{category, jdbcType=VARCHAR}
+        )
+        }
+    </select>
+
+    <select id="selectBoardByCategoryAndTitle" statementType="CALLABLE">
         { call #{cursor, mode=OUT, jdbcType=CURSOR,
                  javaType=java.sql.ResultSet, resultMap=BoardMap} :=
         board_pkg.select_board_by_category_title(
@@ -64,7 +72,7 @@
         }
     </select>
 
-    <select id="selectBoardByCategoryAndContent" statementType="CALLABLE" >
+    <select id="selectBoardByCategoryAndContent" statementType="CALLABLE">
         { call #{cursor, mode=OUT, jdbcType=CURSOR,
                  javaType=java.sql.ResultSet, resultMap=BoardMap} :=
         board_pkg.select_board_by_category_content(
@@ -74,7 +82,7 @@
         }
     </select>
 
-    <select id="selectBoardByCategoryAndMId" statementType="CALLABLE" >
+    <select id="selectBoardByCategoryAndMId" statementType="CALLABLE">
         { call #{cursor, mode=OUT, jdbcType=CURSOR,
                  javaType=java.sql.ResultSet, resultMap=BoardMap} :=
         board_pkg.select_board_by_category_m_id(
@@ -96,42 +104,41 @@
         )}
     </update>
 
-    <update id="updateTitle" parameterType="com.rara.app.dto.BoardDTO">
+    <update id="updateTitle">
         { call board_pkg.update_title(
         #{id, jdbcType=NUMERIC},
         #{title, jdbcType=VARCHAR}
         )}
     </update>
 
-    <update id="updateContent" parameterType="com.rara.app.dto.BoardDTO">
+    <update id="updateContent">
         { call board_pkg.update_content(
         #{id, jdbcType=NUMERIC},
         #{content, jdbcType=VARCHAR}
         )}
     </update>
 
-    <update id="updateCategory" parameterType="com.rara.app.dto.BoardDTO">
+    <update id="updateCategory">
         { call board_pkg.update_category(
         #{id, jdbcType=NUMERIC},
         #{category, jdbcType=VARCHAR}
         )}
     </update>
 
-    <update id="updateFile1" parameterType="com.rara.app.dto.BoardDTO">
+    <update id="updateFile1">
         { call board_pkg.update_file1(
         #{id, jdbcType=NUMERIC},
         #{file1, jdbcType=VARCHAR}
         )}
     </update>
 
-    <update id="updateFile2" parameterType="com.rara.app.dto.BoardDTO">
+    <update id="updateFile2">
         { call board_pkg.update_file2(
         #{id, jdbcType=NUMERIC},
         #{file2, jdbcType=VARCHAR}
         )}
     </update>
 </mapper>
-
 
 
         <!--    <resultMap id="BoardMap" type="com.rara.app.dto.BoardDTO">-->

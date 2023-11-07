@@ -21,7 +21,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public void deleteDailyPlan(Long id) throws Exception {
+    public void deleteDailyPlan(long id) throws Exception {
         dailyPlanMapper.deleteDailyPlan(id);
     }
 
@@ -33,47 +33,47 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     ;
 
     @Override
-    public void updateDailyPlanSetYear(Long id, Long year) throws Exception {
+    public void updateDailyPlanSetYear(long id, long year) throws Exception {
         dailyPlanMapper.updateDailyPlanSetYear(id, year);
     }
 
     @Override
-    public void updateDailyPlanSetMonth(Long id, Long month) throws Exception {
+    public void updateDailyPlanSetMonth(long id, long month) throws Exception {
         dailyPlanMapper.updateDailyPlanSetMonth(id, month);
     }
 
     @Override
-    public void updateDailyPlanSetDay(Long id, Long day) throws Exception {
+    public void updateDailyPlanSetDay(long id, long day) throws Exception {
         dailyPlanMapper.updateDailyPlanSetDay(id, day);
     }
 
     @Override
-    public void updateDailyPlanSetKey1(Long id, String key1) throws Exception {
+    public void updateDailyPlanSetKey1(long id, String key1) throws Exception {
         dailyPlanMapper.updateDailyPlanSetKey1(id, key1);
     }
 
     @Override
-    public void updateDailyPlanSetKey2(Long id, String key2) throws Exception {
+    public void updateDailyPlanSetKey2(long id, String key2) throws Exception {
         dailyPlanMapper.updateDailyPlanSetKey2(id, key2);
     }
 
     @Override
-    public void updateDailyPlanSetKey3(Long id, String key3) throws Exception {
+    public void updateDailyPlanSetKey3(long id, String key3) throws Exception {
         dailyPlanMapper.updateDailyPlanSetKey3(id, key3);
     }
 
     @Override
-    public void updateDailyPlanSetFile1(Long id, String file1) throws Exception {
+    public void updateDailyPlanSetFile1(long id, String file1) throws Exception {
         dailyPlanMapper.updateDailyPlanSetFile1(id, file1);
     }
 
     @Override
-    public void updateDailyPlanSetFile2(Long id, String file2) throws Exception {
+    public void updateDailyPlanSetFile2(long id, String file2) throws Exception {
         dailyPlanMapper.updateDailyPlanSetFile2(id, file2);
     }
 
     @Override
-    public void updateDailyPlanSetMId(Long id, Long mId) throws Exception {
+    public void updateDailyPlanSetMId(long id, long mId) throws Exception {
         dailyPlanMapper.updateDailyPlanSetMId(id, mId);
     }
 
@@ -100,7 +100,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public DailyPlanDTO selectDailyPlanById(Long id) throws Exception {
+    public DailyPlanDTO selectDailyPlanById(long id) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         dailyPlanMapper.selectDailyPlanById(params);
@@ -113,7 +113,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByYear(Long year) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByYear(long year) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("year", year);
         dailyPlanMapper.selectDailyPlanByYear(params);
@@ -126,7 +126,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByMonth(Long month) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByMonth(long month) throws Exception {
 
         Map<String, Object> params = new HashMap<>();
         params.put("month", month);
@@ -140,7 +140,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByDay(Long day) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByDay(long day) throws Exception {
 
         Map<String, Object> params = new HashMap<>();
         params.put("day", day);
@@ -154,7 +154,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByYearAndMonth(Long year, Long month) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByYearAndMonth(long year, long month) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("year", year);
         params.put("month", month);
@@ -169,7 +169,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
 
     @Override
     public List<DailyPlanDTO> selectDailyPlanByYearAndMonthAndDay(
-            Long year, Long month, Long day) throws Exception {
+            long year, long month, long day) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("year", year);
         params.put("month", month);
@@ -212,7 +212,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByMId(Long mId) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByMId(long mId) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("mId", mId);
         dailyPlanMapper.selectDailyPlanByMId(params);
@@ -225,7 +225,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByMIdAndYear(Long mId, Long year) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByMIdAndYear(long mId, long year) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("mId", mId);
         params.put("year", year);
@@ -239,7 +239,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByMIdAndActTitle(Long mId, String actTitle) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByMIdAndActTitle(long mId, String actTitle) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("mId", mId);
         params.put("actTitle", actTitle);
@@ -253,7 +253,7 @@ public class DailyPlanServiceImpl implements DailyPlanService {
     }
 
     @Override
-    public List<DailyPlanDTO> selectDailyPlanByMIdAndActType(Long mId, String actType) throws Exception {
+    public List<DailyPlanDTO> selectDailyPlanByMIdAndActType(long mId, String actType) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("mId", mId);
         params.put("actType", actType);

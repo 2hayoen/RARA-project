@@ -8,27 +8,29 @@ import java.util.Map;
 public interface BoardService {
     void insertBoard(BoardDTO board);
 
-    List<BoardDTO> getBoardsAll();
+    List<BoardDTO> selectBoardsAll();
 
-    BoardDTO getBoardById(long id);
+    BoardDTO selectBoardById(long id);
 
-    List<BoardDTO> getBoardByCategoryAndTitle(String category, String title);
+    List<BoardDTO> selectBoardByCategory(String category);
 
-    List<BoardDTO> getBoardByCategoryAndContent(String category, String content);
+    List<BoardDTO> selectBoardByCategoryAndTitle(String category, String title);
 
-    List<BoardDTO> getBoardByCategoryAndMId(String category, long mId);
+    List<BoardDTO> selectBoardByCategoryAndContent(String category, String content);
+
+    List<BoardDTO> selectBoardByCategoryAndMId(String category, long mId);
 
     void updateBoard(BoardDTO board);
 
-    void updateTitle(BoardDTO board);
+    void updateTitle(long id, String title);
 
-    void updateContent(BoardDTO board);
+    void updateContent(long id, String content);
 
-    void updateCategory(BoardDTO board);
+    void updateCategory(long id, String category);
 
-    void updateFile1(BoardDTO board);
+    void updateFile1(long id, String file1);
 
-    void updateFile2(BoardDTO board);
+    void updateFile2(long id, String file2);
 
     void deleteBoard(long id);
 }

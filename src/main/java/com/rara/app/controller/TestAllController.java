@@ -358,193 +358,193 @@
 //        }
 //    }
 //
-////    @GetMapping("/dailyplan")
-////    public String testDailyPlanAll(Model model) {
-////
-////        try {
-////
-////            Map<String, Object> params;
-////            DailyPlanDTO dailyPlanDTO;
-////
-////            dailyPlanDTO = DailyPlanDTO.builder()
-////                    .year(2023L).month(10L).key1("key1-1").mId(1L).build();
-////            dailyPlanService.insertDailyPlan(dailyPlanDTO);
-////
-////            dailyPlanDTO = DailyPlanDTO.builder()
-////                    .year(2022L).month(5L).key1("key2-1").mId(3L).build();
-////            dailyPlanService.insertDailyPlan(dailyPlanDTO);
-////
-////            dailyPlanDTO = DailyPlanDTO.builder()
-////                    .year(3L).month(3L).key1("3").mId(3L).build();
-////            dailyPlanService.insertDailyPlan(dailyPlanDTO);
-////
-////            model.addAttribute(
-////                    "dailyPlansInserted", dailyPlanService.selectDailyPlansAll()
-////            );
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("year", 2023L);
-////            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("month", 8L);
-////            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("key1", "u_key2-1");
-////            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("key2", "u_key2-2");
-////            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("key3", "u_key2-3");
-////            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("day", 1L);
-////            dailyPlanService.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("file1", "u_file2-1");
-////            dailyPlanService.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("file2", "u_file2-2");
-////            dailyPlanService.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("mId", 2L);
-////            dailyPlanService.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("act1Type", "act2-1-type");
-////            params.put("act1Goal", "act2-1-goal");
-////            params.put("act1Time", 90L);
-////            params.put("act1Title", "act2-1-title");
-////            params.put("act1Sub", "act2-1-sub");
-////            params.put("act1Desc", "act2-1-desc");
-////            params.put("act1Mater", "act2-1-mater");
-////            dailyPlanService.updateDailyPlanSetAct1TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
-////
-////            params = new HashMap<>();
-////            params.put("id", 2L);
-////            params.put("act2Type", "act2-2-type");
-////            params.put("act2Goal", "act2-2-goal");
-////            params.put("act2Time", 90L);
-////            params.put("act2Title", "act2-2-title");
-////            params.put("act2Sub", "act2-2-sub");
-////            params.put("act2Desc", "act2-2-desc");
-////            params.put("act2Mater", "act2-2-mater");
-////            dailyPlanService.updateDailyPlanSetAct2TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
-////
-////            model.addAttribute(
-////                    "dailyPlanUpdated", dailyPlanService.selectDailyPlansAll()
-////            );
-////
-////            model.addAttribute(
-////                    "dailyPlanById", dailyPlanService.selectDailyPlanById(1L)
-////            );
-////
-////            model.addAttribute(
-////                    "dailyPlanByMonth",
-////                    dailyPlanService.selectDailyPlanByMonth(8L)
-////            );
-////
-////            model.addAttribute(
-////                    "dailyPlanByDay",
-////                    dailyPlanService.selectDailyPlanByDay(1L)
-////            );
-////
-////            params = new HashMap<>();
-////            params.put("year", 2023L);
-////            model.addAttribute(
-////                    "dailyPlanByYear",
-////                    dailyPlanService.selectDailyPlanByYearAndMonthOrDay(params)
-////            );
-////
-////            params = new HashMap<>();
-////            params.put("year", 2023L);
-////            params.put("month", 10L);
-////            model.addAttribute(
-////                    "dailyPlanByYearAndMonth",
-////                    dailyPlanService.selectDailyPlanByYearAndMonthOrDay(params)
-////            );
-////
-////            params = new HashMap<>();
-////            params.put("year", 2023L);
-////            params.put("month", 8L);
-////            params.put("day", 1L);
-////            model.addAttribute(
-////                    "dailyPlanByYearAndMonthAndDay",
-////                    dailyPlanService.selectDailyPlanByYearAndMonthOrDay(params)
-////            );
-////
-////            model.addAttribute(
-////                    "dailyPlanByFile1",
-////                    dailyPlanService.selectDailyPlanByFile1("u_file2-1")
-////            );
-////
-////            model.addAttribute(
-////                    "dailyPlanByFile2",
-////                    dailyPlanService.selectDailyPlanByFile2("u_file2-2")
-////            );
-////
-////
-////            params = new HashMap<>();
-////            params.put("mId", 2L);
-////            model.addAttribute(
-////                    "dailyPlanByMId",
-////                    dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
-////            );
-////
-////            params = new HashMap<>();
-////            params.put("mId", 2L);
-////            params.put("year", 2023L);
-////            model.addAttribute(
-////                    "dailyPlanByMIdAndYear",
-////                    dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
-////            );
-////
-////            params = new HashMap<>();
-////            params.put("mId", 2L);
-////            params.put("title", "title");
-////            model.addAttribute(
-////                    "dailyPlanByMIdAndTitle",
-////                    dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
-////            );
-////
-////            params = new HashMap<>();
-////            params.put("mId", 2L);
-////            params.put("type", "type");
-////            model.addAttribute(
-////                    "dailyPlanByMIdAndType",
-////                    dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
-////            );
-////
-////            dailyPlanService.deleteDailyPlan(3L);
-////
-////            model.addAttribute(
-////                    "dailyPlanDeleted", dailyPlanService.selectDailyPlansAll()
-////            );
-////
-////            return "test/all/dailyPlan";
-////        } catch (Exception e) {
-////            model.addAttribute("msg", "dailyPlan Error!");
-////            return "error";
-////        }
-////    }
+//    @GetMapping("/dailyplan")
+//    public String testDailyPlanAll(Model model) {
+//
+//        try {
+//
+//            Map<String, Object> params;
+//            DailyPlanDTO dailyPlanDTO;
+//
+//            dailyPlanDTO = DailyPlanDTO.builder()
+//                    .year(2023L).month(10L).key1("key1-1").mId(1L).build();
+//            dailyPlanService.insertDailyPlan(dailyPlanDTO);
+//
+//            dailyPlanDTO = DailyPlanDTO.builder()
+//                    .year(2022L).month(5L).key1("key2-1").mId(3L).build();
+//            dailyPlanService.insertDailyPlan(dailyPlanDTO);
+//
+//            dailyPlanDTO = DailyPlanDTO.builder()
+//                    .year(3L).month(3L).key1("3").mId(3L).build();
+//            dailyPlanService.insertDailyPlan(dailyPlanDTO);
+//
+//            model.addAttribute(
+//                    "dailyPlansInserted", dailyPlanService.selectDailyPlansAll()
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("year", 2023L);
+//            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("month", 8L);
+//            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("key1", "u_key2-1");
+//            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("key2", "u_key2-2");
+//            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("key3", "u_key2-3");
+//            dailyPlanService.updateDailyPlanSetYearOrMonthOrKey1OrKey2OrKey3(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("day", 1L);
+//            dailyPlanService.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("file1", "u_file2-1");
+//            dailyPlanService.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("file2", "u_file2-2");
+//            dailyPlanService.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("mId", 2L);
+//            dailyPlanService.updateDailyPlanSetDayOrFile1OrFile2OrMId(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("act1Type", "act2-1-type");
+//            params.put("act1Goal", "act2-1-goal");
+//            params.put("act1Time", 90L);
+//            params.put("act1Title", "act2-1-title");
+//            params.put("act1Sub", "act2-1-sub");
+//            params.put("act1Desc", "act2-1-desc");
+//            params.put("act1Mater", "act2-1-mater");
+//            dailyPlanService.updateDailyPlanSetAct1TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
+//
+//            params = new HashMap<>();
+//            params.put("id", 2L);
+//            params.put("act2Type", "act2-2-type");
+//            params.put("act2Goal", "act2-2-goal");
+//            params.put("act2Time", 90L);
+//            params.put("act2Title", "act2-2-title");
+//            params.put("act2Sub", "act2-2-sub");
+//            params.put("act2Desc", "act2-2-desc");
+//            params.put("act2Mater", "act2-2-mater");
+//            dailyPlanService.updateDailyPlanSetAct2TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
+//
+//            model.addAttribute(
+//                    "dailyPlanUpdated", dailyPlanService.selectDailyPlansAll()
+//            );
+//
+//            model.addAttribute(
+//                    "dailyPlanById", dailyPlanService.selectDailyPlanById(1L)
+//            );
+//
+//            model.addAttribute(
+//                    "dailyPlanByMonth",
+//                    dailyPlanService.selectDailyPlanByMonth(8L)
+//            );
+//
+//            model.addAttribute(
+//                    "dailyPlanByDay",
+//                    dailyPlanService.selectDailyPlanByDay(1L)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("year", 2023L);
+//            model.addAttribute(
+//                    "dailyPlanByYear",
+//                    dailyPlanService.selectDailyPlanByYearAndMonthOrDay(params)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("year", 2023L);
+//            params.put("month", 10L);
+//            model.addAttribute(
+//                    "dailyPlanByYearAndMonth",
+//                    dailyPlanService.selectDailyPlanByYearAndMonthOrDay(params)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("year", 2023L);
+//            params.put("month", 8L);
+//            params.put("day", 1L);
+//            model.addAttribute(
+//                    "dailyPlanByYearAndMonthAndDay",
+//                    dailyPlanService.selectDailyPlanByYearAndMonthOrDay(params)
+//            );
+//
+//            model.addAttribute(
+//                    "dailyPlanByFile1",
+//                    dailyPlanService.selectDailyPlanByFile1("u_file2-1")
+//            );
+//
+//            model.addAttribute(
+//                    "dailyPlanByFile2",
+//                    dailyPlanService.selectDailyPlanByFile2("u_file2-2")
+//            );
+//
+//
+//            params = new HashMap<>();
+//            params.put("mId", 2L);
+//            model.addAttribute(
+//                    "dailyPlanByMId",
+//                    dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("mId", 2L);
+//            params.put("year", 2023L);
+//            model.addAttribute(
+//                    "dailyPlanByMIdAndYear",
+//                    dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("mId", 2L);
+//            params.put("title", "title");
+//            model.addAttribute(
+//                    "dailyPlanByMIdAndTitle",
+//                    dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
+//            );
+//
+//            params = new HashMap<>();
+//            params.put("mId", 2L);
+//            params.put("type", "type");
+//            model.addAttribute(
+//                    "dailyPlanByMIdAndType",
+//                    dailyPlanService.selectDailyPlanByMIdAndYearOrActTitleOrActType(params)
+//            );
+//
+//            dailyPlanService.deleteDailyPlan(3L);
+//
+//            model.addAttribute(
+//                    "dailyPlanDeleted", dailyPlanService.selectDailyPlansAll()
+//            );
+//
+//            return "test/all/dailyPlan";
+//        } catch (Exception e) {
+//            model.addAttribute("msg", "dailyPlan Error!");
+//            return "error";
+//        }
+//    }
 //
 //    @GetMapping("/dailyrecord")
 //    public String testDailyRecordAll(Model model) {

@@ -144,10 +144,7 @@ public class ChildController {
     @PostMapping("/updateName/{id}")
     public String updateChildName(@PathVariable Long id, @RequestParam String name) {
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
-            params.put("name", name);
-            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
+            childService.updateChildSetName(id, name);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -159,10 +156,7 @@ public class ChildController {
     @PostMapping("/updateBirth/{id}")
     public String updateChildBirth(@PathVariable Long id, @RequestParam String birth) {
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
-            params.put("birth", birth);
-            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
+            childService.updateChildSetBirth(id, birth);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -174,10 +168,7 @@ public class ChildController {
     @PostMapping("/updatePhoto/{id}")
     public String updateChildPhoto(@PathVariable Long id, @RequestParam String photo) {
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
-            params.put("photo", photo);
-            childService.updateChildSetPhotoOrProperty(params);
+            childService.updateChildSetPhoto(id, photo);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -189,10 +180,7 @@ public class ChildController {
     @PostMapping("/updateProperty/{id}")
     public String updateChildProperty(@PathVariable Long id, @RequestParam String property) {
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
-            params.put("property", property);
-            childService.updateChildSetPhotoOrProperty(params);
+            childService.updateChildSetProperty(id, property);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -204,10 +192,7 @@ public class ChildController {
     @PostMapping("/updateMTId/{id}")
     public String updateChildM_T_Id(@PathVariable Long id, @RequestParam Long mTId) {
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
-            params.put("mTId", mTId);
-            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
+            childService.updateChildSetMTId(id, mTId);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
@@ -219,10 +204,7 @@ public class ChildController {
     @PostMapping("/updateM_C_Id/{id}")
     public String updateChildM_C_Id(@PathVariable Long id, @RequestParam Long mCId) {
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
-            params.put("mCId", mCId);
-            childService.updateChildSetNameOrBirthOrMTIdOrMCId(params);
+            childService.updateChildSetMCId(id, mCId);
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가

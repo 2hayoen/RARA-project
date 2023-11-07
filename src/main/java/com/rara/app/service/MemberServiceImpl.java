@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void deleteMember(Long id) throws Exception {
+    public void deleteMember(long id) throws Exception {
         memberMapper.deleteMember(id);
     }
 
@@ -47,27 +47,27 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void updateMemberSetEmail(Long id, String email) throws Exception {
+    public void updateMemberSetEmail(long id, String email) throws Exception {
         memberMapper.updateMemberSetEmail(id, email);
     }
 
     @Override
-    public void updateMemberSetPwd(Long id, String pwd) throws Exception {
+    public void updateMemberSetPwd(long id, String pwd) throws Exception {
         memberMapper.updateMemberSetPwd(id, passwordEncoder.encode(pwd));
     }
 
     @Override
-    public void updateMemberSetName(Long id, String name) throws Exception {
+    public void updateMemberSetName(long id, String name) throws Exception {
         memberMapper.updateMemberSetName(id, name);
     }
 
     @Override
-    public void updateMemberSetPhNum(Long id, String phNum) throws Exception {
+    public void updateMemberSetPhNum(long id, String phNum) throws Exception {
         memberMapper.updateMemberSetPhNum(id, phNum);
     }
 
     @Override
-    public void updateMemberSetAddr(Long id, String addr) throws Exception {
+    public void updateMemberSetAddr(long id, String addr) throws Exception {
         memberMapper.updateMemberSetAddr(id, addr);
     }
 
@@ -82,7 +82,7 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public MemberDTO selectMemberById(Long id) throws Exception {
+    public MemberDTO selectMemberById(long id) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
 
@@ -152,7 +152,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberDTO> selectMemberBySeparatorAndMId(String separator, Long mId) throws Exception {
+    public List<MemberDTO> selectMemberBySeparatorAndMId(String separator, long mId) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("separator", separator);
         params.put("mId", mId);

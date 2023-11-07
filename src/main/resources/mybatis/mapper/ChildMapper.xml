@@ -92,25 +92,34 @@
     </update>
 
 
-    <update id="updateChildSetNameOrBirthOrMTIdOrMCId">
+    <update id="updateChildSetName">
         <if test="name != null and name != ''">
             {call child_pkg.update_name(
             #{id, mode=IN, jdbcType=NUMERIC},
             #{name, mode=IN, jdbcType=VARCHAR}
             )}
         </if>
+    </update>
+
+    <update id="updateChildSetBirth">
         <if test="birth != null and birth != ''">
             {call child_pkg.update_birth(
             #{id, mode=IN, jdbcType=NUMERIC},
             #{birth, mode=IN, jdbcType=VARCHAR}
             )}
         </if>
+    </update>
+
+    <update id="updateChildSetMTId">
         <if test="mTId != null">
             {call child_pkg.update_m_t_id(
             #{id, mode=IN, jdbcType=NUMERIC},
             #{mTId, mode=IN, jdbcType=NUMERIC}
             )}
         </if>
+    </update>
+
+    <update id="updateChildSetMCId">
         <if test="mCId != null">
             {call child_pkg.update_m_c_id(
             #{id, mode=IN, jdbcType=NUMERIC},
@@ -119,13 +128,16 @@
         </if>
     </update>
 
-    <update id="updateChildSetPhotoOrProperty">
+    <update id="updateChildSetPhoto">
         <if test="photo != null and photo != ''">
             {call child_pkg.update_photo(
             #{id, mode=IN, jdbcType=NUMERIC},
             #{photo, mode=IN, jdbcType=VARCHAR}
             )}
         </if>
+    </update>
+
+    <update id="updateChildSetProperty">
         <if test="property != null and property != ''">
             {call child_pkg.update_property(
             #{id, mode=IN, jdbcType=NUMERIC},

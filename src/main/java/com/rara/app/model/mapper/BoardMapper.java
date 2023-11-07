@@ -2,6 +2,7 @@ package com.rara.app.model.mapper;
 
 import com.rara.app.dto.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -10,9 +11,11 @@ import java.util.Map;
 public interface BoardMapper {
     void insertBoard(BoardDTO board);
 
-    void  selectBoardsAll(Map<String, Object> params);
+    void selectBoardsAll(Map<String, Object> params);
 
     void selectBoardById(Map<String, Object> params);
+
+    void selectBoardByCategory(Map<String, Object> params);
 
     void selectBoardByCategoryAndTitle(Map<String, Object> params);
 
@@ -22,17 +25,17 @@ public interface BoardMapper {
 
     void updateBoard(BoardDTO board);
 
-    void updateTitle(BoardDTO board);
+    void updateTitle(@Param("id") long id, @Param("title") String title);
 
-    void updateContent(BoardDTO board);
+    void updateContent(@Param("id") long id, @Param("content") String content);
 
-    void updateCategory(BoardDTO board);
+    void updateCategory(@Param("id") long id, @Param("category") String category);
 
-    void updateFile1(BoardDTO board);
+    void updateFile1(@Param("id") long id, @Param("file1") String file1);
 
-    void updateFile2(BoardDTO board);
+    void updateFile2(@Param("id") long id, @Param("file2") String file2);
 
-    void deleteBoard(long id);
+    void deleteBoard(@Param("id") long id);
 }
 
 //public interface BoardMapper {
