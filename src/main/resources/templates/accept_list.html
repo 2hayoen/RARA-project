@@ -64,7 +64,6 @@
 
             .board-table a {
               color: #333;
-              display: inline-block;
               line-height: 1.4;
               word-break: break-all;
               vertical-align: middle;
@@ -200,7 +199,7 @@
             </div>
 
         <!-- board list area -->
-             <div id="board-list">
+             <div id="accept-list">
                 <div class="container">
                     <table class="board-table">
                         <thead>
@@ -212,15 +211,16 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         <tr th:each="board : ${boards}">
                             <td th:text="${board.id}"></td>
                             <td th:text="${board.title}"></td>
                             <td th:text="${board.author}"></td>
                             <td th:text="${board.created}"></td>
                         </tr>
-                        <div th:if="${#lists.isEmpty(boards)}">
-                            <td colspan="4">조회된 결과가 없습니다.</td><!-- 'boards'가 비어 있을 때의 내용 -->
-                        </div>
+<!--                        <div th:if="${#lists.isEmpty(boards)}">-->
+<!--                            <td colspan="4">조회된 결과가 없습니다.</td>&lt;!&ndash; 'boards'가 비어 있을 때의 내용 &ndash;&gt;-->
+<!--                        </div>-->
 
                         </tbody>
                     </table>
@@ -233,5 +233,6 @@
                     </div>
                 </div>
     </section>
+
 </th:block>
 </html>

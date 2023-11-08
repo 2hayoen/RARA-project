@@ -97,9 +97,18 @@ public class WebTestController {
         return "accept_detail";
     }
 
+    @GetMapping("/dailyPlan")
+    public String dailyPlan(Model model) {
+        return "dailyPlan";
+    }
+
     @GetMapping("/accept_list")
-    public String accep_list(Model model) {
+    public String accept_list(Model model) {
         return "accept_list";
     }
 
+    @GetMapping("/schedule_result")
+    public String schedule_result(Model model) {
+        return "schedule_result";
+    }
 }

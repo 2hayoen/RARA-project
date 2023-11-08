@@ -36,12 +36,11 @@ public class BoardController {
         boardService.insertBoard(board);
     }
 
-    @GetMapping("/list")
+    @GetMapping("/boards")
     public String getAllBoards(Model model) {
         // 모든 게시물 정보 조회
         List<BoardDTO> boards = boardService.selectBoardsAll();
         model.addAttribute("boards", boards);
-
         return "accept_list"; // accept_list.html을 렌더링
     }
 

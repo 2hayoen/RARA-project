@@ -100,3 +100,15 @@
     
 })(jQuery);
 
+    document.querySelector("#scrollableModal1 .btn-close").addEventListener("click", function() {
+        const modal = new bootstrap.Modal(document.getElementById("scrollableModal1"));
+        modal.hide();
+    });
+    document.querySelector("#scrollableModal2 .btn-close").addEventListener("click", function() {
+        const modal = new bootstrap.Modal(document.getElementById("scrollableModal2"));
+        modal.hide();
+    });
+    document.querySelector("#scrollableModal3 .btn-close").addEventListener("click", function() {
+        const modal = new bootstrap.Modal(document.getElementById("scrollableModal2"));
+        modal.hide();
+    });
