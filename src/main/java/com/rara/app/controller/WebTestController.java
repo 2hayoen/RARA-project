@@ -12,10 +12,6 @@ public class WebTestController {
         return "index";
     }
 
-    @GetMapping("/class_child")
-    public String child_class(Model model) {
-        return "classchild";
-    }
 
 
     @GetMapping("/signin")
@@ -23,16 +19,10 @@ public class WebTestController {
         return "login";
     }
 
-//    @GetMapping("/schedule_detail")
-//    public String scheduledetail(Model model) {
-//        return "scheduledetail";
-//    }
-
-    @GetMapping("/schedule_detail")
-    public String scheduledetail(Model model) {
-        return "schedule_result";
+    @GetMapping("/notice")
+    public String notice(Model model) {
+        return "noticeboard";
     }
-
 
     @GetMapping("/first")
     public String first_page(Model model) {

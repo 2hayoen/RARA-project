@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/boards")
+@RequestMapping("/accept_boards")
 public class BoardController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class BoardController {
         try {
             BoardDTO board = boardService.selectBoardById(id);
             model.addAttribute("board", board);
-            return "test/board";
+            return "accept_result";
         } catch (Exception e) {
             return "error";
         }
