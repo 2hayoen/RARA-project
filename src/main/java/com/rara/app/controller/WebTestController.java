@@ -14,10 +14,15 @@ public class WebTestController {
 
 
 
-    @GetMapping("/signin")
-    public String login(Model model) {
-        return "login";
-    }
+//    @GetMapping("/signin")
+//    public String login(Model model) {
+//        return "login";
+//    }
+//
+//    @GetMapping("/login_22")
+//    public String login_22(Model model) {
+//        return "login_22";
+//    }
 
     @GetMapping("/notice")
     public String notice(Model model) {
