@@ -23,14 +23,14 @@ public class WebTestController {
     }
 
 
-    @GetMapping("/classchild")
-    public String child_class(Model model) {
-        return "classchild";
+    @GetMapping("/signin")
+    public String login(Model model) {
+        return "login";
     }
 
-    @GetMapping("/notice_create")
-    public String notice_create(Model model) {
-        return "notice_create";
+    @GetMapping("/notice")
+    public String notice(Model model) {
+        return "noticeboard";
     }
 
     @GetMapping("/mypage")
@@ -81,20 +81,19 @@ public class WebTestController {
         return "First";
     }
 
-    @GetMapping("/login_hy")
-    public String login_hy(Model model) {
-        return "login_hy";
-    }
-
-    //////// 11/06
-    @GetMapping("/schedule_list")
-    public String schedule_list(Model model) {
-        return "schedule_list";
+    @GetMapping("/accept_create")
+    public String notice_create(Model model) {
+        return "accept_create";
     }
 
     @GetMapping("/accept_detail")
     public String accep_detail(Model model) {
         return "accept_detail";
+    }
+
+    @GetMapping("/accept_list")
+    public String accep_list(Model model) {
+        return "accept_list";
     }
 
     @GetMapping("/dailyPlan")

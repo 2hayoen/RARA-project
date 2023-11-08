@@ -1,6 +1,7 @@
 package com.rara.app.controller;
 
 import com.rara.app.dto.BoardDTO;
+import com.rara.app.dto.DailyPlanDTO;
 import com.rara.app.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,31 +10,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@Controller
-//public class BoardController {
-//
-////    @GetMapping("/noticeboard")
-////    public String noticeboard(Model model) {
-////        return "noticeboard";
-////    }
-//}
 
 @Controller
-@RequestMapping("/boards")
+@RequestMapping("/accept_boards")
 public class BoardController {
 
     @Autowired
     BoardService boardService; //서비스와 연결
 
-//    @Autowired
-//    public BoardController(BoardService boardService) {
-//        this.boardService = boardService;
-//    }
 
-    @PostMapping
-    public void createBoard(@RequestBody BoardDTO board) {
-        // 게시물 저장
-        boardService.insertBoard(board);
+    @PostMapping("/create")
+    // DB 저장
+    public  String createBoard(BoardDTO boardDTO) {
+        try {
+            boardService.insertBoard(boardDTO);
+            return "redirect:accept_detail";
+        } catch (Exception e) {
+            return "index";
+        }
     }
 
     @GetMapping("/boards")
@@ -45,9 +39,14 @@ public class BoardController {
     }
 
     @GetMapping("/{id}")
-    public BoardDTO getBoardById(@PathVariable long id) {
-        // URL 경로에서 추출한 ID를 사용하여 해당 ID의 게시물 정보를 조회
-        return boardService.selectBoardById(id);
+    public String getBoardById(@PathVariable Long id, Model model) {
+        try {
+            BoardDTO board = boardService.selectBoardById(id);
+            model.addAttribute("board", board);
+            return "accept_result";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
 //    @GetMapping("/title")
