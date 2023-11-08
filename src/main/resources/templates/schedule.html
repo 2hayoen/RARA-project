@@ -196,76 +196,100 @@
                                             <!-- 주제 활동명 -->
                                             <div id="displayTitle">
                                                 <label for="editableTitle">주제 활동명</label>
-                                                <p>주제 활동명 내용</p>
+<!--                                                <p>주제 활동명 내용</p>-->
+                                                <div th:text="${dailyPlan.act1Title}"></div>
                                             </div>
 
                                             <!-- 누리과정 영역 -->
                                             <div id="displayArea">
                                                 <label for="editableArea">누리과정 영역</label>
-                                                <p>누리과정 영역 내용</p>
+<!--                                                <p>누리과정 영역 내용</p>-->
+                                                <div th:text="${dailyPlan.act1Type}"></div>
                                             </div>
 
                                             <!-- 교육활동 소요 시간 -->
                                             <div id="displayTime">
                                                 <label for="editableTime">교육활동 소요 시간</label>
-                                                <p>교육활동 소요 시간 내용</p>
+<!--                                                <p>교육활동 소요 시간 내용</p>-->
+                                                <div th:text="${dailyPlan.act1Time}"></div>
                                             </div>
 
                                             <!-- 목표 -->
                                             <div id="displayGoal">
                                                 <label for="editableGoal">목표</label>
-                                                <p>목표 내용</p>
+<!--                                                <p>목표 내용</p>-->
+                                                <div th:text="${dailyPlan.act1Goal}"></div>
                                             </div>
 
                                             <!-- 활동 내용 -->
                                             <div id="displayContent">
                                                 <label for="editableContent">활동 내용</label>
-                                                <p>활동 내용 내용</p>
+<!--                                                <p>활동 내용 내용</p>-->
+                                                <div th:text="${dailyPlan.act1Desc}"></div>
                                             </div>
 
                                             <!-- 준비물 -->
                                             <div id="displayMaterials">
                                                 <label for="editableMaterials">준비물</label>
-                                                <p>준비물 내용</p>
+<!--                                                <p>준비물 내용</p>-->
+                                                <div th:text="${dailyPlan.act1Mater}"></div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" id="editButton"
+                                                        style="background-color: #17a2b8; color: #fff;">수정
+                                                </button>
                                             </div>
 
                                             <!-- 수정 가능한 내용 -->
                                             <div id="editableFields" style="display: none;">
-                                                <label for="editableTitle">주제 활동명</label>
-                                                <input id="editableTitle" class="form-control" type="text"
-                                                       placeholder="주제 활동명">
+                                                <form action="/schedule/act" method="post">
+                                                    <label for="editableTitle">주제 활동명</label>
+                                                    <input name="id" th:value="${dailyPlan.id}" hidden>
 
-                                                <label for="editableArea">누리과정 영역</label>
-                                                <input id="editableArea" class="form-control" type="text"
-                                                       placeholder="누리과정 영역">
+                                                    <input id="editableTitle" class="form-control" type="text"
+                                                           name="act1Title" th:value="${dailyPlan.act1Title}">
 
-                                                <label for="editableTime">교육활동 소요 시간</label>
-                                                <input id="editableTime" class="form-control" type="text"
-                                                       placeholder="교육활동 소요 시간">
+                                                    <label for="editableArea">누리과정 영역</label>
+                                                    <input id="editableArea" class="form-control" type="text"
+                                                           name="act1Type" th:value="${dailyPlan.act1Type}">
 
-                                                <label for="editableGoal">목표</label>
-                                                <textarea id="editableGoal" class="form-control" rows="3"
-                                                          placeholder="목표"></textarea>
+                                                    <label for="editableTime">교육활동 소요 시간</label>
+                                                    <input id="editableTime" class="form-control" type="text"
+                                                           name="act1Time" th:value="${dailyPlan.act1Time}">
 
-                                                <label for="editableContent">활동 내용</label>
-                                                <textarea id="editableContent" class="form-control" rows="5"
-                                                          placeholder="활동 내용"></textarea>
+                                                    <label for="editableGoal">목표</label>
+                                                    <textarea id="editableGoal" class="form-control" rows="3"
+                                                              name="act1Goal" th:text="${dailyPlan.act1Goal}"></textarea>
 
-                                                <label for="editableMaterials">준비물</label>
-                                                <textarea id="editableMaterials" class="form-control" rows="3"
-                                                          placeholder="준비물"></textarea>
+                                                    <label for="editableContent">활동 내용</label>
+                                                    <textarea id="editableContent" class="form-control" rows="5"
+                                                              name="act1Desc" th:text="${dailyPlan.act1Desc}"></textarea>
+
+                                                    <label for="editableMaterials">준비물</label>
+                                                    <textarea id="editableMaterials" class="form-control" rows="3"
+                                                              name="act1Mater" th:text="${dailyPlan.act1Mater}"></textarea>
+
+<!--                                                    <div class="modal-footer">-->
+                                                        <button type="submit" class="btn btn-primary" id="saveChangesButton2"
+                                                                style="background-color: #17a2b8; color: #fff; display: none;">변경사항
+                                                            저장
+                                                        </button>
+<!--                                                    </div>-->
+                                                </form>
+
                                             </div>
                                         </div>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" id="editButton"
-                                                    style="background-color: #17a2b8; color: #fff;">수정
-                                            </button>
-                                            <button type="button" class="btn btn-primary" id="saveChangesButton2"
-                                                    style="background-color: #17a2b8; color: #fff; display: none;">변경사항
-                                                저장
-                                            </button>
-                                        </div>
+<!--                                        <div class="modal-footer">-->
+<!--                                            <button type="button" class="btn btn-primary" id="editButton"-->
+<!--                                                    style="background-color: #17a2b8; color: #fff;">수정-->
+<!--                                            </button>-->
+<!--                                            <button type="submit" class="btn btn-primary" id="saveChangesButton2"-->
+<!--                                                    style="background-color: #17a2b8; color: #fff; display: none;">변경사항-->
+<!--                                                저장-->
+<!--                                            </button>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>

@@ -7,7 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/schedule")
@@ -33,6 +38,34 @@ public class DailyPlanController {
         }
     }
 
+    @GetMapping("/test")
+    public String testDailyPlansAll(Model model) {
+        try {
+            List<DailyPlanDTO> dailyPlanDTOList = dailyPlanService.selectDailyPlansAll();
+            for (DailyPlanDTO dp : dailyPlanDTOList) {
+                String dpIdStr = Long.toString(dp.getId());
+                DailyPlanDTO dp_u = DailyPlanDTO.builder()
+                        .id(dp.getId()).year(dp.getYear()).month(dp.getMonth()).mId(dp.getMId())
+                        .day(dp.getId())
+                        .key1(dp.getKey1() + dpIdStr)
+                        .act1Title("title" + dpIdStr)
+                        .act1Type("type" + dpIdStr)
+                        .act1Time(90L)
+                        .act1Goal("goal" + dpIdStr)
+                        .act1Desc("desc" + dpIdStr)
+                        .act1Mater("mater" + dpIdStr)
+                        .build();
+                dailyPlanService.updateDailyPlan(dp_u);
+            }
+            List<DailyPlanDTO> dailyPlanDTOList_u = dailyPlanService.selectDailyPlansAll();
+            model.addAttribute("dailyplans", dailyPlanDTOList_u);
+            return "test/dailyPlans";
+
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
 //    @GetMapping("/{id}")
 //    public String getDailyPlanById(@PathVariable Long id, Model model) {
 //        try {
@@ -46,13 +79,82 @@ public class DailyPlanController {
 
     @PostMapping
     // DB 저장
-    public  String createDP(DailyPlanDTO dailyPlanDTO) {
+    public String createDP(DailyPlanDTO dailyPlanDTO) {
         try {
             dailyPlanService.insertDailyPlan(dailyPlanDTO);
             return "redirect:schedule";
         } catch (Exception e) {
             return "redirect:schedule";
         }
+    }
+
+    @PostMapping("/act")
+    public String updateAct(DailyPlanDTO dailyPlanDTO) {
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", dailyPlanDTO.getId());
+            params.put("act1Title", dailyPlanDTO.getAct1Title());
+            params.put("act1Type", dailyPlanDTO.getAct1Type());
+            params.put("act1Goal", dailyPlanDTO.getAct1Goal());
+            params.put("act1Time", dailyPlanDTO.getAct1Time());
+            params.put("act1Desc", dailyPlanDTO.getAct1Desc());
+            params.put("act1Mater", dailyPlanDTO.getAct1Mater());
+            params.put("act1Sub", dailyPlanDTO.getAct1Sub());
+            System.out.println(dailyPlanDTO);
+            dailyPlanService.updateDailyPlanSetAct1TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
+            return "redirect:/schedule";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @GetMapping("/uirobot")
+    public String uirobot() {
+        try {
+            String cmd = "cd";
+            Process p = Runtime.getRuntime().exec("cmd /c " + cmd);
+
+            BufferedReader r = new BufferedReader(new InputStreamReader(
+                    p.getInputStream(), Charset.forName("EUC-KR")));
+            String l = r.readLine();
+
+            String resourcesPath = l + "\\src\\main\\resources\\";
+            String filePath = resourcesPath + "uipath\\result\\test.xls";
+
+            System.out.println(l);
+
+            String year = "2022";
+            String month = "8";
+            String command = "\"" + resourcesPath + "uirobot\\UiRobot.exe\" execute " +
+                    "--file \"" + resourcesPath + "uipath\\pkg\\CalendarTest.1.0.14.nupkg\" " +
+                    "--input \"{'In_Str_year' : '" + year + "' , 'In_Str_month' : '" + month + "', " +
+                    "'In_Str_filePath' : '" + filePath.replace("\\", "\\\\") + "'}\" ";
+
+            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", command);
+            processBuilder.redirectErrorStream(true); // 에러 출력을 표준 출력으로 리다이렉션합니다.
+
+            Process process = processBuilder.start();
+
+            // 프로세스의 출력을 읽어오려면 아래와 같이 할 수 있습니다.
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream(), Charset.forName("EUC-KR")));
+            String line;
+            StringBuffer calendar = new StringBuffer();
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                calendar.append(line);
+                calendar.append("\n");
+            }
+            System.out.println(calendar);
+
+            int exitCode = process.waitFor();
+            System.out.println("프로세스 종료 코드: " + exitCode);
+            return "error";
+        } catch (Exception e) {
+            return "error";
+        }
+
     }
 
 }
