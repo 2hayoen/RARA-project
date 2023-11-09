@@ -119,7 +119,7 @@ public class DailyPlanController {
             String l = r.readLine();
 
             String resourcesPath = l + "\\src\\main\\resources\\";
-            String filePath = resourcesPath + "uipath\\result\\test.xls";
+            String filePath = resourcesPath + "uipath\\result\\test.xlsx";
 
             System.out.println(l);
 
