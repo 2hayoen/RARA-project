@@ -3,6 +3,7 @@
 src/main/resources/Wallet_edudb/*
 src/main/resources/application-db.yml
 src/main/resources/sql/*
+src/main/resources/uirobot/*
 
 
 .gradle

@@ -36,7 +36,7 @@ public class DailyPlanController {
             model.addAttribute("dailyPlans", dailyPlans);
             // model 객체를 사용. "dailyPlans"라는 속성 이름으로 dailyPlans 목록을 뷰에 전달
             // 이를 통해 뷰에서 이 데이터를 사용할 수 있음
-            return "schedule";
+            return "schedule2";
             // schedule"라는 뷰 이름을 반환하여 해당 뷰를 렌더링
             // Thymeleaf 템플릿 엔진에서 "schedule.html" 템플릿을 찾아 클라이언트에게 반환하도록 요청
         } catch (Exception e) {
@@ -114,54 +114,54 @@ public class DailyPlanController {
         }
     }
 
-    @GetMapping("/uirobot")
-    public String uirobot() {
-        try {
-            String cmd = "cd";
-            Process p = Runtime.getRuntime().exec("cmd /c " + cmd);
-
-            BufferedReader r = new BufferedReader(new InputStreamReader(
-                    p.getInputStream(), Charset.forName("EUC-KR")));
-            String l = r.readLine();
-
-            String resourcesPath = l + "\\src\\main\\resources\\";
-            String filePath = resourcesPath + "uipath\\result\\test.xlsx";
-
-            System.out.println(l);
-
-            String year = "2022";
-            String month = "8";
-            String command = "\"" + resourcesPath + "uirobot\\UiRobot.exe\" execute " +
-                    "--file \"" + resourcesPath + "uipath\\pkg\\CalendarTest.1.0.14.nupkg\" " +
-                    "--input \"{'In_Str_year' : '" + year + "' , 'In_Str_month' : '" + month + "', " +
-                    "'In_Str_filePath' : '" + filePath.replace("\\", "\\\\") + "'}\" ";
-
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", command);
-            processBuilder.redirectErrorStream(true); // 에러 출력을 표준 출력으로 리다이렉션합니다.
-
-            Process process = processBuilder.start();
-
-            // 프로세스의 출력을 읽어오려면 아래와 같이 할 수 있습니다.
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    process.getInputStream(), Charset.forName("EUC-KR")));
-            String line;
-            StringBuffer calendar = new StringBuffer();
-
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-                calendar.append(line);
-                calendar.append("\n");
-            }
-            System.out.println(calendar);
-
-            int exitCode = process.waitFor();
-            System.out.println("프로세스 종료 코드: " + exitCode);
-            return "error";
-        } catch (Exception e) {
-            return "error";
-        }
-
-    }
+//    @GetMapping("/uirobot")
+//    public String uirobot() {
+//        try {
+//            String cmd = "cd";
+//            Process p = Runtime.getRuntime().exec("cmd /c " + cmd);
+//
+//            BufferedReader r = new BufferedReader(new InputStreamReader(
+//                    p.getInputStream(), Charset.forName("EUC-KR")));
+//            String l = r.readLine();
+//
+//            String resourcesPath = l + "\\src\\main\\resources\\";
+//            String filePath = resourcesPath + "uipath\\result\\test.xlsx";
+//
+//            System.out.println(l);
+//
+//            String year = "2022";
+//            String month = "8";
+//            String command = "\"" + resourcesPath + "uirobot\\UiRobot.exe\" execute " +
+//                    "--file \"" + resourcesPath + "uipath\\pkg\\CalendarTest.1.0.14.nupkg\" " +
+//                    "--input \"{'In_Str_year' : '" + year + "' , 'In_Str_month' : '" + month + "', " +
+//                    "'In_Str_filePath' : '" + filePath.replace("\\", "\\\\") + "'}\" ";
+//
+//            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", command);
+//            processBuilder.redirectErrorStream(true); // 에러 출력을 표준 출력으로 리다이렉션합니다.
+//
+//            Process process = processBuilder.start();
+//
+//            // 프로세스의 출력을 읽어오려면 아래와 같이 할 수 있습니다.
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(
+//                    process.getInputStream(), Charset.forName("EUC-KR")));
+//            String line;
+//            StringBuffer calendar = new StringBuffer();
+//
+//            while ((line = reader.readLine()) != null) {
+//                System.out.println(line);
+//                calendar.append(line);
+//                calendar.append("\n");
+//            }
+//            System.out.println(calendar);
+//
+//            int exitCode = process.waitFor();
+//            System.out.println("프로세스 종료 코드: " + exitCode);
+//            return "error";
+//        } catch (Exception e) {
+//            return "error";
+//        }
+//
+//    }
 
 
     @GetMapping("/uirobot2")
