@@ -1,6 +1,7 @@
 package com.rara.app.controller;
 
 
+import com.rara.app.dto.DailyPlanDTO;
 import com.rara.app.service.DailyPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/schedule/api")
@@ -122,15 +124,88 @@ public class DailyPlanApiController {
 
     }
 
-    @PostMapping("/uploadOnData")
-    public ResponseEntity<?> uploadOnData(@RequestBody List<String> onData) {
+    @PostMapping("/insertTableHtml")
+    public ResponseEntity<?> uploadTableHtml(@RequestBody Map<String, String> jsonData) {
         try {
-            // onData 리스트를 데이터베이스에 저장하는 로직
-            System.out.println(onData);
+            String html = jsonData.get("html");
+            String year = jsonData.get("year");
+            String month = jsonData.get("month");
+            String mId = jsonData.get("mId");
+            String key1 = jsonData.get("key1");
+            String key2 = jsonData.get("key2");
+            String key3 = jsonData.get("key3");
+
+            System.out.println(key1);
+
+            try {
+                List<DailyPlanDTO> dailyPlanDTOList = dailyPlanService.selectDailyPlanByMIdAndYear(
+                                Long.parseLong(mId), Long.parseLong(year))
+                        .stream()
+                        .filter(dailyPlanDTO -> dailyPlanDTO.getMonth() == Long.parseLong(month))
+                        .toList();
+                boolean checkDp = dailyPlanDTOList.isEmpty();
+
+                System.out.println(checkDp);
+
+                if (checkDp == false) {
+                    for (DailyPlanDTO dailyPlanDTO : dailyPlanDTOList) {
+                        dailyPlanService.deleteDailyPlan(dailyPlanDTO.getId());
+                    }
+                    dailyPlanService.insertDailyPlan(
+                            DailyPlanDTO.builder()
+                                    .year(Long.parseLong(year))
+                                    .month(Long.parseLong(month))
+                                    .day(0L)
+                                    .key1(key1).key2(key2).key3(key3)
+                                    .mId(Long.parseLong(mId))
+                                    .act2Desc(html)
+                                    .build()
+                    );
+                    System.out.println(checkDp);
+                }
+            } catch (Exception e) {
+                dailyPlanService.insertDailyPlan(
+                        DailyPlanDTO.builder()
+                                .year(Long.parseLong(year))
+                                .month(Long.parseLong(month))
+                                .day(0L)
+                                .key1(key1).key2(key2).key3(key3)
+                                .mId(Long.parseLong(mId))
+                                .act2Desc(html)
+                                .build()
+                );
+                System.out.println(year);
+            }
+
+
+            // 응답을 생성하여 클라이언트에게 반환
+            return ResponseEntity.ok("데이터 전송 및 처리 완료");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return ResponseEntity.ok("On 데이터가 성공적으로 업로드되었습니다.");
+    }
+
+    @PostMapping("/getHtmlTable")
+    public ResponseEntity<String> getHtmlTable(@RequestBody Map<String, String> jsonData) {
+        try {
+            String year = jsonData.get("year");
+            String month = jsonData.get("month");
+            String mId = jsonData.get("mId");
+
+            // HTML 데이터 생성 또는 데이터베이스에서 가져온 HTML 데이터를 사용합니다.
+            String htmlTable = dailyPlanService
+                    .selectDailyPlanByMIdAndYear(Long.parseLong(mId), Long.parseLong(year))
+                    .stream()
+                    .filter(dailyPlanDTO -> dailyPlanDTO.getDay() == 0L)
+                    .filter(dailyPlanDTO -> dailyPlanDTO.getMonth() == Long.parseLong(month))
+                    .toList().get(0).getAct2Desc();
+
+            return ResponseEntity.ok(htmlTable);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 }
 
