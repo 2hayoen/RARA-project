@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:fragment="headerFragment">
     <head>
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <a th:href="@{/schedule}" class="nav-item nav-link">일정계획수립</a>
-                        <a th:href="@{/boards/list}" class="nav-item nav-link">승인</a>
+                        <a th:href="@{/accept_boards/list}" class="nav-item nav-link">승인</a>
 
                         <!--            <div class="nav-item dropdown">-->
                         <!--              <a th:href="@{/schedule}"-->
@@ -109,13 +109,35 @@
                         <!--              </div>-->
                         <!--            </div>-->
                     </div>
-                    <a th:href="@{/signin}" class="btn btn-primary px-4">Login</a>
-                    <!--          <a th:href="@{/}" class="btn btn-primary px-4">Logout</a>-->
+                    <a th:href="@{/login}" class="btn btn-primary px-4">Login</a>
+
+<!--                    <a th:if="${loggedIn}" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
+<!--                    <a th:unless="${loggedIn}" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
+
+<!--                    <a th:if="${#request.isUserInRole('ROLE_USER')}" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
+<!--                    <a th:unless="${#request.isUserInRole('ROLE_USER')}" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
+
+<!--                        <a sec:authorize="isAuthenticated()" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
+<!--                        <a sec:authorize="not isAuthenticated()" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
+
                 </div>
             </nav>
         </div>
         </div>
         </div>
     </head>
+
+    <script>
+  // JavaScript에서 로그인 상태 확인
+  var isLoggedIn = /* 여기에서 로그인 상태를 확인하는 로직을 작성하세요. */;
+
+  // 링크 텍스트 업데이트
+  var linkElement = document.getElementById("login-logout-link");
+  if (isLoggedIn) {
+    linkElement.href = "@{/logout}";
+    linkElement.textContent = "Logout";
+  }
+</script>
+
 </th:block>
 </html>

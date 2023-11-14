@@ -82,6 +82,7 @@ public class MemberSecurityController {
         return "redirect:/login";
     }
 
+
     @GetMapping("/update")
     public String editPage(Model model) { // 회원 정보 수정 페이지
         MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
