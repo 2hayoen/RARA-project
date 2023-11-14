@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <a th:href="@{/schedule}" class="nav-item nav-link">일정계획수립</a>
-                        <a th:href="@{/boards/list}" class="nav-item nav-link">승인</a>
+                        <a th:href="@{/accept_boards/list}" class="nav-item nav-link">승인</a>
 
                         <!--            <div class="nav-item dropdown">-->
                         <!--              <a th:href="@{/schedule}"-->
@@ -106,7 +106,7 @@
                         <!--              </div>-->
                         <!--            </div>-->
                     </div>
-<!--                    <a th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
+                    <a th:href="@{/login}" class="btn btn-primary px-4">Login</a>
 
 <!--                    <a th:if="${loggedIn}" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
 <!--                    <a th:unless="${loggedIn}" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
@@ -114,8 +114,8 @@
 <!--                    <a th:if="${#request.isUserInRole('ROLE_USER')}" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
 <!--                    <a th:unless="${#request.isUserInRole('ROLE_USER')}" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
 
-                        <a sec:authorize="isAuthenticated()" th:href="@{/login}" class="btn btn-primary px-4">Login</a>
-                        <a sec:authorize="not isAuthenticated()" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>
+<!--                        <a sec:authorize="isAuthenticated()" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
+<!--                        <a sec:authorize="not isAuthenticated()" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
 
                 </div>
             </nav>

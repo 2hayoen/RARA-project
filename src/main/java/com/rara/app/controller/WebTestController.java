@@ -12,18 +12,6 @@ public class WebTestController {
         return "index";
     }
 
-
-
-//    @GetMapping("/signin")
-//    public String login(Model model) {
-//        return "login";
-//    }
-//
-//    @GetMapping("/login_22")
-//    public String login_22(Model model) {
-//        return "login_22";
-//    }
-
     @GetMapping("/notice")
     public String notice(Model model) {
         return "noticeboard";
@@ -44,10 +32,25 @@ public class WebTestController {
         return "accept_detail";
     }
 
+    @GetMapping("/result")
+    public String accept_result(Model model) {
+        return "result";
+    }
+
     @GetMapping("/accept_list")
     public String accep_list(Model model) {
         return "accept_list";
     }
+
+    //    @GetMapping("/signin")
+//    public String login(Model model) {
+//        return "login";
+//    }
+//
+//    @GetMapping("/login_22")
+//    public String login_22(Model model) {
+//        return "login_22";
+//    }
 
 
 }

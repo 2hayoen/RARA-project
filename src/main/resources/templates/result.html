@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 200px">
+            <h3 class="display-3 font-weight-bold text-white">승인 요청</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="">Accept Board</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">내용 확인</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+      <!-- Team Start -->
+          <div class="text-center pb-2">
+            <p class="section-title px-5">
+              <h1 class="display-3 font-weight-bold text-black">schedule_result : </h1>
+            </p>
+            <h1 class="mb-4">  </h1>
+            </div>
+          </div>
+              
+        <div class="container">
+          <div class="test">
+          <div class="first">  <h3 class="">title: 값 </h3></div>
+          <div class="second"> <h3 class="">Writer: 값</h3></div>
+          <div class="third">  <h3 class="">data: 값</h3></div>
+        </div>
+            <!-- Page content-->
+            <div class="container">
+                <div class="scroll-window-wrapper">
+                    <div class="scroll-window">
+                        <table class="table is-fixed-header">
+                            <!--          <caption class="a11y-hidden">Table Caption</caption>-->
+                            <thead>
+                            <th scope="col" data-th="Name">회차</th>
+                            <th scope="col" data-th="Email">교육활동 주제</th>
+                            </thead>
+                            <tbody>
+                            <tr th:each="dailyPlan : ${dailyPlans}">
+                            <tr th:each="dailyPlan, stat : ${dailyPlans}">
+                                <td th:text="${stat.index + 1}"></td>
+                                <td th:text="${dailyPlan.act1Title}"></td>
+                                <td class="has-text-right">
+                                    <div class="text-end" style="text-align: right;">
+                                        <button type="button" class="btn btn-primary px-4"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#scrollableModal1"
+                                                style="background-color: #17a2b8;; color: #fff;">
+                                            상세 확인
+                                        </button>
+                                    </div>
+
+                                    <!-- Scrollable 모달 1 -->
+                                    <div class="modal fade" id="scrollableModal1" tabindex="-1"
+                                         aria-labelledby="scrollableModalLabel1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="scrollableModalLabel1">교육 활동 내용 상세 확인</h5>
+                                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+                                                            aria-label="Close"
+                                                            style="width: 40px; background-color: #f0f2f3; color: #0e0e0e;">x
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- 수정 불가능한 내용 -->
+                                                    <!-- 주제 활동명 -->
+                                                    <div id="displayTitle">
+                                                        <label for="editableTitle">주제 활동명</label>
+                                                        <p>주제 활동명 내용</p>
+                                                    </div>
+
+                                                    <!-- 누리과정 영역 -->
+                                                    <div id="displayArea">
+                                                        <label for="editableArea">누리과정 영역</label>
+                                                        <p>누리과정 영역 내용</p>
+                                                    </div>
+
+                                                    <!-- 교육활동 소요 시간 -->
+                                                    <div id="displayTime">
+                                                        <label for="editableTime">교육활동 소요 시간</label>
+                                                        <p>교육활동 소요 시간 내용</p>
+                                                    </div>
+
+                                                    <!-- 목표 -->
+                                                    <div id="displayGoal">
+                                                        <label for="editableGoal">목표</label>
+                                                        <p>목표 내용</p>
+                                                    </div>
+
+                                                    <!-- 활동 내용 -->
+                                                    <div id="displayContent">
+                                                        <label for="editableContent">활동 내용</label>
+                                                        <p>활동 내용 내용</p>
+                                                    </div>
+
+                                                    <!-- 준비물 -->
+                                                    <div id="displayMaterials">
+                                                        <label for="editableMaterials">준비물</label>
+                                                        <p>준비물 내용</p>
+                                                    </div>
+
+                                                    <!-- 수정 가능한 내용 -->
+                                                    <div id="editableFields" style="display: none;">
+                                                        <label for="editableTitle">주제 활동명</label>
+                                                        <input id="editableTitle" class="form-control" type="text"
+                                                               placeholder="주제 활동명">
+
+                                                        <label for="editableArea">누리과정 영역</label>
+                                                        <input id="editableArea" class="form-control" type="text"
+                                                               placeholder="누리과정 영역">
+
+                                                        <label for="editableTime">교육활동 소요 시간</label>
+                                                        <input id="editableTime" class="form-control" type="text"
+                                                               placeholder="교육활동 소요 시간">
+
+                                                        <label for="editableGoal">목표</label>
+                                                        <textarea id="editableGoal" class="form-control" rows="3"
+                                                                  placeholder="목표"></textarea>
+
+                                                        <label for="editableContent">활동 내용</label>
+                                                        <textarea id="editableContent" class="form-control" rows="5"
+                                                                  placeholder="활동 내용"></textarea>
+
+                                                        <label for="editableMaterials">준비물</label>
+                                                        <textarea id="editableMaterials" class="form-control" rows="3"
+                                                                  placeholder="준비물"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" id="editButton"
+                                                            style="background-color: #17a2b8; color: #fff;">수정
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary" id="saveChangesButton2"
+                                                            style="background-color: #17a2b8; color: #fff; display: none;">변경사항
+                                                        저장
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <script>
+    // 수정 버튼을 클릭하면 수정 가능한 텍스트 박스를 보이게 하고 수정 버튼을 숨깁니다.
+    document.getElementById("editButton").addEventListener("click", function () {
+        document.getElementById("displayTitle").style.display = "none";
+        document.getElementById("displayArea").style.display = "none";
+        document.getElementById("displayTime").style.display = "none";
+        document.getElementById("displayGoal").style.display = "none";
+        document.getElementById("displayContent").style.display = "none";
+        document.getElementById("displayMaterials").style.display = "none";
+
+        document.getElementById("editableFields").style.display = "block";
+        document.getElementById("saveChangesButton2").style.display = "block";
+        document.getElementById("editButton").style.display = "none";
+    });
+
+    // 변경사항 저장 버튼을 클릭하면 수정한 내용을 저장하고 수정 가능한 텍스트 박스를 숨깁니다.
+    document.getElementById("saveChangesButton2").addEventListener("click", function () {
+        // 변경사항을 저장하는 로직을 추가하세요.
+
+        document.getElementById("displayTitle").style.display = "block";
+        document.getElementById("displayArea").style.display = "block";
+        document.getElementById("displayTime").style.display = "block";
+        document.getElementById("displayGoal").style.display = "block";
+        document.getElementById("displayContent").style.display = "block";
+        document.getElementById("displayMaterials").style.display = "block";
+
+        document.getElementById("editableFields").style.display = "none";
+        document.getElementById("saveChangesButton2").style.display = "none";
+        document.getElementById("editButton").style.display = "block";
+    });
+                            </script>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            
+                <div class="list_test1" style="text-align: right;">
+                <a th:href="@{/accept_list}" button type="button" class="btn btn-primary" id="saveChangesButton2"
+                        style="background-color: #17a2b8;; color: #fff;">목록</a>
+<!--                    <a th:href="@{/schedule_list}" class="btn btn-primary">목록</a>-->
+                    <!-- 승인 확인 페이지로 이동하는 링크 -->
+                    <!--    <a th:href="@{/schedule_list}" class="btn btn-primary">승인</a>-->
+                    <button type="button" id="approvalButton" class="btn btn-primary" onclick="changeText()">승인</button>
+                </div>
+
+              </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script>
+function changeText() {
+    var button = document.getElementById("approvalButton");
+    if (button.innerHTML === "승인") {
+        button.innerHTML = "확인";
+    } else {
+        button.innerHTML = "승인";
+    }
+}
+</script>
+
+
+    <style>
+        .test{
+          width: 120%;
+          margin: 10px auto;
+          display: flex;
+          font-size: 30px;
+        }
+        .first {
+            flex:1;
+            width:30%;
+            margin-left: 10px 10%;
+            
+        }
+        .second{
+            flex:1;
+            margin-right: 2px 5%;
+            width:10%;
+            
+        }
+        .third{
+            flex:1;
+            width:30%;
+            
+        }
+      
+    </style>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../../../../../Users/wh704/Desktop/잡다/kidkinder-1.0.0/kidkinder-1.0.0/lib/easing/easing.min.js"></script>
+    <script src="../../../../../../../Users/wh704/Desktop/잡다/kidkinder-1.0.0/kidkinder-1.0.0/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../../../../../../Users/wh704/Desktop/잡다/kidkinder-1.0.0/kidkinder-1.0.0/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="../../../../../../../Users/wh704/Desktop/잡다/kidkinder-1.0.0/kidkinder-1.0.0/lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="../../../../../../../Users/wh704/Desktop/잡다/kidkinder-1.0.0/kidkinder-1.0.0/mail/jqBootstrapValidation.min.js"></script>
+    <script src="../../../../../../../Users/wh704/Desktop/잡다/kidkinder-1.0.0/kidkinder-1.0.0/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../../../../../../../Users/wh704/Desktop/잡다/kidkinder-1.0.0/kidkinder-1.0.0/js/main.js"></script>
+
+</th:block>
+</html>
