@@ -34,7 +34,7 @@ public class MemberSecurityController {
             MemberDTO memberDTO = memberService.selectMemberById(id);
             memberDTO.setPwd(memberService.passwordEncoder().encode(memberDTO.getPwd())); // password는 보이지 않도록 null로 설정
             model.addAttribute("users", memberDTO);
-            return "home1";
+            return "test/home1";
         } catch (Exception e) {
             model.addAttribute("msg", "Member personal Error!");
             return "error";
@@ -81,6 +81,7 @@ public class MemberSecurityController {
         }
         return "redirect:/login";
     }
+
 
     @GetMapping("/update")
     public String editPage(Model model) { // 회원 정보 수정 페이지

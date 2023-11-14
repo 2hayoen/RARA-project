@@ -158,8 +158,4 @@ public class TestController {
         }
     }
 
-    @GetMapping("/home")
-    public String testHome(Model model) {
-        return "home";
-    }
 }

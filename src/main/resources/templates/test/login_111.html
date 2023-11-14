@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Login</title>
+
+<form action="/auth" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+    <h2>로그인</h2>
+    <div>
+        <input type="text" name="email" placeholder="Email"/>
+    </div>
+    <div>
+        <input type="password" name="pwd" placeholder="Password"/>
+    </div>
+    <br>
+    <button type="submit">로그인</button>
+    <button type="button" onclick="location.href='signup'">회원가입</button>
+</form>
+
+
+</th:block>
+</html>
