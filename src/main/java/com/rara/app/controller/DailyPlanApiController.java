@@ -135,8 +135,6 @@ public class DailyPlanApiController {
             String key2 = jsonData.get("key2");
             String key3 = jsonData.get("key3");
 
-            System.out.println(key1);
-
             try {
                 List<DailyPlanDTO> dailyPlanDTOList = dailyPlanService.selectDailyPlanByMIdAndYear(
                                 Long.parseLong(mId), Long.parseLong(year))
@@ -144,8 +142,6 @@ public class DailyPlanApiController {
                         .filter(dailyPlanDTO -> dailyPlanDTO.getMonth() == Long.parseLong(month))
                         .toList();
                 boolean checkDp = dailyPlanDTOList.isEmpty();
-
-                System.out.println(checkDp);
 
                 if (checkDp == false) {
                     for (DailyPlanDTO dailyPlanDTO : dailyPlanDTOList) {
@@ -161,7 +157,17 @@ public class DailyPlanApiController {
                                     .act2Desc(html)
                                     .build()
                     );
-                    System.out.println(checkDp);
+                } else {
+                    dailyPlanService.insertDailyPlan(
+                            DailyPlanDTO.builder()
+                                    .year(Long.parseLong(year))
+                                    .month(Long.parseLong(month))
+                                    .day(0L)
+                                    .key1(key1).key2(key2).key3(key3)
+                                    .mId(Long.parseLong(mId))
+                                    .act2Desc(html)
+                                    .build()
+                    );
                 }
             } catch (Exception e) {
                 dailyPlanService.insertDailyPlan(
@@ -174,7 +180,6 @@ public class DailyPlanApiController {
                                 .act2Desc(html)
                                 .build()
                 );
-                System.out.println(year);
             }
 
 
