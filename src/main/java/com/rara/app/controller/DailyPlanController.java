@@ -3,6 +3,7 @@ package com.rara.app.controller;
 import com.rara.app.dto.DailyPlanDTO;
 import com.rara.app.service.DailyPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -83,14 +84,36 @@ public class DailyPlanController {
 //        }
 //    }
 
+    @Value("${spring.servlet.multipart.location}")
+    String fileInputPath;
+
     @PostMapping
     // DB 저장
     public String createDP(DailyPlanDTO dailyPlanDTO) {
         try {
             dailyPlanService.insertDailyPlan(dailyPlanDTO);
-            return "redirect:schedule";
+            BufferedOutputStream bs = null;
+            String fileName = dailyPlanDTO.getYear().toString() + "_"
+                    + dailyPlanDTO.getMonth().toString() + "_"
+                    + dailyPlanDTO.getMId().toString() + ".txt";
+            try {
+                bs = new BufferedOutputStream(new FileOutputStream(fileInputPath + "/" + fileName));
+                String str = dailyPlanDTO.getYear().toString() + ","
+                        + dailyPlanDTO.getMonth().toString() + ","
+                        + "25" + ","
+                        + dailyPlanDTO.getMId().toString() + ","
+                        + dailyPlanDTO.getKey1() + ","
+                        + dailyPlanDTO.getKey2() + ","
+                        + dailyPlanDTO.getKey3();
+                bs.write(str.getBytes()); //Byte형으로만 넣을 수 있음
+            } catch (Exception e) {
+                e.getStackTrace();
+            } finally {
+                bs.close();
+            }
+            return "redirect:/schedule";
         } catch (Exception e) {
-            return "redirect:schedule";
+            return "redirect:/schedule";
         }
     }
 
@@ -164,105 +187,105 @@ public class DailyPlanController {
 //    }
 
 
-    @GetMapping("/uirobot2")
-    public String uirobot2(Model model) {
-        try {
-            String cmd = "cd";
-            Process p = Runtime.getRuntime().exec("cmd /c " + cmd);
-
-            BufferedReader r = new BufferedReader(new InputStreamReader(
-                    p.getInputStream(), Charset.forName("EUC-KR")));
-            String l = r.readLine();
-
-            String resourcesPath = l + "\\src\\main\\resources\\";
-            String filePath = resourcesPath + "uipath\\result\\test2.xlsx";
-
-            String pkgName = "CalendarTest2.1.0.1.nupkg";
-
-            System.out.println(l);
-
-            String year = "2022";
-            String month = "8";
-
-            String command = "\"" + resourcesPath + "uirobot\\UiRobot.exe\" execute " +
-                    "--file \"" + resourcesPath + "uipath\\pkg\\" + pkgName + "\" " +
-                    "--input \"{'In_Str_year' : '" + year + "' , 'In_Str_month' : '" + month + "', " +
-                    "'In_Str_filePath' : '" + filePath.replace("\\", "\\\\") + "'}\" ";
-
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", command);
-            processBuilder.redirectErrorStream(true); // 에러 출력을 표준 출력으로 리다이렉션합니다.
-
-            Process process = processBuilder.start();
-
-            // 프로세스의 출력을 읽어오려면 아래와 같이 할 수 있습니다.
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    process.getInputStream(), Charset.forName("EUC-KR")));
-            String line;
-            StringBuffer calendar = new StringBuffer();
-            String calendarStr = "";
-
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-                calendar.append(line);
-                calendar.append("\n");
-                calendarStr += line;
-            }
-
-            System.out.println(calendar);
-            System.out.println(calendarStr);
-
-            String fileTxtPath = resourcesPath + "uipath\\text\\test2.txt"; // 대상 파일
-
-            BufferedOutputStream bs = null;
-            bs = new BufferedOutputStream(
-                    new FileOutputStream(fileTxtPath));
-            String str = calendarStr;
-            bs.write(str.getBytes()); //Byte형으로만 넣을 수 있음
-            bs.close();
-
-
-            FileInputStream fileStream = null; // 파일 스트림
-            fileStream = new FileInputStream(fileTxtPath);// 파일 스트림 생성
-            //버퍼 선언
-            byte[] readBuffer = new byte[fileStream.available()];
-            while (fileStream.read(readBuffer) != -1) {
-            }
-            System.out.println(new String(readBuffer)); //출력
-
-            fileStream.close(); //스트림 닫기
-
-//            String[] calendarSplit = calendarStr.split("/");
-            String[] calendarSplit = new String(readBuffer).split("/");
-
-            List<List<String>> strDayList = new ArrayList<>();
-
-            for (String strWeek : calendarSplit) {
-                List<String> tempDayList = new ArrayList<>();
-                for (String strDay : strWeek.split(",")) {
-                    tempDayList.add(strDay);
-                }
-                if (tempDayList.size() > 1) {
-                    strDayList.add(tempDayList.subList(1, tempDayList.size()));
-                }
-            }
-
-
-            for (List<String> tempList : strDayList) {
-                System.out.println(tempList);
-            }
-
-            int exitCode = process.waitFor();
-            System.out.println("프로세스 종료 코드: " + exitCode);
-
-            model.addAttribute("calendarNestedList", strDayList);
-
-//            return "redirect:/schedule/test2";
-            return "schedule2";
-        } catch (Exception e) {
-            return "error";
-        }
-
-    }
+//    @GetMapping("/uirobot2")
+//    public String uirobot2(Model model) {
+//        try {
+//            String cmd = "cd";
+//            Process p = Runtime.getRuntime().exec("cmd /c " + cmd);
+//
+//            BufferedReader r = new BufferedReader(new InputStreamReader(
+//                    p.getInputStream(), Charset.forName("EUC-KR")));
+//            String l = r.readLine();
+//
+//            String resourcesPath = l + "\\src\\main\\resources\\";
+//            String filePath = resourcesPath + "uipath\\result\\test2.xlsx";
+//
+//            String pkgName = "CalendarTest2.1.0.1.nupkg";
+//
+//            System.out.println(l);
+//
+//            String year = "2022";
+//            String month = "8";
+//
+//            String command = "\"" + resourcesPath + "uirobot\\UiRobot.exe\" execute " +
+//                    "--file \"" + resourcesPath + "uipath\\pkg\\" + pkgName + "\" " +
+//                    "--input \"{'In_Str_year' : '" + year + "' , 'In_Str_month' : '" + month + "', " +
+//                    "'In_Str_filePath' : '" + filePath.replace("\\", "\\\\") + "'}\" ";
+//
+//            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", command);
+//            processBuilder.redirectErrorStream(true); // 에러 출력을 표준 출력으로 리다이렉션합니다.
+//
+//            Process process = processBuilder.start();
+//
+//            // 프로세스의 출력을 읽어오려면 아래와 같이 할 수 있습니다.
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(
+//                    process.getInputStream(), Charset.forName("EUC-KR")));
+//            String line;
+//            StringBuffer calendar = new StringBuffer();
+//            String calendarStr = "";
+//
+//            while ((line = reader.readLine()) != null) {
+//                System.out.println(line);
+//                calendar.append(line);
+//                calendar.append("\n");
+//                calendarStr += line;
+//            }
+//
+//            System.out.println(calendar);
+//            System.out.println(calendarStr);
+//
+//            String fileTxtPath = resourcesPath + "uipath\\text\\test2.txt"; // 대상 파일
+//
+//            BufferedOutputStream bs = null;
+//            bs = new BufferedOutputStream(
+//                    new FileOutputStream(fileTxtPath));
+//            String str = calendarStr;
+//            bs.write(str.getBytes()); //Byte형으로만 넣을 수 있음
+//            bs.close();
+//
+//
+//            FileInputStream fileStream = null; // 파일 스트림
+//            fileStream = new FileInputStream(fileTxtPath);// 파일 스트림 생성
+//            //버퍼 선언
+//            byte[] readBuffer = new byte[fileStream.available()];
+//            while (fileStream.read(readBuffer) != -1) {
+//            }
+//            System.out.println(new String(readBuffer)); //출력
+//
+//            fileStream.close(); //스트림 닫기
+//
+////            String[] calendarSplit = calendarStr.split("/");
+//            String[] calendarSplit = new String(readBuffer).split("/");
+//
+//            List<List<String>> strDayList = new ArrayList<>();
+//
+//            for (String strWeek : calendarSplit) {
+//                List<String> tempDayList = new ArrayList<>();
+//                for (String strDay : strWeek.split(",")) {
+//                    tempDayList.add(strDay);
+//                }
+//                if (tempDayList.size() > 1) {
+//                    strDayList.add(tempDayList.subList(1, tempDayList.size()));
+//                }
+//            }
+//
+//
+//            for (List<String> tempList : strDayList) {
+//                System.out.println(tempList);
+//            }
+//
+//            int exitCode = process.waitFor();
+//            System.out.println("프로세스 종료 코드: " + exitCode);
+//
+//            model.addAttribute("calendarNestedList", strDayList);
+//
+////            return "redirect:/schedule/test2";
+//            return "schedule2";
+//        } catch (Exception e) {
+//            return "error";
+//        }
+//
+//    }
 
     @GetMapping("/test2")  // 접근 URL
     public String getCalendar(Model model) {
@@ -281,5 +304,6 @@ public class DailyPlanController {
             return "error"; // 예외가 발생하면 "error" 뷰로 리디렉션
         }
     }
+
 
 }
