@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @Controller
-@RequestMapping("/schedule")
+@RequestMapping("/act")
 public class DailyPlanController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class DailyPlanController {
             model.addAttribute("dailyPlans", dailyPlans);
             // model 객체를 사용. "dailyPlans"라는 속성 이름으로 dailyPlans 목록을 뷰에 전달
             // 이를 통해 뷰에서 이 데이터를 사용할 수 있음
-            return "schedule2";
+            return "Act_input";
             // schedule"라는 뷰 이름을 반환하여 해당 뷰를 렌더링
             // Thymeleaf 템플릿 엔진에서 "schedule.html" 템플릿을 찾아 클라이언트에게 반환하도록 요청
         } catch (Exception e) {
@@ -88,9 +88,9 @@ public class DailyPlanController {
     public String createDP(DailyPlanDTO dailyPlanDTO) {
         try {
             dailyPlanService.insertDailyPlan(dailyPlanDTO);
-            return "redirect:schedule";
+            return "redirect:Act_input";
         } catch (Exception e) {
-            return "redirect:schedule";
+            return "redirect:Act_input";
         }
     }
 
