@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:fragment="headerFragment">
     <head>
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -64,7 +65,7 @@
                    class="navbar-brand font-weight-bold text-secondary"
                    style="font-size: 50px">
                     <i class="flaticon-043-teddy-bear"></i>
-                    <span class="text-primary">RARA kindergarten</span>
+                    <span class="text-primary">RARA</span>
                 </a>
                 <button type="button"
                         class="navbar-toggler"
@@ -75,20 +76,22 @@
                 <div class="collapse navbar-collapse justify-content-between"
                      id="navbarCollapse">
                     <div class="navbar-nav font-weight-bold mx-auto py-0">
-                        <a th:href="@{/}" class="nav-item nav-link">어린이집 소개</a>
+                        <a th:href="@{/}" class="nav-item nav-link">홈</a>
                         <!--            <a th:href="@{/classchild}" class="nav-item nav-link">우리 반</a>-->
 
-                        <div class="nav-item dropdown">
-                            <a href="#"
-                               class="nav-link dropdown-toggle"
-                               data-toggle="dropdown">우리반</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a th:href="@{/classchild}" class="dropdown-item">교사</a>
-                                <a th:href="@{/parents}" class="dropdown-item">학부모</a>
-                            </div>
-                        </div>
-                        <a th:href="@{/schedule}" class="nav-item nav-link">일정계획수립</a>
-                        <a th:href="@{/accept_boards/list}" class="nav-item nav-link">승인</a>
+                        <!--                        <div class="nav-item dropdown">-->
+                        <!--                            <a href="#"-->
+                        <!--                               class="nav-link dropdown-toggle"-->
+                        <!--                               data-toggle="dropdown">우리반</a>-->
+                        <!--                            <div class="dropdown-menu rounded-0 m-0">-->
+                        <!--                                <a th:href="@{/classchild}" class="dropdown-item">교사</a>-->
+                        <!--                                <a th:href="@{/parents}" class="dropdown-item">학부모</a>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <a th:href="@{/boards/list}" class="nav-item nav-link">놀이/교육활동 일정표</a>
+                        <a th:href="@{/act}" class="nav-item nav-link">놀이/교육활동 수립</a>
+                        <!--                        <a th:href="@{/accept_boards/list}" class="nav-item nav-link">가정통신문</a>-->
+                        <a th:href="@{/mypage}" class="nav-item nav-link">마이페이지</a>
 
                         <!--            <div class="nav-item dropdown">-->
                         <!--              <a th:href="@{/schedule}"-->

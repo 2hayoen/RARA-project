@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+
+<!--  레이아웃 정리 해주세요 ; 입력창, 입력창 레이블, 버튼 위치 등, 첨부파일 만 남겨두고 제출 버튼은 지우기  -->
+
+
+
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 400px"
+        >
+            <h3 class="display-3 font-weight-bold text-white">공지 글 작성</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">작성</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <div id="accept-list">
+        <div class="container">
+            <div class="form-group">
+                제목
+                <br>
+                <input id="title" class="" type="title" rows="2" placeholder="제목">
+            </div>
+            <div class="form-group">
+                내용
+                <textarea id="editableGoal" class="form-control" rows="15" placeholder="내용"></textarea>
+            </div>
+            <div class="form-group">
+                첨부파일
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input type="file" name="profile">
+
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- 임시방편 -->
+
+                </div>
+                <div class="col-md-6">
+                    <!-- 임시방편 -->
+                    <a th:href="@{/accept_create}" button type="button" class="btn btn-primary">삭제</a>
+                    <a th:href="@{/boards/list}" button type="button" class="btn btn-primary">등록</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    .section.notice {
+        padding: 80px 0;
+    }
+
+    .page-title {
+        margin-bottom: 60px;
+        text-align: center;
+    }
+    .page-title h3 {
+        font-size: 28px;
+        color: #333333;
+        font-weight: 400;
+    }
+
+    #board-search .search-window {
+        padding: 15px 0;
+        background-color: #ffffff;
+        text-align: center;
+    }
+    #board-search .search-window .search-wrap {
+        position: relative;
+        padding-right: 124px;
+        margin: 0 auto;
+        width: 80%;
+        max-width: 564px;
+    }
+    #board-search .search-window .search-wrap input {
+        height: 40px;
+        width: 100%;
+        font-size: 14px;
+        padding: 7px 14px;
+        border: 1px solid #ccc;
+    }
+    #board-search .search-window .search-wrap input:focus {
+        border-color: #333;
+        outline: 0;
+        border-width: 1px;
+    }
+    #board-search .search-window .search-wrap .btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 108px;
+        padding: 0;
+        font-size: 16px;
+    }
+
+    .board-table {
+        font-size: 13px;
+        width: 100%;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .board-table a {
+        color: #333;
+        line-height: 1.4;
+        word-break: break-all;
+        vertical-align: middle;
+    }
+    .board-table a:hover {
+        text-decoration: underline;
+    }
+    .board-table th {
+        text-align: center;
+    }
+
+    .board-table .th-num {
+        width: 100px;
+        text-align: center;
+    }
+
+    .board-table .th-date {
+        width: 200px;
+    }
+
+    .board-table th, .board-table td {
+        padding: 14px 0;
+    }
+
+    .board-table tbody td {
+        border-top: 1px solid #e7e7e7;
+        text-align: center;
+    }
+
+    .board-table tbody th {
+        padding-left: 28px;
+        padding-right: 14px;
+        border-top: 1px solid #e7e7e7;
+        text-align: left;
+    }
+
+    .container {
+        width: 1100px;
+        margin: 0 auto;
+    }
+
+    /* 수정한 스타일: 배경색을 흰색으로 변경 및 모양 조정 */
+    .container-fluid.bg-primary.mb-5 {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px; /* 더 둥글게 모양 변경 */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="file"] {
+        width: 50%; /* 50%로 변경하여 반으로 줄임 */
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px; /* 둥글게 모양 변경 */
+    }
+
+
+
+    /* 추가: 삭제 버튼 오른쪽 끝에 배치 */
+     .col-md-6 .btn-primary {
+        float: right;
+        margin-left: 0.3cm;
+    }
+
+
+</style>
+
+
+</th:block>
+</html>

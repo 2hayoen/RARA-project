@@ -52,5 +52,16 @@ public class WebTestController {
 //        return "login_22";
 //    }
 
+    // 확인용
+//    @GetMapping("/Board_create")
+//    public String accept_board(Model model) { return "Board_create"; }
+
+//    @GetMapping("/Board_detailed_Calendar")
+//    public String accept_read(Model model) { return "Board_detailed_Calendar"; }
+
+    @GetMapping("/mypage")
+    public String mapage(Model model) {
+        return "Teacher_Act_list";
+    }
 
 }
