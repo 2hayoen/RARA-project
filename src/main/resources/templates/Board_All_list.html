@@ -3,6 +3,77 @@
       layout:decorate="layout/default_layout">
 <th:block layout:fragment="content">
 
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 200px">
+            <h3 class="display-3 font-weight-bold text-white">승인 확인</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="">accept</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">목록</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- board seach area -->
+    <section>
+        <div id="board-search">
+            <div class="container">
+                <div class="search-window">
+                    <form action="">
+                        <div class="search-wrap">
+                            <label for="search" class="blind">공지사항 내용 검색</label>
+                            <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                            <button type="submit" class="btn btn-dark">검색</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- board list area -->
+        <div id="accept-list">
+            <div class="container">
+                <table class="board-table">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="th-num">번호</th>
+                        <th scope="col" class="th-title">제목</th>
+                        <th scope="col" class="th-date">작성자</th>
+                        <th scope="col" class="th-date">등록일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="board : ${boards}">
+                        <td th:text="${board.id}"></td>
+                        <td>
+                            <a th:text="${board.title}" th:href="@{'/boards/' + ${board.id}}"></a>
+                        </td>
+                        <td th:text="${board.author}"></td>
+                        <td th:text="${board.created}"></td>
+                    </tr>
+                    <div th:if="${#lists.isEmpty(boards)}">
+                        <td colspan="4">조회된 결과가 없습니다.</td><!-- 'boards'가 비어 있을 때의 내용 -->
+                    </div>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-6 offset-md-3">
+            <div class="d-flex justify-content-end ">
+                <!--                <a th:href="@{/signin}" class="btn btn-primary px-4">Login</a>-->
+                <a th:href="@{/boards/create}" button type="submit" class="btn btn-primary"
+                   style="margin-left: 5cm;">작성</a>
+            </div>
+        </div>
+    </section>
+
     <style>
             .table {
               border-collapse: collapse;
@@ -167,77 +238,6 @@
             }
 
     </style>
-
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary mb-5">
-        <div
-                class="d-flex flex-column align-items-center justify-content-center"
-                style="min-height: 200px">
-            <h3 class="display-3 font-weight-bold text-white">승인 확인</h3>
-            <div class="d-inline-flex text-white">
-                <p class="m-0"><a class="text-white" href="">accept</a></p>
-                <p class="m-0 px-2">/</p>
-                <p class="m-0">목록</p>
-            </div>
-        </div>
-    </div>
-    <!-- Header End -->
-
-    <!-- board seach area -->
-    <section>
-        <div id="board-search">
-            <div class="container">
-                <div class="search-window">
-                    <form action="">
-                        <div class="search-wrap">
-                            <label for="search" class="blind">공지사항 내용 검색</label>
-                            <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-                            <button type="submit" class="btn btn-dark">검색</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- board list area -->
-        <div id="accept-list">
-            <div class="container">
-                <table class="board-table">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="th-num">번호</th>
-                        <th scope="col" class="th-title">제목</th>
-                        <th scope="col" class="th-date">작성자</th>
-                        <th scope="col" class="th-date">등록일</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr th:each="board : ${boards}">
-                        <td th:text="${board.id}"></td>
-                        <td>
-                            <a th:text="${board.title}" th:href="@{'/boards/' + ${board.id}}"></a>
-                        </td>
-                        <td th:text="${board.author}"></td>
-                        <td th:text="${board.created}"></td>
-                    </tr>
-                    <div th:if="${#lists.isEmpty(boards)}">
-                        <td colspan="4">조회된 결과가 없습니다.</td><!-- 'boards'가 비어 있을 때의 내용 -->
-                    </div>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="col-md-6 offset-md-3">
-            <div class="d-flex justify-content-end ">
-                <!--                <a th:href="@{/signin}" class="btn btn-primary px-4">Login</a>-->
-                <a th:href="@{/boards/create}" button type="submit" class="btn btn-primary"
-                   style="margin-left: 5cm;">작성</a>
-            </div>
-        </div>
-    </section>
 
 </th:block>
 </html>
