@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 200px">
+            <h3 class="display-3 font-weight-bold text-white">일정표 확인</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="">Board_detailed_Calendar</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">내용 확인</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+    <div class="content">
+        <section>
+            <table class="tb tb_row">
+                <colgroup>
+                    <col style="width:10%;" /><col style="width:23%;" /><col style="width:10%;" /><col style="width:23%;" />
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th scope="row">글 유형</th>
+                    <td th:text="${post.noticeYn == false ? '일반' : '공지'}"></td>
+
+                    <th scope="row">등록일</th>
+                    <td th:text="${#temporals.format( post.createdDate, 'yyyy-MM-dd HH:mm' )}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">제목</th>
+                    <td>[[ ${post.title} ]]</td>
+
+                    <th scope="row">조회</th>
+                    <td colspan="3">[[ ${post.viewCnt} ]]</td>
+                </tr>
+                <tr>
+                    <th scope="row">이름</th>
+                    <td colspan="3">[[ ${post.writer} ]]</td>
+                </tr>
+                <tr>
+                    <th scope="row">내용</th>
+                    <td colspan="3" th:each="board : ${boards}" th:text="${board.content}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="btn_set">
+                <a th:href="@{/boards( id=${board.id} )}" class="btns btn_bdr4 btn_mid">수정</a>
+                <a th:href="@{/boards( id=${board.id} )}" class="btns btn_bdr4 btn_mid">삭제</a>
+                <a th:href="@{/list}" class="btns btn_bdr3 btn_mid">뒤로</a>
+            </p>
+        </section>
+    </div> <!--/* .content */-->
+
+
+    <!-- board title -->
+        <div id="board title"> 
+
+
+        </div>
+
+
+    
+<section>
+    <!-- board list area -->
+    <div id="Board_detailed_Calendar">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-date">등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="board : ${boards}">
+                    <td>
+                        
+                        <img src="C:\Users\kosa\Desktop\kidkinder-1.0.0\img\class-1.jpg" alt="이미지 설명">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a th:href="@{/accept_create}" button type="button" class="btn btn-primary" style="margin-left: 5cm;">목록</a>
+                    </td>
+                </tr>
+                </tbody>
+                <tbody>
+                <tr>
+                    <td>
+                        이미지들어갈칸
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-6 offset-md-3">
+        <div class="d-flex justify-content-end">
+            <!-- <a th:href="@{/signin}" class="btn btn-primary px-4">Login</a>-->
+            <!-- <a th:href="@{/accept_create}" button type="submit" class="btn btn-primary" style="margin-left: 5cm;">작성</a> -->
+        </div>
+    </div>
+</section>
+</th:block>
+</html>

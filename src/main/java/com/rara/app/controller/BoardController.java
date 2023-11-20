@@ -4,10 +4,14 @@ import com.rara.app.dto.BoardDTO;
 import com.rara.app.dto.DailyPlanDTO;
 import com.rara.app.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -26,17 +30,48 @@ public class BoardController {
         return "Board_create"; // Board_create.html을 렌더링
     }
 
+    @Value("${spring.servlet.multipart.location}")
+    String fileInputPath;
+
+    @Value("${files.boards.location}")
+    String fileBoardPath;
+
     @PostMapping("/create")
     // 게시물 생성 처리
-    public String createBoard(@ModelAttribute("boardDTO") BoardDTO boardDTO) {
+    public String createBoard(BoardDTO boardDTO,
+                              @RequestParam("fileFirst") MultipartFile file1,
+                              @RequestParam("fileSecond") MultipartFile file2)
+            throws IllegalStateException, IOException {
         try {
-            // boardService를 사용하여 게시물 생성
+            String fileBoardPullPath1 = fileBoardPath + "/" + file1.getOriginalFilename();
+            if (!file1.isEmpty()) {
+                file1.transferTo(new File(fileBoardPullPath1));
+                boardDTO.setFile1(fileBoardPullPath1);
+            }
+            String fileBoardPullPath2 = fileBoardPath + "/" + file2.getOriginalFilename();
+            if (!file2.isEmpty()) {
+                file2.transferTo(new File(fileBoardPullPath2));
+                boardDTO.setFile2(fileBoardPullPath2);
+            }
+
             boardService.insertBoard(boardDTO);
             return "redirect:list"; // 게시물 생성 후 목록 페이지로 리다이렉션
         } catch (Exception e) {
             return "index"; // 예외 발생 시 index 페이지로 이동
         }
     }
+
+//    @PostMapping("/create")
+//    // 게시물 생성 처리
+//    public String createBoard(@ModelAttribute("boardDTO") BoardDTO boardDTO) {
+//        try {
+//            // boardService를 사용하여 게시물 생성
+//            boardService.insertBoard(boardDTO);
+//            return "redirect:list"; // 게시물 생성 후 목록 페이지로 리다이렉션
+//        } catch (Exception e) {
+//            return "index"; // 예외 발생 시 index 페이지로 이동
+//        }
+//    }
 
 
 //    @PostMapping("/create")

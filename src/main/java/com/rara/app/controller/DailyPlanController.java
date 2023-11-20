@@ -27,7 +27,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 @Controller
-@RequestMapping("/schedule")
+@RequestMapping("/act")
 public class DailyPlanController {
 
     @Autowired
@@ -78,16 +78,20 @@ public class DailyPlanController {
         }
     }
 
-//    @GetMapping("/{id}")
-//    public String getDailyPlanById(@PathVariable Long id, Model model) {
-//        try {
-//            DailyPlanDTO dailyPlan = dailyPlanService.selectDailyPlanById(id);
-//            model.addAttribute("dailyPlan", dailyPlan);
-//            return "schedule";
-//        } catch (Exception e) {
-//            return "error";
-//        }
-//    }
+    @GetMapping("/list")
+    public String getDailyPlanById(Model model) {
+
+        try {
+            MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Long mId = member.getId();
+
+            List<DailyPlanDTO> dailyPlans = dailyPlanService.selectDailyPlanByMId(mId);
+            model.addAttribute("dailyPlans", dailyPlans);
+            return "Teacher_Act_list";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 
     @Value("${spring.servlet.multipart.location}")
     String fileInputPath;
@@ -119,9 +123,9 @@ public class DailyPlanController {
             } finally {
                 bs.close();
             }
-            return "redirect:/schedule";
+            return "redirect:/act";
         } catch (Exception e) {
-            return "redirect:/schedule";
+            return "redirect:/act";
         }
     }
 
@@ -139,7 +143,7 @@ public class DailyPlanController {
             params.put("act1Sub", dailyPlanDTO.getAct1Sub());
             System.out.println(dailyPlanDTO);
             dailyPlanService.updateDailyPlanSetAct1TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
-            return "redirect:/schedule";
+            return "redirect:/act";
         } catch (Exception e) {
             return "error";
         }
@@ -149,26 +153,23 @@ public class DailyPlanController {
 // 업로드하는 파일들을 MultipartFile 형태의 파라미터로 전달된다.
     public String fileUpdate(DailyPlanDTO dailyPlanDTO, @RequestParam("file") MultipartFile file)
             throws IllegalStateException, IOException {
-
+        
         try {
-
-            String fileFullPath = filePath + "/" + file.getOriginalFilename();
-
-            if (!file.isEmpty()) {
-                file.transferTo(new File(fileFullPath));
-            }
-
             DailyPlanDTO tempDailyPlanDTO = dailyPlanService.selectDailyPlanByMIdAndYear(
                             dailyPlanDTO.getMId(), dailyPlanDTO.getYear())
                     .stream()
                     .filter(dp -> dp.getMonth() == dailyPlanDTO.getMonth())
                     .toList().get(0);
 
-            tempDailyPlanDTO.setFile1(fileFullPath);
+            String fileFullPath = filePath + "/" + file.getOriginalFilename();
+            if (!file.isEmpty()) {
+                file.transferTo(new File(fileFullPath));
+                tempDailyPlanDTO.setFile1(file.getOriginalFilename());
+            }
 
             dailyPlanService.updateDailyPlan(tempDailyPlanDTO);
 
-            return "redirect:/schedule";
+            return "redirect:/act/list";
         } catch (Exception e) {
             return "error";
         }

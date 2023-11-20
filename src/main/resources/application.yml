@@ -18,6 +18,8 @@ spring:
 
 files:
   location: c:\\devs\\files
+  boards:
+    location: c:\\devs\\files\\boards
 
 # mybatis mapping
 # mapper.xml

@@ -3,6 +3,7 @@
       layout:decorate="layout/default_layout">
 <th:block layout:fragment="content">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
     <!-- Header Start -->
     <div class="container-fluid bg-primary mb-5">
         <div
@@ -16,191 +17,37 @@
             </div>
         </div>
     </div>
+
+
     <!-- Header End -->
-
-    <style>
-            .table {
-              border-collapse: collapse;
-              border-spacing: 0;
-            }
-            .section.notice {
-              padding: 80px 0;
-            }
-
-            .page-title {
-              margin-bottom: 60px;
-            }
-            .page-title h3 {
-              font-size: 28px;
-              color: #333333;
-              font-weight: 400;
-              text-align: center;
-            }
-
-            #board-search .search-window {
-              padding: 15px 0;
-              background-color: #f9f7f9;
-            }
-            #board-search .search-window .search-wrap {
-              position: relative;
-              padding-right: 124px;
-              margin: 0 auto;
-              width: 80%;
-              max-width: 564px;
-            }
-            #board-search .search-window .search-wrap input {
-              height: 40px;
-              width: 100%;
-              font-size: 14px;
-              padding: 7px 14px;
-              border: 1px solid #ccc;
-            }
-            #board-search .search-window .search-wrap input:focus {
-              border-color: #333;
-              outline: 0;
-              border-width: 1px;
-            }
-            #board-search .search-window .search-wrap .btn {
-              position: absolute;
-              right: 0;
-              top: 0;
-              bottom: 0;
-              width: 108px;
-              padding: 0;
-              font-size: 16px;
-            }
-
-            .board-table {
-              font-size: 13px;
-              width: 100%;
-              border-top: 1px solid #ccc;
-              border-bottom: 1px solid #ccc;
-            }
-
-            .board-table a {
-              color: #333;
-              line-height: 1.4;
-              word-break: break-all;
-              vertical-align: middle;
-            }
-            .board-table a:hover {
-              text-decoration: underline;
-            }
-            .board-table th {
-              text-align: center;
-            }
-
-            .board-table .th-num {
-              width: 100px;
-              text-align: center;
-            }
-
-            .board-table .th-date {
-              width: 200px;
-            }
-
-            .board-table th, .board-table td {
-              padding: 14px 0;
-            }
-
-            .board-table tbody td {
-              border-top: 1px solid #e7e7e7;
-              text-align: center;
-            }
-
-            .board-table tbody th {
-              padding-left: 28px;
-              padding-right: 14px;
-              border-top: 1px solid #e7e7e7;
-              text-align: left;
-            }
-
-            .btn-dark {
-              background: #555;
-              color: #fff;
-            }
-
-            .btn-dark:hover, .btn-dark:focus {
-              background: #373737;
-              border-color: #373737;
-              color: #fff;
-            }
-
-            /* reset */
-
-            * {
-              list-style: none;
-              text-decoration: none;
-              padding: 0;
-              margin: 0;
-              box-sizing: border-box;
-            }
-            .clearfix:after {
-              content: '';
-              display: block;
-              clear: both;
-            }
-            .container {
-              width: 1100px;
-              margin: 0 auto;
-            }
-            .blind {
-              position: absolute;
-              overflow: hidden;
-              clip: rect(0 0 0 0);
-              margin: -1px;
-              width: 1px;
-              height: 1px;
-            }
-        </style>
-
-    <!-- board title -->
-        <div id="board title"> 
-
-
-        </div>
-
-
-    
-<section>
+    <section>
 
     <!-- board list area -->
-    <div id="Board_detailed_Calendar">
-        <div class="container">
-            <table class="board-table">
-                <thead>
-                <tr>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-date">등록일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="board : ${boards}">
-                    <td>
-                        
-                        <img src="C:\Users\kosa\Desktop\kidkinder-1.0.0\img\class-1.jpg" alt="이미지 설명">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a th:href="@{/accept_create}" button type="button" class="btn btn-primary" style="margin-left: 5cm;">목록</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+
+        <div id="calendar-list">
+            <div class="container">
+
+
+                <div id="calendar"></div>
+                <ul id="board-list">
+                    <li th:each="board : ${boards}" th:text="${board.title}"></li>
+                </ul>
+
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="col-md-6 offset-md-3">
-        <div class="d-flex justify-content-end">
-            <!-- <a th:href="@{/signin}" class="btn btn-primary px-4">Login</a>-->
-            <!-- <a th:href="@{/accept_create}" button type="submit" class="btn btn-primary" style="margin-left: 5cm;">작성</a> -->
-        </div>
-    </div>
+
 </section>
 
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // FullCalendar 초기화
+            $('#calendar').fullCalendar({
+                // 캘린더 설정
+            });
+        });
+    </script>
 </th:block>
 </html>
