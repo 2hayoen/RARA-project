@@ -112,16 +112,14 @@
                         <!--              </div>-->
                         <!--            </div>-->
                     </div>
-                    <a th:href="@{/login}" class="btn btn-primary px-4">Login</a>
 
-                    <!--                    <a th:if="${loggedIn}" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
-                    <!--                    <a th:unless="${loggedIn}" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
+                    <th:block sec:authorize="not isAuthenticated()">
+                        <a  th:href="@{/login}" class="btn btn-primary px-4">Login</a>
+                    </th:block>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <a  th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>
+                    </th:block>
 
-                    <!--                    <a th:if="${#request.isUserInRole('ROLE_USER')}" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
-                    <!--                    <a th:unless="${#request.isUserInRole('ROLE_USER')}" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
-
-                    <!--                        <a sec:authorize="isAuthenticated()" th:href="@{/login}" class="btn btn-primary px-4">Login</a>-->
-                    <!--                        <a sec:authorize="not isAuthenticated()" th:href="@{/logout}" class="btn btn-primary px-4">Logout</a>-->
 
                 </div>
             </nav>
@@ -140,8 +138,7 @@
     linkElement.href = "@{/logout}";
     linkElement.textContent = "Logout";
   }
-
-    </script>
+</script>
 
 </th:block>
 </html>
