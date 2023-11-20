@@ -12,30 +12,50 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/accept_boards")
+@RequestMapping("/boards")
 public class BoardController {
 
     @Autowired
     BoardService boardService; //서비스와 연결
 
+    @GetMapping("/create")
+    public String showCreateBoardForm(Model model) {
+        // 게시물 작성 폼을 보여주기 위한 메서드
+        // Board_create.html 페이지를 렌더링하고 필요한 모델을 설정
+        model.addAttribute("boardDTO", new BoardDTO()); // 빈 BoardDTO 객체를 생성해 폼으로 전달
+        return "Board_create"; // Board_create.html을 렌더링
+    }
 
     @PostMapping("/create")
-    // DB 저장
-    public  String createBoard(BoardDTO boardDTO) {
+    // 게시물 생성 처리
+    public String createBoard(@ModelAttribute("boardDTO") BoardDTO boardDTO) {
         try {
+            // boardService를 사용하여 게시물 생성
             boardService.insertBoard(boardDTO);
-            return "redirect:accept_detail";
+            return "redirect:list"; // 게시물 생성 후 목록 페이지로 리다이렉션
         } catch (Exception e) {
-            return "index";
+            return "index"; // 예외 발생 시 index 페이지로 이동
         }
     }
+
+
+//    @PostMapping("/create")
+//    // DB 저장
+//    public  String createBoard(BoardDTO boardDTO) {
+//        try {
+//            boardService.insertBoard(boardDTO);
+//            return "redirect:Board_datailed_Calendar";
+//        } catch (Exception e) {
+//            return "index";
+//        }
+//    }
 
     @GetMapping("/list")
     public String getAllBoards(Model model) {
         // 모든 게시물 정보 조회
         List<BoardDTO> boards = boardService.selectBoardsAll();
         model.addAttribute("boards", boards);
-        return "accept_list"; // accept_list.html을 렌더링
+        return "Board_All_list"; // Board_All_list.html을 렌더링
     }
 
     @GetMapping("/{id}")
@@ -43,7 +63,7 @@ public class BoardController {
         try {
             BoardDTO board = boardService.selectBoardById(id);
             model.addAttribute("board", board);
-            return "accept_result";
+            return "Board_datailed_Calendar";
         } catch (Exception e) {
             return "error";
         }
