@@ -9,10 +9,19 @@ spring:
   #thymeleaf auto refresh
   thymeleaf:
     cache: false
-  
+
+  servlet:
+    multipart:
+      location: c:\\devs\\input
+      max-file-size: 40MB
+      max-request-size: 50MB
+
+files:
+  location: c:\\devs\\files
+
 # mybatis mapping
 # mapper.xml
 mybatis:
-  type-aliases-package : com.example.spring.myapp.model
-# mapper.xml location
-  mapper-locations : /mybatis/mapgiper/**/*.xml
+  type-aliases-package: com.example.spring.myapp.model
+  # mapper.xml location
+  mapper-locations: /mybatis/mapgiper/**/*.xml

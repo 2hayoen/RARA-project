@@ -11,13 +11,57 @@
     <tr>
         <th>ID</th>
         <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
         <th>Key1</th>
+        <th>Key2</th>
+        <th>Key3</th>
+        <th>File1</th>
+        <th>File2</th>
+        <th>Act1Type</th>
+        <th>Act1Goal</th>
+        <th>Act1Time</th>
+        <th>Act1Title</th>
+        <th>Act1Sub</th>
+        <th>Act1Desc</th>
+        <th>Act1Mater</th>
+        <th>Act2Type</th>
+        <th>Act2Goal</th>
+        <th>Act2Time</th>
+        <th>Act2Title</th>
+        <th>Act2Sub</th>
+        <th>Act2Desc</th>
+        <th>Act2Mater</th>
+        <th>MId</th>
     </tr>
-    <tr th:each="dailyPlan : ${dailyPlans}">
-        <td th:text="${dailyPlan.id}"></td>
-        <td th:text="${dailyPlan.year}"></td>
-        <td th:text="${dailyPlan.key1}"></td>
-    </tr>
+    <th:block th:if="${dailyPlans != null}">
+        <tr th:each="dailyPlan : ${dailyPlans}">
+            <td th:text="${dailyPlan.id}"></td>
+            <td th:text="${dailyPlan.year}"></td>
+            <td th:text="${dailyPlan.month}"></td>
+            <td th:text="${dailyPlan.day}"></td>
+            <td th:text="${dailyPlan.key1}"></td>
+            <td th:text="${dailyPlan.key2}"></td>
+            <td th:text="${dailyPlan.key3}"></td>
+            <td th:text="${dailyPlan.file1}"></td>
+            <td th:text="${dailyPlan.file2}"></td>
+            <td th:text="${dailyPlan.act1Type}"></td>
+            <td th:text="${dailyPlan.act1Goal}"></td>
+            <td th:text="${dailyPlan.act1Time}"></td>
+            <td th:text="${dailyPlan.act1Title}"></td>
+            <td th:text="${dailyPlan.act1Sub}"></td>
+            <td th:text="${dailyPlan.act1Desc}"></td>
+            <td th:text="${dailyPlan.act1Mater}"></td>
+            <td th:text="${dailyPlan.act2Type}"></td>
+            <td th:text="${dailyPlan.act2Goal}"></td>
+            <td th:text="${dailyPlan.act2Time}"></td>
+            <td th:text="${dailyPlan.act2Title}"></td>
+            <td th:text="${dailyPlan.act2Sub}"></td>
+            <td th:text="${dailyPlan.act2Desc}"></td>
+            <td th:text="${dailyPlan.act2Mater}"></td>
+            <td th:text="${dailyPlan.mId}"></td>
+        </tr>
+    </th:block>
 </table>
 
 </body>
