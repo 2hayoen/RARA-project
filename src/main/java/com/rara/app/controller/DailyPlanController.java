@@ -90,6 +90,21 @@ public class DailyPlanController {
                     .stream()
                     .sorted(Comparator.comparing(DailyPlanDTO::getId).reversed())
                     .toList();
+
+            for (DailyPlanDTO dailyPlanDTO : dailyPlans) {
+                if (!dailyPlanDTO.getFile1().isBlank()) {
+                    dailyPlanDTO.setFile1(
+                            dailyPlanDTO.getFile1().substring(
+                                    dailyPlanDTO.getFile1().indexOf("_") + 1));
+                }
+                if (!dailyPlanDTO.getFile2().isBlank()) {
+                    dailyPlanDTO.setFile2(
+                            dailyPlanDTO.getFile2().substring(
+                                    dailyPlanDTO.getFile2().indexOf("_") + 1));
+
+                }
+            }
+
             model.addAttribute("dailyPlans", dailyPlans);
             return "Teacher_Act_list";
         } catch (Exception e) {
@@ -114,9 +129,8 @@ public class DailyPlanController {
         try {
 //            dailyPlanService.insertDailyPlan(dailyPlanDTO);
             BufferedOutputStream bs = null;
-            String fileName = dailyPlanDTO.getYear().toString() + "_"
-                    + dailyPlanDTO.getMonth().toString() + "_"
-                    + dailyPlanDTO.getMId().toString() + ".txt";
+            String fileName = UUID.randomUUID().toString() + "_" + dailyPlanDTO.getYear().toString() + "_"
+                    + dailyPlanDTO.getMonth().toString() + ".txt";
             try {
                 bs = new BufferedOutputStream(new FileOutputStream(fileInputPath + "/" + fileName));
                 String str = dailyPlanDTO.getYear().toString() + ","
@@ -170,15 +184,20 @@ public class DailyPlanController {
                     .filter(dp -> dp.getMonth() == dailyPlanDTO.getMonth())
                     .toList().get(0);
 
-            String fileFullPath = fileDailyPlansPath + "/" + file.getOriginalFilename();
+            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            String fileFullPath = fileDailyPlansPath + "/" + fileName;
+
             if (!file.isEmpty()) {
+                if (!(new File(fileFullPath)).exists()) {
+                    (new File(fileFullPath)).mkdirs();
+                }
                 file.transferTo(new File(fileFullPath));
-                tempDailyPlanDTO.setFile1(file.getOriginalFilename());
+                tempDailyPlanDTO.setFile1(fileName);
             }
 
             dailyPlanService.updateDailyPlan(tempDailyPlanDTO);
 
-            return "redirect:/act/list";
+            return "redirect:/mypage";
         } catch (Exception e) {
             return "error";
         }
@@ -212,7 +231,9 @@ public class DailyPlanController {
             // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
             HttpHeaders headers = new HttpHeaders();
             headers.setContentDisposition(ContentDisposition.builder("attachment")
-                    .filename(dailyPlanDTO.getFile1(), StandardCharsets.UTF_8)
+                    .filename(dailyPlanDTO.getFile1()
+                                    .substring(dailyPlanDTO.getFile1().indexOf("_") + 1),
+                            StandardCharsets.UTF_8)
                     .build());
             headers.add(HttpHeaders.CONTENT_TYPE, contentType);
 
