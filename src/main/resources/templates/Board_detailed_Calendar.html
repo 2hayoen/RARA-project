@@ -9,45 +9,61 @@
         <div
                 class="d-flex flex-column align-items-center justify-content-center"
                 style="min-height: 200px">
-            <h3 class="display-3 font-weight-bold text-white">일정표 확인</h3>
+            <h3 class="display-3 font-weight-bold text-white">공지 상세</h3>
             <div class="d-inline-flex text-white">
-                <p class="m-0"><a class="text-white" href="">Board_detailed_Calendar</a></p>
-                <p class="m-0 px-2">/</p>
-                <p class="m-0">내용 확인</p>
+                <!--                <p class="m-0"><a class="text-white" href="">Board_detailed_Calendar</a></p>-->
+                <!--                <p class="m-0 px-2">/</p>-->
+                <!--                <p class="m-0">내용 확인</p>-->
             </div>
         </div>
     </div>
 
 
     <!-- Header End -->
-    <section>
-
-    <!-- board list area -->
-
-        <div id="calendar-list">
-            <div class="container">
-
-
-                <div id="calendar"></div>
-                <ul id="board-list">
-                    <li th:each="board : ${boards}" th:text="${board.title}"></li>
-                </ul>
-
+    <div class="container py-5">
+        <th:block th:if="${board != null}">
+            <div class="row pt-5">
+                <div class="col-lg-8">
+                    제목
+                    <p th:text="${board.title}"></p>
+                </div>
             </div>
-        </div>
+            <div class="row pt-5">
+                <div class="col-lg-8">
+                    내용
+                    <p th:text="${board.content}"></p>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-lg-8">
+                    작성일
+                    <p th:text="${#temporals.format(board.created, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-lg-8">
+                    작성자
+                    <p th:text="${board.author}"></p>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-lg-8">
+                    카테고리
+                    <p th:text="${board.category}"></p>
+                </div>
+            </div>
+            <div th:if="${board.file1 != null}" class="row pt-5">
+                <div class="col-lg-8">
+                    <a th:href="@{/boards/{id}/file1(id=${board.id})}" th:text="${board.file1}"></a>
+                </div>
+            </div>
+            <div th:if="${board.file2 != null}" class="row pt-5">
+                <div class="col-lg-8">
+                    <a th:href="@{/boards/{id}/file2(id=${board.id})}" th:text="${board.file2}"></a>
+                </div>
+            </div>
+        </th:block>
+    </div>
 
-</section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // FullCalendar 초기화
-            $('#calendar').fullCalendar({
-                // 캘린더 설정
-            });
-        });
-    </script>
 </th:block>
 </html>

@@ -17,7 +17,8 @@ spring:
       max-request-size: 50MB
 
 files:
-  location: c:\\devs\\files
+  dailyPlans:
+    location: c:\\devs\\files\\dailyPlans
   boards:
     location: c:\\devs\\files\\boards
 
