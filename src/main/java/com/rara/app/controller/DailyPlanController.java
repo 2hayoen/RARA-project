@@ -1,5 +1,6 @@
 package com.rara.app.controller;
 
+import com.rara.app.dto.BoardDTO;
 import com.rara.app.dto.DailyPlanDTO;
 import com.rara.app.dto.FileDTO;
 import com.rara.app.dto.MemberDTO;
@@ -27,73 +28,85 @@ import java.nio.file.Paths;
 import java.util.*;
 
 @Controller
-@RequestMapping("/schedule")
+@RequestMapping("/act")
 public class DailyPlanController {
 
     @Autowired
     DailyPlanService dailyPlanService;
 
-    @GetMapping  // 접근 URL
-    public String getDailyPlansAll(Model model) {
-        try {
-            List<DailyPlanDTO> dailyPlans = dailyPlanService.selectDailyPlansAll();
-            // dailyPlanService를 호출. DailyPlan을 데이터베이스에서 검색
-            // 이 정보를 DailyPlanDTO 객체의 목록 형태로 가져옴
-            model.addAttribute("dailyPlans", dailyPlans);
-            // model 객체를 사용. "dailyPlans"라는 속성 이름으로 dailyPlans 목록을 뷰에 전달
-            // 이를 통해 뷰에서 이 데이터를 사용할 수 있음
-            return "schedule2";
-            // schedule"라는 뷰 이름을 반환하여 해당 뷰를 렌더링
-            // Thymeleaf 템플릿 엔진에서 "schedule.html" 템플릿을 찾아 클라이언트에게 반환하도록 요청
-        } catch (Exception e) {
-            return "error"; // 예외가 발생하면 "error" 뷰로 리디렉션
-        }
-    }
-
-    @GetMapping("/test")
-    public String testDailyPlansAll(Model model) {
-        try {
-            List<DailyPlanDTO> dailyPlanDTOList = dailyPlanService.selectDailyPlansAll();
-            for (DailyPlanDTO dp : dailyPlanDTOList) {
-                String dpIdStr = Long.toString(dp.getId());
-                DailyPlanDTO dp_u = DailyPlanDTO.builder()
-                        .id(dp.getId()).year(dp.getYear()).month(dp.getMonth()).mId(dp.getMId())
-                        .day(dp.getId())
-                        .key1(dp.getKey1() + dpIdStr)
-                        .act1Title("title" + dpIdStr)
-                        .act1Type("type" + dpIdStr)
-                        .act1Time(90L)
-                        .act1Goal("goal" + dpIdStr)
-                        .act1Desc("desc" + dpIdStr)
-                        .act1Mater("mater" + dpIdStr)
-                        .build();
-                dailyPlanService.updateDailyPlan(dp_u);
-            }
-            List<DailyPlanDTO> dailyPlanDTOList_u = dailyPlanService.selectDailyPlansAll();
-            model.addAttribute("dailyplans", dailyPlanDTOList_u);
-            return "test/dailyPlans";
-
-        } catch (Exception e) {
-            return "error";
-        }
-    }
-
-//    @GetMapping("/{id}")
-//    public String getDailyPlanById(@PathVariable Long id, Model model) {
+//    @GetMapping  // 접근 URL
+//    public String getDailyPlansAll(Model model) {
 //        try {
-//            DailyPlanDTO dailyPlan = dailyPlanService.selectDailyPlanById(id);
-//            model.addAttribute("dailyPlan", dailyPlan);
-//            return "schedule";
+//            List<DailyPlanDTO> dailyPlans = dailyPlanService.selectDailyPlansAll();
+//            // dailyPlanService를 호출. DailyPlan을 데이터베이스에서 검색
+//            // 이 정보를 DailyPlanDTO 객체의 목록 형태로 가져옴
+//            model.addAttribute("dailyPlans", dailyPlans);
+//            // model 객체를 사용. "dailyPlans"라는 속성 이름으로 dailyPlans 목록을 뷰에 전달
+//            // 이를 통해 뷰에서 이 데이터를 사용할 수 있음
+//            return "schedule2";
+//            // schedule"라는 뷰 이름을 반환하여 해당 뷰를 렌더링
+//            // Thymeleaf 템플릿 엔진에서 "schedule.html" 템플릿을 찾아 클라이언트에게 반환하도록 요청
+//        } catch (Exception e) {
+//            return "error"; // 예외가 발생하면 "error" 뷰로 리디렉션
+//        }
+//    }
+
+//    @GetMapping("/test")
+//    public String testDailyPlansAll(Model model) {
+//        try {
+//            List<DailyPlanDTO> dailyPlanDTOList = dailyPlanService.selectDailyPlansAll();
+//            for (DailyPlanDTO dp : dailyPlanDTOList) {
+//                String dpIdStr = Long.toString(dp.getId());
+//                DailyPlanDTO dp_u = DailyPlanDTO.builder()
+//                        .id(dp.getId()).year(dp.getYear()).month(dp.getMonth()).mId(dp.getMId())
+//                        .day(dp.getId())
+//                        .key1(dp.getKey1() + dpIdStr)
+//                        .act1Title("title" + dpIdStr)
+//                        .act1Type("type" + dpIdStr)
+//                        .act1Time(90L)
+//                        .act1Goal("goal" + dpIdStr)
+//                        .act1Desc("desc" + dpIdStr)
+//                        .act1Mater("mater" + dpIdStr)
+//                        .build();
+//                dailyPlanService.updateDailyPlan(dp_u);
+//            }
+//            List<DailyPlanDTO> dailyPlanDTOList_u = dailyPlanService.selectDailyPlansAll();
+//            model.addAttribute("dailyplans", dailyPlanDTOList_u);
+//            return "test/dailyPlans";
+//
 //        } catch (Exception e) {
 //            return "error";
 //        }
 //    }
 
+    @GetMapping("/list")
+    public String getDailyPlans(Model model) {
+
+        try {
+            MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Long mId = member.getId();
+
+            List<DailyPlanDTO> dailyPlans = dailyPlanService.selectDailyPlanByMId(mId)
+                    .stream()
+                    .sorted(Comparator.comparing(DailyPlanDTO::getId).reversed())
+                    .toList();
+            model.addAttribute("dailyPlans", dailyPlans);
+            return "Teacher_Act_list";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
     @Value("${spring.servlet.multipart.location}")
     String fileInputPath;
 
-    @Value("${files.location}")
-    String filePath;
+    @Value("${files.dailyPlans.location}")
+    String fileDailyPlansPath;
+
+    @GetMapping
+    public String pageDP() {
+        return "Act_input";
+    }
 
     @PostMapping
     // DB 저장
@@ -119,9 +132,9 @@ public class DailyPlanController {
             } finally {
                 bs.close();
             }
-            return "redirect:/schedule";
+            return "redirect:/act";
         } catch (Exception e) {
-            return "redirect:/schedule";
+            return "redirect:/act";
         }
     }
 
@@ -139,7 +152,7 @@ public class DailyPlanController {
             params.put("act1Sub", dailyPlanDTO.getAct1Sub());
             System.out.println(dailyPlanDTO);
             dailyPlanService.updateDailyPlanSetAct1TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
-            return "redirect:/schedule";
+            return "redirect:/act";
         } catch (Exception e) {
             return "error";
         }
@@ -151,24 +164,21 @@ public class DailyPlanController {
             throws IllegalStateException, IOException {
 
         try {
-
-            String fileFullPath = filePath + "/" + file.getOriginalFilename();
-
-            if (!file.isEmpty()) {
-                file.transferTo(new File(fileFullPath));
-            }
-
             DailyPlanDTO tempDailyPlanDTO = dailyPlanService.selectDailyPlanByMIdAndYear(
                             dailyPlanDTO.getMId(), dailyPlanDTO.getYear())
                     .stream()
                     .filter(dp -> dp.getMonth() == dailyPlanDTO.getMonth())
                     .toList().get(0);
 
-            tempDailyPlanDTO.setFile1(fileFullPath);
+            String fileFullPath = fileDailyPlansPath + "/" + file.getOriginalFilename();
+            if (!file.isEmpty()) {
+                file.transferTo(new File(fileFullPath));
+                tempDailyPlanDTO.setFile1(file.getOriginalFilename());
+            }
 
             dailyPlanService.updateDailyPlan(tempDailyPlanDTO);
 
-            return "redirect:/schedule";
+            return "redirect:/act/list";
         } catch (Exception e) {
             return "error";
         }
@@ -197,7 +207,7 @@ public class DailyPlanController {
                     .filter(dp -> dp.getMonth() == month)
                     .toList().get(0);
 
-            Path path = Paths.get(filePath + "/" + dailyPlanDTO.getFile1());
+            Path path = Paths.get(fileDailyPlansPath + "/" + dailyPlanDTO.getFile1());
             String contentType = Files.probeContentType(path);
             // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
             HttpHeaders headers = new HttpHeaders();

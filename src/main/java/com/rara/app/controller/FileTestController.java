@@ -33,7 +33,7 @@ public class FileTestController {
     }
 
     // application.properties에 등록된 파일의 경로를 가져온다.
-    @Value("${files.location}")
+    @Value("${files.dailyPlans.location}")
     String filePath;
 
     @PostMapping("/upload")

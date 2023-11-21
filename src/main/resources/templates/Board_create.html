@@ -3,9 +3,7 @@
       layout:decorate="layout/default_layout">
 <th:block layout:fragment="content">
 
-<!--  레이아웃 정리 해주세요 ; 입력창, 입력창 레이블, 버튼 위치 등, 첨부파일 만 남겨두고 제출 버튼은 지우기  -->
-
-
+    <!--  레이아웃 정리 해주세요 ; 입력창, 입력창 레이블, 버튼 위치 등, 첨부파일 만 남겨두고 제출 버튼은 지우기  -->
 
 
     <!-- Header Start -->
@@ -14,11 +12,11 @@
                 class="d-flex flex-column align-items-center justify-content-center"
                 style="min-height: 400px"
         >
-            <h3 class="display-3 font-weight-bold text-white">공지 글 작성</h3>
+            <h3 class="display-3 font-weight-bold text-white">공지 작성</h3>
             <div class="d-inline-flex text-white">
-                <p class="m-0"><a class="text-white" href="">Home</a></p>
-                <p class="m-0 px-2">/</p>
-                <p class="m-0">작성</p>
+                <!--                <p class="m-0"><a class="text-white" href="">Home</a></p>-->
+                <!--                <p class="m-0 px-2">/</p>-->
+                <!--                <p class="m-0">작성</p>-->
             </div>
         </div>
     </div>
@@ -26,33 +24,52 @@
 
     <div id="accept-list">
         <div class="container">
-            <div class="form-group">
-                제목
-                <br>
-                <input id="title" class="" type="title" rows="2" placeholder="제목">
-            </div>
-            <div class="form-group">
-                내용
-                <textarea id="editableGoal" class="form-control" rows="15" placeholder="내용"></textarea>
-            </div>
-            <div class="form-group">
-                첨부파일
-                <form action="" method="post" enctype="multipart/form-data">
-                    <input type="file" name="profile">
-
-                </form>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- 임시방편 -->
-
+            <form action="/boards/create" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="category">카테고리 선택:</label>
+                    <select id="category" name="category">
+                        <option value="일반">일반</option>
+                        <option value="교육일정">교육일정</option>
+                    </select>
                 </div>
-                <div class="col-md-6">
-                    <!-- 임시방편 -->
-                    <a th:href="@{/accept_create}" button type="button" class="btn btn-primary">삭제</a>
-                    <a th:href="@{/boards/list}" button type="button" class="btn btn-primary">등록</a>
+                <div class="form-group">
+                    제목
+                    <br>
+                    <input id="title" name="title" class="" type="text" rows="2" placeholder="제목">
                 </div>
-            </div>
+                <div class="form-group">
+                    내용
+                    <textarea id="editableGoal" name="content" class="form-control" rows="15"
+                              placeholder="내용"></textarea>
+                </div>
+                <div class="form-group">
+                    첨부파일1
+                    <input type="file" id="fileFirst" name="fileFirst">
+                </div>
+                <div class="form-group">
+                    첨부파일2
+                    <input type="file" id="fileSecond" name="fileSecond">
+                </div>
+
+                <div th:if="${#authentication != null and #authentication.principal != null}" class="col-md-4">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="mId"
+                               th:value="${#authentication.principal.id}" hidden>
+                    </div>
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="author"
+                               th:value="${#authentication.principal.name}" hidden>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- 임시방편 -->
+                        <input type="submit" class="btn btn-primary" value="등록">
+                        <a th:href="@{/boards/list}" button type="button" class="btn btn-primary">취소</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -184,7 +201,21 @@
     }
 
 
-</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
 
 
 </th:block>

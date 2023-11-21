@@ -4,28 +4,80 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block layout:fragment="content">
 
-  <!-- Header Start -->
-  <div class="container-fluid bg-primary mb-5">
-    <div
-            class="d-flex flex-column align-items-center justify-content-center"
-            style="min-height: 200px"
-    >
-      <h6 class="display-3 font-weight-bold text-white">일정 계획 수립</h6>
-      <div class="d-inline-flex text-white">
-        <p class="m-0"><a class="text-white" href="">일정계획 수립</a></p>
-        <p class="m-0 px-2">/</p>
-        <p class="m-0">Input</p>
-      </div>
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 200px"
+        >
+            <h6 class="display-3 font-weight-bold text-white">일정 계획</h6>
+            <div class="d-inline-flex text-white">
+                <!--                <p class="m-0"><a class="text-white" href="">일정 계획 정보</a></p>-->
+                <!--                <p class="m-0 px-2">/</p>-->
+                <!--                <p class="m-0">Input</p>-->
+            </div>
+        </div>
     </div>
-  </div>
-  <!-- Header End -->
+    <!-- Header End -->
 
-<!--  모달안에 있던거 넣어주세요
-      상세확인 버튼을 다운로드로 바꾸기
-      스크롤 없애기 ; 그냥 쭉 보이도록
-      -->
+    <!--  모달안에 있던거 넣어주세요
+          상세확인 버튼을 다운로드로 바꾸기
+          스크롤 없애기 ; 그냥 쭉 보이도록
+          -->
 
+    <div class="container">
+        <table class="table is-fixed-header">
+            <!--          <caption class="a11y-hidden">Table Caption</caption>-->
+            <thead>
+            <th scope="col">번호</th>
+            <th scope="col">연도</th>
+            <th scope="col">월</th>
+            <th scope="col">활동 상세 파일 다운로드</th>
+            <th scope="col">활동 상세 파일 수정</th>
+            </thead>
+            <tbody>
+            <th:block th:if="${dailyPlans != null}" th:each="dailyPlan, num : ${dailyPlans}">
+                <tr>
+                    <td th:text="${num.index + 1}"></td>
+                    <td th:text="${dailyPlan.year}"></td>
+                    <td th:text="${dailyPlan.month}"></td>
+                    <td>
+                        <a th:href="@{/act/download(email=${#authentication.principal.email}, year=${dailyPlan.year}, month=${dailyPlan.month})}">[download]</a>
+                    </td>
+                    <td>
+                        <form method="post" action="/act/fileUpdate" enctype="multipart/form-data">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" name="year" placeholder="Year"
+                                           th:value="${dailyPlan.year}" hidden>
+                                </div>
+                            </div>
 
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" name="month" placeholder="Month"
+                                           th:value="${dailyPlan.month}" hidden>
+                                </div>
+                            </div>
+
+                            <div th:if="${#authentication != null and #authentication.principal != null}"
+                                 class="col-md-4">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" name="mId"
+                                           th:value="${#authentication.principal.id}" hidden>
+                                </div>
+                            </div>
+
+                            <label for="file" class="form-label"></label>
+                            <input type="file" id="file" name="file" accept=".xlsx, .xls">
+                            <input type="submit" value="수정">
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
 
 </th:block>
 </html>

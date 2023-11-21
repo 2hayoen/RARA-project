@@ -4,10 +4,25 @@ import com.rara.app.dto.BoardDTO;
 import com.rara.app.dto.DailyPlanDTO;
 import com.rara.app.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -26,11 +41,30 @@ public class BoardController {
         return "Board_create"; // Board_create.html을 렌더링
     }
 
+    @Value("${spring.servlet.multipart.location}")
+    String fileInputPath;
+
+    @Value("${files.boards.location}")
+    String fileBoardPath;
+
     @PostMapping("/create")
     // 게시물 생성 처리
-    public String createBoard(@ModelAttribute("boardDTO") BoardDTO boardDTO) {
+    public String createBoard(BoardDTO boardDTO,
+                              @RequestParam("fileFirst") MultipartFile file1,
+                              @RequestParam("fileSecond") MultipartFile file2)
+            throws IllegalStateException, IOException {
         try {
-            // boardService를 사용하여 게시물 생성
+            String fileBoardPullPath1 = fileBoardPath + "/" + file1.getOriginalFilename();
+            if (!file1.isEmpty()) {
+                file1.transferTo(new File(fileBoardPullPath1));
+                boardDTO.setFile1(file1.getOriginalFilename());
+            }
+            String fileBoardPullPath2 = fileBoardPath + "/" + file2.getOriginalFilename();
+            if (!file2.isEmpty()) {
+                file2.transferTo(new File(fileBoardPullPath2));
+                boardDTO.setFile2(file2.getOriginalFilename());
+            }
+
             boardService.insertBoard(boardDTO);
             return "redirect:list"; // 게시물 생성 후 목록 페이지로 리다이렉션
         } catch (Exception e) {
@@ -38,13 +72,25 @@ public class BoardController {
         }
     }
 
+//    @PostMapping("/create")
+//    // 게시물 생성 처리
+//    public String createBoard(@ModelAttribute("boardDTO") BoardDTO boardDTO) {
+//        try {
+//            // boardService를 사용하여 게시물 생성
+//            boardService.insertBoard(boardDTO);
+//            return "redirect:list"; // 게시물 생성 후 목록 페이지로 리다이렉션
+//        } catch (Exception e) {
+//            return "index"; // 예외 발생 시 index 페이지로 이동
+//        }
+//    }
+
 
 //    @PostMapping("/create")
 //    // DB 저장
 //    public  String createBoard(BoardDTO boardDTO) {
 //        try {
 //            boardService.insertBoard(boardDTO);
-//            return "redirect:Board_datailed_Calendar";
+//            return "redirect:Board_detailed_Calendar";
 //        } catch (Exception e) {
 //            return "index";
 //        }
@@ -53,7 +99,10 @@ public class BoardController {
     @GetMapping("/list")
     public String getAllBoards(Model model) {
         // 모든 게시물 정보 조회
-        List<BoardDTO> boards = boardService.selectBoardsAll();
+        List<BoardDTO> boards = boardService.selectBoardsAll()
+                .stream()
+                .sorted(Comparator.comparing(BoardDTO::getId).reversed())
+                .toList();
         model.addAttribute("boards", boards);
         return "Board_All_list"; // Board_All_list.html을 렌더링
     }
@@ -63,11 +112,56 @@ public class BoardController {
         try {
             BoardDTO board = boardService.selectBoardById(id);
             model.addAttribute("board", board);
-            return "Board_datailed_Calendar";
+            return "Board_detailed_Calendar";
         } catch (Exception e) {
             return "error";
         }
     }
+
+    @GetMapping("/{id}/file1")
+    public ResponseEntity<Resource> downloadFile1(@PathVariable Long id) {
+        try {
+            BoardDTO boardDTO = boardService.selectBoardById(id);
+
+            Path path = Paths.get(fileBoardPath + "/" + boardDTO.getFile1());
+            String contentType = Files.probeContentType(path);
+            // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentDisposition(ContentDisposition.builder("attachment")
+                    .filename(boardDTO.getFile1(), StandardCharsets.UTF_8)
+                    .build());
+            headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+
+            Resource resource = new InputStreamResource(Files.newInputStream(path));
+            return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id}/file2")
+    public ResponseEntity<Resource> downloadFile2(@PathVariable Long id) {
+        try {
+            BoardDTO boardDTO = boardService.selectBoardById(id);
+
+            Path path = Paths.get(fileBoardPath + "/" + boardDTO.getFile2());
+            String contentType = Files.probeContentType(path);
+            // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentDisposition(ContentDisposition.builder("attachment")
+                    .filename(boardDTO.getFile2(), StandardCharsets.UTF_8)
+                    .build());
+            headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+
+            Resource resource = new InputStreamResource(Files.newInputStream(path));
+            return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 //    @GetMapping("/title")
 //        public List<BoardDTO> getBoardByCategoryAndTitle(@RequestParam String category, @RequestParam String title) {
@@ -84,22 +178,22 @@ public class BoardController {
 //        return boardService.getBoardByCategoryAndMId(category, mId);
 //    }
 
-    @PutMapping("/{id}")
-    public void updateBoard(@PathVariable long id, @RequestBody BoardDTO board) {
-        board.setId(id);
-        boardService.updateBoard(board);
-    }
-
-    @PatchMapping("/{id}/title")
-    public void updateTitle(@PathVariable long id, @RequestBody String title) {
-        // 요청된 URL 경로에 따라 게시물의 제목(Title)을 업데이트하는 컨트롤러 메서드
-        boardService.updateTitle(id, title);
-    }
-
-    @PatchMapping("/{id}/content")
-    public void updateContent(@PathVariable long id, @RequestBody String content) {
-        boardService.updateContent(id, content);
-    }
+//    @PutMapping("/{id}")
+//    public void updateBoard(@PathVariable long id, @RequestBody BoardDTO board) {
+//        board.setId(id);
+//        boardService.updateBoard(board);
+//    }
+//
+//    @PatchMapping("/{id}/title")
+//    public void updateTitle(@PathVariable long id, @RequestBody String title) {
+//        // 요청된 URL 경로에 따라 게시물의 제목(Title)을 업데이트하는 컨트롤러 메서드
+//        boardService.updateTitle(id, title);
+//    }
+//
+//    @PatchMapping("/{id}/content")
+//    public void updateContent(@PathVariable long id, @RequestBody String content) {
+//        boardService.updateContent(id, content);
+//    }
 
 //    @PatchMapping("/{id}/category")
 //    public void updateCategory(@PathVariable long id, @RequestBody BoardDTO board) {
