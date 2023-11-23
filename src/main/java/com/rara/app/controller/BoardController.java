@@ -24,6 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -54,15 +55,26 @@ public class BoardController {
                               @RequestParam("fileSecond") MultipartFile file2)
             throws IllegalStateException, IOException {
         try {
-            String fileBoardPullPath1 = fileBoardPath + "/" + file1.getOriginalFilename();
+
+            String fileName = UUID.randomUUID().toString() + "_" + file1.getOriginalFilename();
+            String fileBoardFullPath1 = fileBoardPath + "/" + fileName;
+
             if (!file1.isEmpty()) {
-                file1.transferTo(new File(fileBoardPullPath1));
-                boardDTO.setFile1(file1.getOriginalFilename());
+                if (!(new File(fileBoardFullPath1)).exists()) {
+                    (new File(fileBoardFullPath1)).mkdirs();
+                }
+                file1.transferTo(new File(fileBoardFullPath1));
+                boardDTO.setFile1(fileName);
             }
-            String fileBoardPullPath2 = fileBoardPath + "/" + file2.getOriginalFilename();
+
+            fileName = UUID.randomUUID().toString() + "_" + file2.getOriginalFilename();
+            String fileBoardFullPath2 = fileBoardPath + "/" + fileName;
             if (!file2.isEmpty()) {
-                file2.transferTo(new File(fileBoardPullPath2));
-                boardDTO.setFile2(file2.getOriginalFilename());
+                if (!(new File(fileBoardFullPath2)).exists()) {
+                    (new File(fileBoardFullPath2)).mkdirs();
+                }
+                file2.transferTo(new File(fileBoardFullPath2));
+                boardDTO.setFile2(fileName);
             }
 
             boardService.insertBoard(boardDTO);
@@ -111,6 +123,12 @@ public class BoardController {
     public String getBoardById(@PathVariable Long id, Model model) {
         try {
             BoardDTO board = boardService.selectBoardById(id);
+            if (!board.getFile1().isBlank()) {
+                board.setFile1(board.getFile1().substring(board.getFile1().indexOf("_") + 1));
+            }
+            if (!board.getFile2().isBlank()) {
+                board.setFile2(board.getFile2().substring(board.getFile2().indexOf("_") + 1));
+            }
             model.addAttribute("board", board);
             return "Board_detailed_Calendar";
         } catch (Exception e) {
@@ -128,7 +146,8 @@ public class BoardController {
             // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
             HttpHeaders headers = new HttpHeaders();
             headers.setContentDisposition(ContentDisposition.builder("attachment")
-                    .filename(boardDTO.getFile1(), StandardCharsets.UTF_8)
+                    .filename(boardDTO.getFile1().substring(boardDTO.getFile1().indexOf("_") + 1),
+                            StandardCharsets.UTF_8)
                     .build());
             headers.add(HttpHeaders.CONTENT_TYPE, contentType);
 
@@ -150,7 +169,8 @@ public class BoardController {
             // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
             HttpHeaders headers = new HttpHeaders();
             headers.setContentDisposition(ContentDisposition.builder("attachment")
-                    .filename(boardDTO.getFile2(), StandardCharsets.UTF_8)
+                    .filename(boardDTO.getFile2().substring(boardDTO.getFile2().indexOf("_") + 1),
+                            StandardCharsets.UTF_8)
                     .build());
             headers.add(HttpHeaders.CONTENT_TYPE, contentType);
 

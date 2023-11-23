@@ -21,6 +21,8 @@ files:
     location: c:\\devs\\files\\dailyPlans
   boards:
     location: c:\\devs\\files\\boards
+  dailyRecords:
+    location: c:\\devs\\files\\dailyRecords
 
 # mybatis mapping
 # mapper.xml
