@@ -20,6 +20,11 @@ public class MyPageController {
     DailyPlanService dailyPlanService;
 
     @GetMapping
+    public String showMyPage() {
+        return "myPage";
+    }
+
+    @GetMapping("/myActList")
     public String getDailyPlans(Model model) {
 
         try {

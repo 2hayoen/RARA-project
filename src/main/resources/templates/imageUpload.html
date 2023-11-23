@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 200px">
+            <h3 class="display-3 font-weight-bold text-white">이미지 업로드</h3>
+            <div class="d-inline-flex text-white">
+                <!--                <p class="m-0"><a class="text-white" href="">Board_detailed_Calendar</a></p>-->
+                <!--                <p class="m-0 px-2">/</p>-->
+                <!--                <p class="m-0">내용 확인</p>-->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Header End -->
+    <div class="container py-5">
+        <p>어린이 이름이 들어간 파일(.jpg)을 업로드해주세요!</p>
+
+        <form method="post" action="/records/imageUpload" enctype="multipart/form-data">
+            <input type="file" name="images" multiple="multiple" accept=".jpg">
+            <input type="submit">
+        </form>
+    </div>
+
+</th:block>
+</html>
