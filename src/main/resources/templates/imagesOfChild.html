@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+                class="d-flex flex-column align-items-center justify-content-center"
+                style="min-height: 200px">
+            <h3 class="display-3 font-weight-bold text-white">이미지 목록</h3>
+            <div class="d-inline-flex text-white">
+                <!--                <p class="m-0"><a class="text-white" href="">Board_detailed_Calendar</a></p>-->
+                <!--                <p class="m-0 px-2">/</p>-->
+                <!--                <p class="m-0">내용 확인</p>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Header End -->
+    <div class="container-fluid pt-5">
+        <div class="container pb-3">
+            <div class="row">
+                <th:block th:if="${records != null}" th:each="record : ${records}">
+                    <div class="col-lg-4 col-md-6 pb-1">
+                        <div class="d-flex bg-light shadow-sm border-top rounded mb-4">
+                            <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
+                            <div class="pl-4">
+                                <p th:text="${record.title}"></p>
+                                <!--                                <p th:text="${record.file1}"></p>-->
+                                <div>
+                                    <img th:src="@{${record.file1}}" alt="Child Image" width="300" height="200"/>
+                                </div>
+                                <div>
+                                    <a th:href="@{/records/{id}/file1(id=${record.id})}">[이미지 다운로드]</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+                <th:block th:unless="${records != null}">
+                    <p>다음 사항에 대해 확인부탁드립니다.</p>
+                    <p>1. 해당 어린이에 대해 사진 업로드 여부</p>
+                    <p>2. 업로드 사진의 분류 작업 완료 메일 수신 여부</p>
+                </th:block>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+</html>
