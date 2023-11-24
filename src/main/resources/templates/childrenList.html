@@ -6,40 +6,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
     <!-- Header Start -->
     <div class="container-fluid bg-primary mb-5">
-        <div
-                class="d-flex flex-column align-items-center justify-content-center"
-                style="min-height: 200px">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
             <h3 class="display-3 font-weight-bold text-white">소속 어린이 목록</h3>
             <div class="d-inline-flex text-white">
-                <h4 class="m-0 px-2">&nbsp</h4>
+                <h4 class="m-0 px-2">&nbsp;</h4>
                 <a th:href="@{/records/imageUpload}"><h4 class="m-0">이미지 업로드하기</h4></a>
             </div>
         </div>
     </div>
-
     <!-- Header End -->
     <div class="container-fluid pt-5">
         <div class="container pb-3">
-            <div class="row">
+            <div class="row justify-content-center">
                 <th:block th:if="${children != null}" th:each="child : ${children}">
                     <div class="col-lg-4 col-md-6 pb-1">
-                        <div
-                                class="d-flex bg-light shadow-sm border-top rounded mb-4"
-                                style="padding: 30px">
+                        <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">
                             <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
                             <div class="pl-4">
-                                <h4><a th:text="${child.name}" th:href="@{/records/child/{id} (id = ${child.id})}"></a>
-                                </h4>
+                                <h4><a th:text="${child.name}" th:href="@{/records/child/{id} (id = ${child.id})}"></a></h4>
                             </div>
                         </div>
                     </div>
                 </th:block>
                 <th:block th:unless="${children != null}">
+
                     <p>소속 어린이가 없습니다.</p>
                 </th:block>
             </div>
         </div>
     </div>
-
 </th:block>
 </html>

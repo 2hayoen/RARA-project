@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/default_layout">
-<th:block layout:fragment="content">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+<th:block layout:fragment="content">
     <!-- Header Start -->
     <div class="container-fluid bg-primary mb-5">
-        <div
-                class="d-flex flex-column align-items-center justify-content-center"
-                style="min-height: 200px">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
             <h3 class="display-3 font-weight-bold text-white">이미지 업로드</h3>
             <div class="d-inline-flex text-white">
                 <!--                <p class="m-0"><a class="text-white" href="">Board_detailed_Calendar</a></p>-->
@@ -17,17 +14,22 @@
             </div>
         </div>
     </div>
-
-
     <!-- Header End -->
-    <div class="container py-5">
-        <p>어린이 이름이 들어간 파일(.jpg)을 업로드해주세요!</p>
 
+    <div class="container py-5 text-center">
+        <p>어린이 이름이 들어간 파일(.jpg)을 업로드해주세요!</p>
         <form method="post" action="/records/imageUpload" enctype="multipart/form-data">
-            <input type="file" name="images" multiple="multiple" accept=".jpg">
-            <input type="submit">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="images" name="images" multiple="multiple" accept=".jpg">
+                <label class="custom-file-label" for="images">파일을 선택하세요</label>
+            </div>
+            <br><br>
+            <button type="submit" class="btn btn-primary">업로드</button>
         </form>
     </div>
-
 </th:block>
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

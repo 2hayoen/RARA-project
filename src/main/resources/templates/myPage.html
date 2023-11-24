@@ -3,6 +3,7 @@
       layout:decorate="layout/default_layout">
 <th:block layout:fragment="content">
 
+
     <!-- Header Start -->
     <div class="container-fluid bg-primary mb-5">
         <div
@@ -20,35 +21,39 @@
     <!-- Header End -->
     <div class="container-fluid pt-5">
         <div class="container pb-3">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 pb-1">
-                    <div
-                            class="d-flex bg-light shadow-sm border-top rounded mb-4"
-                            style="padding: 30px">
+<!--                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">-->
                         <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
-                            <a th:href="@{/mypage/myActList}"><h4>내 일정 계획 보기</h4>
-                            </a>
-                        </div>
+                            <a th:href="@{/mypage/myActList}">
+                                <button class="custom-btn btn-4"><span><h4>내 일정 계획 보기 </h4></span></button></a>
+<!--                        </div>-->
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 pb-1">
-                    <div
-                            class="d-flex bg-light shadow-sm border-top rounded mb-4"
-                            style="padding: 30px"
-                    >
-                        <i
-                                class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"
-                        ></i>
+<!--                    <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">-->
+                        <i class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"></i>
                         <div class="pl-4">
-                            <a th:href="@{/records/list}"><h4>소속 어린이 사진 보기</h4>
-                            </a>
+                            <a th:href="@{/records/list}">
+                                <button class="custom-btn btn-4"><span><h4>소속 어린이 사진 보기</h4></span></button></a>
                         </div>
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
         </div>
     </div>
+ <style>
+/* 4 */
+.btn-4 {
+  background-color: wheat;
+  width: 280px;
+  height: 50px;
+  text-align: center;
+}
+
+ </style>
+
 
 </th:block>
 </html>
