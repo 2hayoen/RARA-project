@@ -28,6 +28,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,7 +63,8 @@ public class DailyRecordController {
     }
 
     @GetMapping("/child/{id}")
-    public String imagesOfChild(Model model, @PathVariable Long id) {
+    public String imagesOfChild(@RequestParam(value = "page", defaultValue = "1") int page,
+                                Model model, @PathVariable Long id) {
         try {
 
             MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -75,11 +77,25 @@ public class DailyRecordController {
                 throw new Exception();
             }
 
-            List<DailyRecordDTO> dailyRecordDTOList = dailyRecordService.selectDailyRecordByCId(id);
+            List<DailyRecordDTO> dailyRecordDTOAll = dailyRecordService.selectDailyRecordByCId(id)
+                    .stream()
+                    .sorted(Comparator.comparing(DailyRecordDTO::getId).reversed())
+                    .toList();
+
+            int size = 9;
+
+            int totalItems = dailyRecordDTOAll.size();
+            int totalPages = (totalItems + size - 1) / size; // 전체 페이지 수 계산
+
+            int start = (page - 1) * size;
+            int end = Math.min(start + size, totalItems);
+
+            List<DailyRecordDTO> dailyRecordDTOList = dailyRecordDTOAll.subList(start, end);
+
 
             if (!dailyRecordDTOList.isEmpty()) {
                 for (DailyRecordDTO dr : dailyRecordDTOList) {
-                    if (!dr.getFile1().isBlank()) {
+                    if (!dr.getFile1().isEmpty()) {
                         dr.setFile1(fileRecordsPath.replace("\\\\", "/")
                                 .substring(2)
                                 + "/" + dr.getFile1());
@@ -88,6 +104,16 @@ public class DailyRecordController {
             }
 
             model.addAttribute("records", dailyRecordDTOList);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", totalPages);
+
+
+            int startPage = (page - 1) / 10 * 10 + 1;
+            int endPage = Math.min(startPage + 9, totalPages);
+
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
             return "imagesOfChild";
         } catch (Exception e) {
             return "redirect:/records/list";

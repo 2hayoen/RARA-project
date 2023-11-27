@@ -109,13 +109,35 @@ public class BoardController {
 //    }
 
     @GetMapping("/list")
-    public String getAllBoards(Model model) {
+    public String getAllBoards(@RequestParam(value = "page", defaultValue = "1") int page,
+                               Model model) {
         // 모든 게시물 정보 조회
-        List<BoardDTO> boards = boardService.selectBoardsAll()
+        List<BoardDTO> allBoards = boardService.selectBoardsAll()
                 .stream()
                 .sorted(Comparator.comparing(BoardDTO::getId).reversed())
                 .toList();
+
+        int size = 10;
+
+        int totalItems = allBoards.size();
+        int totalPages = (totalItems + size - 1) / size; // 전체 페이지 수 계산
+
+        int start = (page - 1) * size;
+        int end = Math.min(start + size, totalItems);
+
+        List<BoardDTO> boards = allBoards.subList(start, end); // 현재 페이지에 해당하는 게시물
+
         model.addAttribute("boards", boards);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+
+
+        int startPage = (page - 1) / 10 * 10 + 1;
+        int endPage = Math.min(startPage + 9, totalPages);
+
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
         return "Board_All_list"; // Board_All_list.html을 렌더링
     }
 
@@ -123,10 +145,10 @@ public class BoardController {
     public String getBoardById(@PathVariable Long id, Model model) {
         try {
             BoardDTO board = boardService.selectBoardById(id);
-            if (!board.getFile1().isBlank()) {
+            if (board.getFile1() != null) {
                 board.setFile1(board.getFile1().substring(board.getFile1().indexOf("_") + 1));
             }
-            if (!board.getFile2().isBlank()) {
+            if (board.getFile2() != null) {
                 board.setFile2(board.getFile2().substring(board.getFile2().indexOf("_") + 1));
             }
             model.addAttribute("board", board);

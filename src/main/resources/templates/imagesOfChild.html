@@ -47,5 +47,23 @@
         </div>
     </div>
 
+    <div class="containerPage">
+        <div class="pagination">
+            <!-- 이전 페이지 링크 -->
+            <a th:if="${currentPage > 1}"
+               th:href="@{/records/child/{id}(id = ${records[0].cId}, page=${currentPage - 1})}">&laquo;</a>
+
+            <!-- 페이지 번호 -->
+            <span th:each="i : ${#numbers.sequence(startPage, endPage)}">
+            <a th:href="@{/records/child/{id}(id = ${records[0].cId}, page=${i})}" th:text="${i}"
+               th:class="${currentPage == i ? 'active' : ''}"></a>
+        </span>
+
+            <!-- 다음 페이지 링크 -->
+            <a th:if="${currentPage < totalPages}"
+               th:href="@{/records/child/{id}(id = ${records[0].cId}, page=${currentPage + 1})}">&raquo;</a>
+        </div>
+    </div>
+
 </th:block>
 </html>

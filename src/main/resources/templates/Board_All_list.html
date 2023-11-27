@@ -54,7 +54,7 @@
                             <a th:text="${board.title}" th:href="@{'/boards/' + ${board.id}}"></a>
                         </td>
                         <td th:text="${board.author}"></td>
-                        <td th:text="${board.created}"></td>
+                        <td th:text="${#temporals.format(board.created, 'yyyy-MM-dd HH:mm:ss')}"></td>
                     </tr>
                     <div th:if="${#lists.isEmpty(boards)}">
                         <td colspan="4">조회된 결과가 없습니다.</td><!-- 'boards'가 비어 있을 때의 내용 -->
@@ -62,8 +62,22 @@
 
                     </tbody>
                 </table>
+                <br>
+                <br>
+                <div class="containerPage">
+                    <div class="pagination">
+                        <a th:if="${currentPage > 1}" th:href="@{/boards/list(page=${currentPage - 1})}">&laquo;</a>
+                        <span th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                        <a th:href="@{/boards/list(page=${i})}" th:text="${i}"
+                           th:class="${currentPage == i ? 'active' : ''}"></a>
+                    </span>
+                        <a th:if="${currentPage < totalPages}"
+                           th:href="@{/boards/list(page=${currentPage + 1})}">&raquo;</a>
+                    </div>
+                </div>
             </div>
         </div>
+        <br>
         <br>
         <div class="col-md-6 offset-md-3">
             <div class="d-flex justify-content-end ">
@@ -73,6 +87,7 @@
             </div>
         </div>
     </section>
+
 
     <style>
             .table {
@@ -236,6 +251,24 @@
               width: 1px;
               height: 1px;
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
