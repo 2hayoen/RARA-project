@@ -2,6 +2,7 @@ package com.rara.app.controller;
 
 import com.rara.app.dto.BoardDTO;
 import com.rara.app.dto.DailyPlanDTO;
+import com.rara.app.dto.MemberDTO;
 import com.rara.app.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +12,7 @@ import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -111,44 +113,68 @@ public class BoardController {
     @GetMapping("/list")
     public String getAllBoards(@RequestParam(value = "page", defaultValue = "1") int page,
                                Model model) {
-        // 모든 게시물 정보 조회
-        List<BoardDTO> allBoards = boardService.selectBoardsAll()
-                .stream()
-                .sorted(Comparator.comparing(BoardDTO::getId).reversed())
-                .toList();
 
-        int size = 10;
+        try {
 
-        int totalItems = allBoards.size();
-        int totalPages = (totalItems + size - 1) / size; // 전체 페이지 수 계산
-
-        int start = (page - 1) * size;
-        int end = Math.min(start + size, totalItems);
-
-        List<BoardDTO> boards = allBoards.subList(start, end); // 현재 페이지에 해당하는 게시물
-
-        model.addAttribute("boards", boards);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", totalPages);
+            MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Long mId = member.getId();
 
 
-        int startPage = (page - 1) / 10 * 10 + 1;
-        int endPage = Math.min(startPage + 9, totalPages);
+            // 모든 게시물 정보 조회
+            List<BoardDTO> allBoards = boardService.selectBoardsAll()
+                    .stream()
+                    .sorted(Comparator.comparing(BoardDTO::getId).reversed())
+                    .toList();
 
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
+            int size = 10;
 
-        return "Board_All_list"; // Board_All_list.html을 렌더링
+            int totalItems = allBoards.size();
+            int totalPages = (totalItems + size - 1) / size; // 전체 페이지 수 계산
+
+            int start = (page - 1) * size;
+            int end = Math.min(start + size, totalItems);
+
+            List<BoardDTO> boards = allBoards.subList(start, end); // 현재 페이지에 해당하는 게시물
+
+            model.addAttribute("boards", boards);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", totalPages);
+
+
+            int startPage = (page - 1) / 10 * 10 + 1;
+            int endPage = Math.min(startPage + 9, totalPages);
+
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "Board_All_list"; // Board_All_list.html을 렌더링
+        } catch (Exception e) {
+            return "error";
+        }
+
     }
 
     @GetMapping("/{id}")
     public String getBoardById(@PathVariable Long id, Model model) {
         try {
             BoardDTO board = boardService.selectBoardById(id);
+
             if (board.getFile1() != null) {
+                if (board.getFile1().substring(board.getFile1().lastIndexOf(".")).equals(".jpg")) {
+                    model.addAttribute("file1",
+                            fileBoardPath.replace("\\\\", "/")
+                                    .substring(2)
+                                    + "/" + board.getFile1());
+                }
                 board.setFile1(board.getFile1().substring(board.getFile1().indexOf("_") + 1));
             }
             if (board.getFile2() != null) {
+                if (board.getFile2().substring(board.getFile2().lastIndexOf(".")).equals(".jpg")) {
+                    model.addAttribute("file2",
+                            fileBoardPath.replace("\\\\", "/")
+                                    .substring(2)
+                                    + "/" + board.getFile2());
+                }
                 board.setFile2(board.getFile2().substring(board.getFile2().indexOf("_") + 1));
             }
             model.addAttribute("board", board);

@@ -12,5 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
         // 'dailyRecords' 경로로 들어오는 요청을 'C:/devs/files/dailyRecords/' 폴더로 매핑
         registry.addResourceHandler("/devs/files/dailyRecords/**")
                 .addResourceLocations("file:///C:/devs/files/dailyRecords/");
+
+        registry.addResourceHandler("/devs/files/boards/**")
+                .addResourceLocations("file:///C:/devs/files/boards/");
     }
 }
