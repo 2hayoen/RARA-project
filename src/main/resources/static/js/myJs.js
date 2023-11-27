@@ -79,4 +79,3 @@
 //}
 //
 //document.getElementById('getHtmlTable').addEventListener('click', getHtmlTable);
-

@@ -92,12 +92,12 @@ public class DailyPlanController {
                     .toList();
 
             for (DailyPlanDTO dailyPlanDTO : dailyPlans) {
-                if (!dailyPlanDTO.getFile1().isBlank()) {
+                if (dailyPlanDTO.getFile1() != null) {
                     dailyPlanDTO.setFile1(
                             dailyPlanDTO.getFile1().substring(
                                     dailyPlanDTO.getFile1().indexOf("_") + 1));
                 }
-                if (!dailyPlanDTO.getFile2().isBlank()) {
+                if (dailyPlanDTO.getFile2() != null) {
                     dailyPlanDTO.setFile2(
                             dailyPlanDTO.getFile2().substring(
                                     dailyPlanDTO.getFile2().indexOf("_") + 1));
