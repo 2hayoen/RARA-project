@@ -22,46 +22,98 @@
     <!-- Header End -->
     <div class="container py-5">
         <th:block th:if="${board != null}">
-            <div class="row pt-5">
-                <div class="col-lg-8">
-                    제목
-                    <p th:text="${board.title}"></p>
+
+            <div class="container">
+                <div class="row info-row">
+                    <div class="col">
+                        <span class="info-label">작성자:</span>
+                        <span th:text="${board.author}"></span>
+                    </div>
+                    <div class="col">
+                        <span class="info-label">작성일:</span>
+                        <span th:text="${#temporals.format(board.created, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    </div>
+                    <div class="col">
+                        <span class="info-label">카테고리:</span>
+                        <span th:text="${board.category}"></span>
+                    </div>
                 </div>
             </div>
-            <div class="row pt-5">
-                <div class="col-lg-8">
-                    내용
-                    <p th:text="${board.content}"></p>
+
+            <div class="container">
+                <div class="row info-row">
+                    <div class="col">
+                        <span class="info-label">제목:</span>
+                        <span th:text="${board.title}"></span>
+                    </div>
                 </div>
             </div>
-            <div class="row pt-5">
-                <div class="col-lg-8">
-                    작성일
-                    <p th:text="${#temporals.format(board.created, 'yyyy-MM-dd HH:mm:ss')}"></p>
+
+            <div class="container">
+                <div class="row info-row">
+                    <div class="col">
+                        <span class="info-label">내용</span>
+                    </div>
                 </div>
             </div>
-            <div class="row pt-5">
-                <div class="col-lg-8">
-                    작성자
-                    <p th:text="${board.author}"></p>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <p th:text="${board.content}"></p>
+                    </div>
                 </div>
             </div>
-            <div class="row pt-5">
-                <div class="col-lg-8">
-                    카테고리
-                    <p th:text="${board.category}"></p>
-                </div>
-            </div>
+
+            <!--            <div class="row pt-5">-->
+            <!--                <div class="col-lg-8">-->
+            <!--                    제목-->
+            <!--                    <p th:text="${board.title}"></p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="row pt-5">-->
+            <!--                <div class="col-lg-8">-->
+            <!--                    내용-->
+            <!--                    <p th:text="${board.content}"></p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+            <!--            <div class="row pt-5">-->
+            <!--                <div class="col-lg-8">-->
+            <!--                    작성일-->
+            <!--                    <p th:text="${#temporals.format(board.created, 'yyyy-MM-dd HH:mm:ss')}"></p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="row pt-5">-->
+            <!--                <div class="col-lg-8">-->
+            <!--                    작성자-->
+            <!--                    <p th:text="${board.author}"></p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="row pt-5">-->
+            <!--                <div class="col-lg-8">-->
+            <!--                    카테고리-->
+            <!--                    <p th:text="${board.category}"></p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
             <div th:if="${board.file1 != null}" class="row pt-5">
+                <div th:if="${file1 != null}">
+                    <img th:src="@{${file1}}" alt="이미지 오류" width="1000" height="800"/>
+                </div>
                 <div class="col-lg-8">
                     <a th:href="@{/boards/{id}/file1(id=${board.id})}" th:text="${board.file1}"></a>
                 </div>
             </div>
             <div th:if="${board.file2 != null}" class="row pt-5">
+                <div th:if="${file2 != null}">
+                    <img th:src="@{${file2}}" alt="이미지 오류" width="1000" height="800"/>
+                </div>
                 <div class="col-lg-8">
                     <a th:href="@{/boards/{id}/file2(id=${board.id})}" th:text="${board.file2}"></a>
                 </div>
             </div>
+
         </th:block>
     </div>
 

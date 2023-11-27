@@ -25,7 +25,7 @@
                 <div class="search-window">
                     <form action="">
                         <div class="search-wrap">
-                            <label for="search" class="blind">공지사항 내용 검색</label>
+                            <label for="search" class="blind">공지사항 검색</label>
                             <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
                             <button type="submit" class="btn btn-dark">검색</button>
                         </div>
@@ -43,7 +43,8 @@
                         <th scope="col" class="th-num">번호</th>
                         <th scope="col" class="th-title">제목</th>
                         <th scope="col" class="th-date">작성자</th>
-                        <th scope="col" class="th-date">등록일</th>
+                        <th scope="col" class="th-date">작성일</th>
+                        <th scope="col" class="th-date">카테고리</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,7 @@
                         </td>
                         <td th:text="${board.author}"></td>
                         <td th:text="${#temporals.format(board.created, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${board.category}"></td>
                     </tr>
                     <div th:if="${#lists.isEmpty(boards)}">
                         <td colspan="4">조회된 결과가 없습니다.</td><!-- 'boards'가 비어 있을 때의 내용 -->
@@ -251,6 +253,9 @@
               width: 1px;
               height: 1px;
             }
+
+
+
 
 
 

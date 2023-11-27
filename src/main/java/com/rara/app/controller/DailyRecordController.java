@@ -54,7 +54,11 @@ public class DailyRecordController {
             MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             Long id = member.getId();
 
-            model.addAttribute("children", childService.selectChildByMTId(id));
+            if (member.getSeparator().equals("학부모")) {
+                model.addAttribute("children", childService.selectChildByMCId(id));
+            } else {
+                model.addAttribute("children", childService.selectChildByMTId(id));
+            }
 
             return "childrenList";
         } catch (Exception e) {
