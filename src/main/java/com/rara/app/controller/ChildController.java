@@ -27,7 +27,8 @@ public class ChildController {
             return "childTest";  // HTML 파일 명
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -40,7 +41,8 @@ public class ChildController {
             return "child/readById";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -53,7 +55,8 @@ public class ChildController {
             return "child/readByName";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -66,7 +69,8 @@ public class ChildController {
             return "child/readByBirth";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -79,7 +83,8 @@ public class ChildController {
             return "child/readByM_T_Id";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -92,7 +97,8 @@ public class ChildController {
             return "child/readByM_C_Id";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -110,7 +116,8 @@ public class ChildController {
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -148,7 +155,8 @@ public class ChildController {
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -160,7 +168,8 @@ public class ChildController {
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -172,7 +181,8 @@ public class ChildController {
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -184,7 +194,8 @@ public class ChildController {
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -196,7 +207,8 @@ public class ChildController {
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -208,7 +220,8 @@ public class ChildController {
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -220,7 +233,8 @@ public class ChildController {
             return "redirect:/children/";
         } catch (Exception e) {
             // 오류 처리 로직 추가
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 }

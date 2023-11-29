@@ -1,5 +1,6 @@
 package com.rara.app.controller;
 
+import com.rara.app.dto.BoardDTO;
 import com.rara.app.dto.DailyPlanDTO;
 import com.rara.app.dto.MemberDTO;
 import com.rara.app.service.DailyPlanService;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -31,11 +33,14 @@ public class MyPageController {
             MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             Long mId = member.getId();
 
-            List<DailyPlanDTO> dailyPlans = dailyPlanService.selectDailyPlanByMId(mId);
+            List<DailyPlanDTO> dailyPlans = dailyPlanService.selectDailyPlanByMId(mId)
+                    .stream().sorted(Comparator.comparing(DailyPlanDTO::getId))
+                    .toList();
             model.addAttribute("dailyPlans", dailyPlans);
             return "Teacher_Act_list";
         } catch (Exception e) {
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 }

@@ -10,9 +10,11 @@
             <h3 class="display-3 font-weight-bold text-white">소속 어린이 목록</h3>
             <div class="d-inline-flex text-white">
                 <h4 class="m-0 px-2">&nbsp;</h4>
-                <a th:href="@{/records/imageUpload}"><h4 class="m-0">이미지 업로드하기</h4></a>
             </div>
         </div>
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <h6><a th:href="@{/records/imageUpload}" class="btn btn-primary">이미지 업로드하기</a></h6>
     </div>
     <!-- Header End -->
     <div class="container-fluid pt-5">
@@ -23,7 +25,8 @@
                         <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">
                             <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
                             <div class="pl-4">
-                                <h4><a th:text="${child.name}" th:href="@{/records/child/{id} (id = ${child.id})}"></a></h4>
+                                <h4><a th:text="${child.name}" th:href="@{/records/child/{id} (id = ${child.id})}"></a>
+                                </h4>
                             </div>
                         </div>
                     </div>

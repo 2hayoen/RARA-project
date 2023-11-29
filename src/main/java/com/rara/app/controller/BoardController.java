@@ -82,7 +82,8 @@ public class BoardController {
             boardService.insertBoard(boardDTO);
             return "redirect:list"; // 게시물 생성 후 목록 페이지로 리다이렉션
         } catch (Exception e) {
-            return "index"; // 예외 발생 시 index 페이지로 이동
+//            return "index"; // 예외 발생 시 index 페이지로 이동
+            return "redirect:/";
         }
     }
 
@@ -149,7 +150,8 @@ public class BoardController {
 
             return "Board_All_list"; // Board_All_list.html을 렌더링
         } catch (Exception e) {
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
 
     }
@@ -180,7 +182,8 @@ public class BoardController {
             model.addAttribute("board", board);
             return "Board_detailed_Calendar";
         } catch (Exception e) {
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 

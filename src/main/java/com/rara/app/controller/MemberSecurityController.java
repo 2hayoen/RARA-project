@@ -37,7 +37,8 @@ public class MemberSecurityController {
             return "test/home1";
         } catch (Exception e) {
             model.addAttribute("msg", "Member personal Error!");
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
 
     }
@@ -50,7 +51,8 @@ public class MemberSecurityController {
             return "userList";
         } catch (Exception e) {
             model.addAttribute("msg", "Member MemberList Error!");
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
 
     }

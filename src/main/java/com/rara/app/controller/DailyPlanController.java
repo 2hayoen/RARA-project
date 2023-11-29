@@ -108,7 +108,8 @@ public class DailyPlanController {
             model.addAttribute("dailyPlans", dailyPlans);
             return "Teacher_Act_list";
         } catch (Exception e) {
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -120,7 +121,13 @@ public class DailyPlanController {
 
     @GetMapping
     public String pageDP() {
-        return "Act_input";
+        try {
+            MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Long id = member.getId();
+            return "Act_input";
+        } catch (Exception e) {
+            return "redirect:/";
+        }
     }
 
     @PostMapping
@@ -128,6 +135,9 @@ public class DailyPlanController {
     public String createDP(DailyPlanDTO dailyPlanDTO) {
         try {
 //            dailyPlanService.insertDailyPlan(dailyPlanDTO);
+            MemberDTO member = (MemberDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Long id = member.getId();
+
             BufferedOutputStream bs = null;
             String fileName = UUID.randomUUID().toString() + "_" + dailyPlanDTO.getYear().toString() + "_"
                     + dailyPlanDTO.getMonth().toString() + ".txt";
@@ -148,7 +158,8 @@ public class DailyPlanController {
             }
             return "redirect:/act";
         } catch (Exception e) {
-            return "redirect:/act";
+//            return "redirect:/act";
+            return "redirect:/";
         }
     }
 
@@ -168,7 +179,8 @@ public class DailyPlanController {
             dailyPlanService.updateDailyPlanSetAct1TypeAndGoalAndTimeAndTitleAndSubAndDescAndMater(params);
             return "redirect:/act";
         } catch (Exception e) {
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -199,7 +211,8 @@ public class DailyPlanController {
 
             return "redirect:/mypage";
         } catch (Exception e) {
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
 
     }

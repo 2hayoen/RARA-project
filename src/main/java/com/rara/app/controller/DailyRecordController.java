@@ -62,7 +62,8 @@ public class DailyRecordController {
 
             return "childrenList";
         } catch (Exception e) {
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -149,7 +150,8 @@ public class DailyRecordController {
 
             return "redirect:/records/list";
         } catch (Exception e) {
-            return "error";
+//            return "error";
+            return "redirect:/";
         }
     }
 
@@ -174,6 +176,16 @@ public class DailyRecordController {
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteImage(@PathVariable Long id) {
+        try {
+            dailyRecordService.deleteDailyRecord(id);
+            return "redirect:/records/list";
+        } catch (Exception e) {
+            return "redirect:/";
         }
     }
 
